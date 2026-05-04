@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rapid Stores and General Dealers Limited — mattresses, smart TVs, dressers, and wardrobes for modern homes in Mansa with local delivery support." />
+    <meta name="theme-color" content="#0a2e4a" />
+    <title>Rapid Stores and General Dealers Limited — Furniture Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  <style>
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       RAPID STORES — "ALIVE" ENHANCEMENTS
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+    /* â”€â”€ Scroll reveal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .rs-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .rs-reveal.rs-visible { opacity: 1; transform: translateY(0); }
+    .rs-reveal-delay-1 { transition-delay: 0.1s; }
+    .rs-reveal-delay-2 { transition-delay: 0.2s; }
+    .rs-reveal-delay-3 { transition-delay: 0.3s; }
+    .rs-reveal-delay-4 { transition-delay: 0.4s; }
+    .rs-reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* â”€â”€ Animated mission banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .mission-quote-strip {
+      background-size: 200% 200% !important;
+      animation: mqShift 7s ease-in-out infinite;
+    }
+    @keyframes mqShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .mission-quote-text {
+      animation: mqFadeIn 1.1s 0.3s ease both;
+    }
+    @keyframes mqFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* â”€â”€ Hero stat number pop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .hero-stat strong {
+      display: inline-block;
+      animation: statPop 0.6s cubic-bezier(0.22,1.4,0.36,1) both;
+    }
+    .hero-stat:nth-child(1) strong { animation-delay: 0.25s; }
+    .hero-stat:nth-child(2) strong { animation-delay: 0.40s; }
+    .hero-stat:nth-child(3) strong { animation-delay: 0.55s; }
+    .hero-stat:nth-child(4) strong { animation-delay: 0.70s; }
+    @keyframes statPop {
+      from { opacity: 0; transform: scale(0.7) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* â”€â”€ Featured banner shimmer border â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .featured-banner {
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(74,168,232,0.18) 50%, transparent 70%);
+      background-size: 200% 100%;
+      animation: bannerShimmer 3s linear infinite;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    @keyframes bannerShimmer {
+      from { background-position: 200% 0; }
+      to   { background-position: -200% 0; }
+    }
+
+    /* â”€â”€ Room cards enhanced hover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .room-card {
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease !important;
+    }
+    .room-card:hover {
+      transform: translateY(-6px) scale(1.015) !important;
+      box-shadow: 0 16px 40px rgba(10,46,74,0.18) !important;
+    }
+    .room-card-visual {
+      transition: transform 0.4s ease !important;
+      font-size: 2.8rem !important;
+    }
+    .room-card:hover .room-card-visual {
+      transform: scale(1.08) !important;
+    }
+
+    /* â”€â”€ Product cards enhanced hover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .product-card {
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+    }
+    .product-card:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 14px 36px rgba(10,46,74,0.15) !important;
+    }
+    .product-image {
+      transition: transform 0.4s ease !important;
+    }
+    .product-card:hover .product-image {
+      transform: scale(1.04) !important;
+    }
+    /* Animated price on card */
+    .product-card .price {
+      transition: color 0.2s, transform 0.2s;
+    }
+    .product-card:hover .price {
+      color: #1a5a8a;
+      transform: scale(1.04);
+    }
+
+    /* â”€â”€ Arrival items icon animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .arrival-item {
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+    }
+    .arrival-item:hover {
+      transform: translateY(-5px) scale(1.02) !important;
+      box-shadow: 0 10px 28px rgba(10,46,74,0.14) !important;
+    }
+    .arrival-icon {
+      background: linear-gradient(135deg, #0c2d4a, #1a5a8a, #4aa8e8) !important;
+      background-size: 200% 200% !important;
+      animation: iconGrad 4s ease-in-out infinite;
+      transition: transform 0.3s ease !important;
+    }
+    .arrival-item:hover .arrival-icon {
+      transform: rotate(-4deg) scale(1.12) !important;
+      animation: iconGrad 1.5s ease-in-out infinite !important;
+    }
+    @keyframes iconGrad {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* â”€â”€ Trust / Why-choose cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .trust-item {
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .trust-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1a5a8a, #4aa8e8);
+      border-radius: 0 0 0.7rem 0.7rem;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .trust-item:hover::after { transform: scaleX(1); }
+    .trust-item:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 10px 28px rgba(10,46,74,0.12) !important;
+    }
+    .trust-icon {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.22,1.5,0.36,1);
+    }
+    .trust-item:hover .trust-icon {
+      transform: scale(1.25) rotate(-8deg);
+    }
+
+    /* â”€â”€ Premium highlight cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .premium-highlight-card {
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s, transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+    }
+    .premium-highlight-card:hover {
+      transform: translateY(-4px) !important;
+      border-left-color: #4aa8e8 !important;
+      box-shadow: 0 8px 24px rgba(10,46,74,0.12) !important;
+    }
+
+    /* â”€â”€ Category filter btn pulse on click â”€â”€â”€â”€â”€ */
+    .filter-btn.active, .location-btn.active {
+      animation: pillActivate 0.35s cubic-bezier(0.22,1.4,0.36,1) both;
+    }
+    @keyframes pillActivate {
+      from { transform: scale(0.9); }
+      to   { transform: scale(1); }
+    }
+
+    /* â”€â”€ WhatsApp float pulse upgrade â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .wa-float {
+      animation: waPulseRing 2.2s ease-in-out infinite !important;
+    }
+    @keyframes waPulseRing {
+      0%,100% { box-shadow: 0 4px 18px rgba(31,173,82,0.45), 0 0 0 0 rgba(31,173,82,0.35); }
+      50%      { box-shadow: 0 4px 18px rgba(31,173,82,0.6), 0 0 0 10px rgba(31,173,82,0); }
+    }
+
+    /* â”€â”€ Section headings underline animate â”€â”€â”€â”€â”€ */
+    main section > h2 {
+      position: relative;
+      display: inline-block;
+    }
+    main section > h2::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      height: 3px; width: 0;
+      background: linear-gradient(90deg, #1a5a8a, #4aa8e8);
+      border-radius: 2px;
+      transition: width 0.55s ease;
+    }
+    main section.rs-visible > h2::after { width: 60%; }
+
+    /* â”€â”€ Ticker strip (new) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .rs-ticker-wrap {
+      background: linear-gradient(90deg, #071e30, #0c2d4a);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.5rem 0;
+      border-top: 1px solid rgba(74,168,232,0.18);
+      border-bottom: 1px solid rgba(74,168,232,0.18);
+    }
+    .rs-ticker-track {
+      display: inline-block;
+      animation: tickerScroll 28s linear infinite;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+    .rs-ticker-track:hover { animation-play-state: paused; }
+    .rs-ticker-sep { color: #4aa8e8; margin: 0 1.2rem; }
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* â”€â”€ Section entry animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    @keyframes sectionSlideUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* â”€â”€ Floating badge on product image â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .badge {
+      transition: transform 0.25s ease !important;
+    }
+    .product-card:hover .badge {
+      transform: translateY(-2px) scale(1.06) !important;
+    }
+
+    /* â”€â”€ Back-to-top button animate â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .back-to-top {
+      transition: transform 0.25s cubic-bezier(0.22,1.4,0.36,1), opacity 0.25s !important;
+    }
+    .back-to-top:hover {
+      transform: translateY(-4px) !important;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       MODERN UPGRADE LAYER
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+    /* Body font upgrade */
+    body { font-family: 'Manrope', 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+
+    /* â”€â”€ Gradient hero title â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .hero h1 {
+      background: linear-gradient(130deg, #ffffff 0%, #c8e8f8 45%, #4aa8e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    /* â”€â”€ Hero badge pill â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(74,168,232,0.14);
+      border: 1px solid rgba(74,168,232,0.32);
+      border-radius: 2rem;
+      padding: 0.28rem 0.85rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #7dcbf5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      backdrop-filter: blur(8px);
+      width: fit-content;
+    }
+
+    /* â”€â”€ Glassmorphism hero stats â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .hero-stat {
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border-radius: 0.9rem !important;
+      padding: 0.7rem 1.15rem !important;
+    }
+    .hero-stat span {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      opacity: 0.72;
+    }
+
+    /* â”€â”€ Glass hero spotlight â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .hero-spotlight {
+      background: rgba(255,255,255,0.06) !important;
+      border: 1px solid rgba(255,255,255,0.13) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      border-radius: 0.85rem !important;
+    }
+
+    /* â”€â”€ Room cards — taller, with overlay â”€â”€â”€â”€â”€ */
+    .room-card-visual {
+      min-height: 118px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 3.2rem !important;
+      position: relative !important;
+      border-radius: 0.7rem 0.7rem 0 0;
+    }
+    .room-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.28) 100%);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .room-card {
+      border-radius: 0.9rem !important;
+      overflow: hidden;
+    }
+
+    /* â”€â”€ Arrival icon per-category colours â”€â”€â”€â”€â”€ */
+    .arrival-item:nth-child(1) .arrival-icon { background: linear-gradient(135deg, #0d3a5c, #1a6a9a) !important; animation-duration: 5s !important; }
+    .arrival-item:nth-child(2) .arrival-icon { background: linear-gradient(135deg, #08101e, #1a2e48) !important; }
+    .arrival-item:nth-child(3) .arrival-icon { background: linear-gradient(135deg, #102040, #1e4a7a) !important; }
+    .arrival-item:nth-child(4) .arrival-icon { background: linear-gradient(135deg, #061828, #0d3055) !important; }
+    .arrival-icon {
+      font-size: 1.1rem !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.02em;
+      border-radius: 0.7rem !important;
+    }
+
+    /* â”€â”€ Section label chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #4aa8e8;
+      margin-bottom: 0.3rem;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    /* â”€â”€ Product image taller + glow hover â”€â”€â”€â”€â”€ */
+    .product-image {
+      min-height: 126px !important;
+      border-radius: 0.6rem 0.6rem 0 0 !important;
+    }
+    .product-card:hover .product-image {
+      box-shadow: inset 0 -3px 18px rgba(74,168,232,0.18) !important;
+    }
+
+    /* â”€â”€ Card image icon styling â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .card-image-icon {
+      font-size: 1.35rem !important;
+      font-weight: 800 !important;
+      font-family: 'Inter', sans-serif !important;
+      letter-spacing: -0.03em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+
+    /* â”€â”€ Banner badge gradient â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .banner-badge {
+      background: linear-gradient(135deg, #1a5a8a, #3a9ad6) !important;
+      font-family: 'Manrope', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.04em;
+    }
+
+    /* â”€â”€ Trust grid items modernized â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .trust-grid {
+      gap: 1rem !important;
+    }
+    .trust-item {
+      border-radius: 1rem !important;
+      border: 1px solid rgba(74,168,232,0.12) !important;
+    }
+    .trust-icon {
+      font-size: 1.6rem !important;
+    }
+
+    /* â”€â”€ Mission quote text â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .mission-quote-text {
+      font-family: 'Playfair Display', serif !important;
+      font-size: 1.05rem !important;
+      font-style: italic;
+    }
+
+    /* â”€â”€ Premium highlight cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .premium-highlight-card {
+      border-radius: 0.9rem !important;
+      border-top: 2px solid rgba(74,168,232,0.2) !important;
+    }
+    .premium-highlight-card:hover {
+      border-top-color: #4aa8e8 !important;
+    }
+    .premium-highlight-card h3 {
+      font-size: 0.95rem !important;
+      letter-spacing: -0.01em;
+    }
+
+    /* â”€â”€ Footer modernized â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    footer {
+      border-top: 1px solid rgba(74,168,232,0.15) !important;
+    }
+  </style>
+  <style>
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       ALIVE — EXTRA LAYER
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+    /* Scroll progress bar */
+    #rs-progress { will-change: width; }
+
+    /* Hero cursor glow */
+    .hero { --mx: 50%; --my: 50%; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(700px circle at var(--mx) var(--my), rgba(74,168,232,0.09), transparent 65%);
+    }
+    .header-orb { transition: transform 0.18s ease-out !important; }
+
+    /* Store open/closed badge */
+    .store-status {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.72rem; font-weight: 700; font-family: 'Manrope', sans-serif;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.22rem 0.7rem; border-radius: 2rem;
+      margin-top: 0.45rem; width: fit-content;
+      backdrop-filter: blur(6px);
+    }
+    .store-status.open  { background: rgba(26,204,104,0.14); border: 1px solid rgba(26,204,104,0.36); color: #1acc68; }
+    .store-status.closed{ background: rgba(220,70,70,0.14);  border: 1px solid rgba(220,70,70,0.3);  color: #e06060; }
+    .store-status-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      animation: sdPulse 1.8s ease-in-out infinite;
+    }
+    .store-status.open  .store-status-dot { background: #1acc68; }
+    .store-status.closed .store-status-dot { background: #e06060; animation: none; }
+    @keyframes sdPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(26,204,104,0.55); }
+      50%      { box-shadow: 0 0 0 5px rgba(26,204,104,0); }
+    }
+
+    /* Floating hero particles */
+    .hero-particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(74,168,232,0.22); pointer-events: none; z-index: 0;
+      animation: ptFloat linear infinite;
+    }
+    @keyframes ptFloat {
+      0%   { transform: translateY(0)   scale(1);   opacity: 0.55; }
+      50%  { transform: translateY(-26px) scale(1.1); opacity: 0.25; }
+      100% { transform: translateY(0)   scale(1);   opacity: 0.55; }
+    }
+
+    /* Activity popup (bottom-left) */
+    .rs-activity {
+      position: fixed; bottom: 5.8rem; left: 1.2rem; z-index: 8000;
+      background: rgba(7,28,46,0.93); color: #e0f0fc;
+      border: 1px solid rgba(74,168,232,0.28);
+      border-radius: 0.9rem; padding: 0.65rem 1rem;
+      font-size: 0.78rem; font-family: 'Manrope', sans-serif; line-height: 1.5;
+      backdrop-filter: blur(14px); max-width: 255px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+      transform: translateX(calc(-100% - 1.5rem)); opacity: 0;
+      transition: transform 0.42s cubic-bezier(0.22,1,0.36,1), opacity 0.38s ease;
+      pointer-events: none;
+    }
+    .rs-activity.rs-act-show { transform: translateX(0); opacity: 1; }
+    .rs-activity strong { color: #7dcbf5; }
+    .rs-act-icon { margin-right: 0.3rem; }
+
+    /* Page exit fade */
+    .page-exit { animation: pgExit 0.32s ease forwards; }
+    @keyframes pgExit { to { opacity: 0; transform: translateY(-6px); } }
+
+    /* Hero h1 word stagger */
+    .hw { display: inline-block; animation: hwUp 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+    @keyframes hwUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Nav hover underline slide */
+    header nav a { position: relative; }
+    header nav a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      height: 2px; width: 0;
+      background: linear-gradient(90deg, #4aa8e8, #7dcbf5);
+      border-radius: 2px; transition: width 0.28s ease;
+    }
+    header nav a:hover::after,
+    header nav a[aria-current]::after { width: 100%; }
+
+    /* Offer grid item count-in stagger (via JS-set delay) */
+    .product-card { will-change: transform; }
+  </style>
+  </head>
+  <body class="is-loading">
+    <div id="rs-progress" aria-hidden="true" style="position:fixed;top:0;left:0;z-index:9999;height:3px;width:0%;background:linear-gradient(90deg,#1a5a8a,#4aa8e8,#7dcbf5);border-radius:0 2px 2px 0;box-shadow:0 0 10px rgba(74,168,232,0.7);transition:width 0.12s linear;pointer-events:none;"></div>
+    <div id="site-preloader" class="site-preloader" aria-hidden="true">
+      <div class="preloader-mark">Rapid Stores and General Dealers Limited</div>
+      <div class="preloader-line" role="presentation"></div>
+    </div>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <div class="page-control">
+      <label for="page-select">Go to page:</label>
+      <select id="page-select">
+        <option value="index.html">Home</option>
+        <option value="about.html">About</option>
+        <option value="page1.html">Top Sellers</option>
+        <option value="page2.html">Checkout</option>
+        <option value="page3.html">Contact</option>
+        <option value="live-hub.html">Live Hub</option>
+      </select>
+      <button id="go-page" class="btn" type="button">Go</button>
+    </div>
+    <div class="container">
+      <header class="hero" role="banner">
+        <div class="header-orb header-orb-1"></div>
+        <div class="header-orb header-orb-2"></div>
+        <div class="logo-row">
+          <img src="logo.svg" alt="Rapid Stores and General Dealers Limited logo" class="site-logo" />
+          <div>
+            <div class="hero-badge">&#128075; Your Neighbours in Mansa</div>
+            <h1 style="font-size:clamp(1.55rem,3.4vw,2.45rem);line-height:1.15;font-weight:800;letter-spacing:0.01em;text-shadow:0 1px 3px rgba(10,46,74,0.2);">Rapid Stores and General Dealers Limited</h1>
+            <p class="hero__eyetitle" style="font-size:0.72rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin:0.1rem 0 0.25rem;font-family:'Manrope',sans-serif;">Furniture Gallery</p>
+            <p class="hero__subtitle">Furniture for real Mansa families — chosen, priced, and delivered by people who live here too.</p>
+            <div id="store-status-badge" class="store-status" aria-live="polite"><span class="store-status-dot"></span><span id="store-status-text">Checking hoursâ€¦</span></div>
+            <div class="hero-spotlight" role="note" aria-label="Store spotlight">
+              <span>&#127968; Rooted in Mansa, Built for Luapula</span>
+              <p>We're not a faraway catalogue — we're your neighbours. Come in, ask questions, and leave with furniture your home will love.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>100% Local</strong><span>Mansa-based team</span></div>
+          <div class="hero-stat"><strong>Real Neighbours</strong><span>People who know you</span></div>
+          <div class="hero-stat"><strong>3 Pickup Spots</strong><span>In your part of town</span></div>
+          <div class="hero-stat"><strong>Community Prices</strong><span>Honest, no surprises</span></div>
+        </div>
+        <div class="top-controls">
+          <div class="search-shell">
+            <div class="search-field">
+              <input type="search" id="offer-search" placeholder="Search mattresses, TVs, bicycles, dressers, wardrobes, features, or price (Press '/' to search)" aria-label="Search offers" aria-controls="search-results" aria-expanded="false" aria-describedby="search-feedback" list="product-suggestions" autocomplete="off" />
+              <button id="clear-search" class="search-clear" type="button" aria-label="Clear search">Clear</button>
+            </div>
+            <p id="search-feedback" class="search-feedback" aria-live="polite">Search by product, room category, feature, or price. Press / to focus.</p>
+            <div id="search-results" class="search-results" role="listbox" style="display: none;"></div>
+          </div>
+          <datalist id="product-suggestions">
+            <option value="CloudRest Queen Mattress">
+            <option value="OrthoLux King Mattress">
+            <option value="VistaView 55 inch Smart TV">
+            <option value="CinemaEdge 65 inch 4K TV">
+            <option value="Vision Bicycle">
+            <option value="Flying Eagle Bicycle">
+            <option value="Heritage 6-Drawer Dresser">
+            <option value="GrandLine 3-Door Wardrobe">
+            <option value="mattresses">
+            <option value="tvs">
+            <option value="bicycles">
+            <option value="dressers">
+            <option value="wardrobes">
+          </datalist>
+          <button id="theme-toggle" type="button" class="btn">Dark mode</button>
+          <button id="open-settings" type="button" class="btn">Settings</button>
+          <a href="#cart" id="header-cart-pill" class="btn btn--ghost header-cart-pill">Cart <span id="header-cart-count">0</span></a>
+        </div>
+        <nav aria-label="Main navigation">
+          <a href="#featured">Featured</a>
+          <a href="#offers">Offers</a>
+          <a href="#zambia">Local</a>
+          <a href="#popular">Popular</a>
+          <a href="about.html">About</a>
+          <a href="page3.html">Contact</a>
+          <a href="live-hub.html">Live Hub</a>
+        </nav>
+      </header>
+
+      <main id="main">
+        <div class="mission-quote-strip" role="note" aria-label="Our mission">
+          <blockquote class="mission-quote-text">
+            "A home is where a family grows. We're here to help every Mansa household furnish theirs — with honest prices, friendly faces, and furniture that actually lasts."
+          </blockquote>
+          <cite class="mission-quote-cite">— Rapid Stores and General Dealers Limited, Mansa</cite>
+        </div>
+
+        <!-- Live ticker -->
+        <div class="rs-ticker-wrap" aria-hidden="true">
+          <span class="rs-ticker-track">
+            ðŸ›ï¸ CloudRest Queen Mattress — K2,800 <span class="rs-ticker-sep">·</span>
+            ðŸ“º VistaView 55" Smart TV — K6,200 <span class="rs-ticker-sep">·</span>
+            ðŸ—„ï¸ Heritage 6-Drawer Dresser — K3,600 <span class="rs-ticker-sep">·</span>
+            ðŸšª GrandLine 3-Door Wardrobe — K7,500 <span class="rs-ticker-sep">·</span>
+            ðŸ‘‘ OrthoLux King Mattress — K4,900 <span class="rs-ticker-sep">·</span>
+            ðŸ“º CinemaEdge 65" 4K TV — K9,800 <span class="rs-ticker-sep">·</span>
+            ðŸšš Delivery from K45 in Mansa <span class="rs-ticker-sep">·</span>
+            ðŸ’¬ Order on WhatsApp: 0977 891 850 <span class="rs-ticker-sep">·</span>
+            ðŸ“ Pick up at Hebron Plaza · Mansa Market · Trade Centre <span class="rs-ticker-sep">·</span>
+            ðŸ›ï¸ CloudRest Queen Mattress — K2,800 <span class="rs-ticker-sep">·</span>
+            ðŸ“º VistaView 55" Smart TV — K6,200 <span class="rs-ticker-sep">·</span>
+            ðŸ—„ï¸ Heritage 6-Drawer Dresser — K3,600 <span class="rs-ticker-sep">·</span>
+            ðŸšª GrandLine 3-Door Wardrobe — K7,500 <span class="rs-ticker-sep">·</span>
+            ðŸ‘‘ OrthoLux King Mattress — K4,900 <span class="rs-ticker-sep">·</span>
+            ðŸ“º CinemaEdge 65" 4K TV — K9,800 <span class="rs-ticker-sep">·</span>
+            ðŸšš Delivery from K45 in Mansa <span class="rs-ticker-sep">·</span>
+            ðŸ’¬ Order on WhatsApp: 0977 891 850 <span class="rs-ticker-sep">·</span>
+            ðŸ“ Pick up at Hebron Plaza · Mansa Market · Trade Centre <span class="rs-ticker-sep">·</span>
+          </span>
+        </div>
+
+        <section id="featured" class="rs-reveal">
+          <span class="section-eyebrow">Made for Mansa Homes</span>
+          <h2>Furniture for Real Families</h2>
+          <div class="featured-banner">
+            <p><strong>Picked by your neighbours:</strong> Bedroom comfort, lounge screens, and storage essentials chosen by Mansa families just like yours.</p>
+            <span class="banner-badge">Community Picks</span>
+          </div>
+          <p>Every piece here has been ordered by real people in Mansa. Browse, ask questions on WhatsApp, and let us help you get your home just right.</p>
+          <div class="premium-highlights" aria-label="Store highlights">
+            <article class="premium-highlight-card rs-reveal rs-reveal-delay-1">
+              <h3>Chosen for Local Life</h3>
+              <p>Every piece is picked for Mansa homes — practical for our climate, our spaces, and our budgets.</p>
+            </article>
+            <article class="premium-highlight-card rs-reveal rs-reveal-delay-2">
+              <h3>We'll Help You Choose</h3>
+              <p>Not sure which size fits your room? Just ask — our team is a WhatsApp message away and happy to help.</p>
+            </article>
+            <article class="premium-highlight-card rs-reveal rs-reveal-delay-3">
+              <h3>We Come to You</h3>
+              <p>Pickup at three local spots or arrange delivery — we work around your schedule, not the other way round.</p>
+            </article>
+          </div>
+          <div class="btn-group">
+            <a href="#offers" class="btn">Shop Collection</a>
+            <a href="page1.html" class="btn btn--outline">Top Picks</a>
+            <a href="page2.html" class="btn btn--ghost">Delivery &amp; FAQ</a>
+          </div>
+        </section>
+
+        <section id="about" class="rs-reveal">
+          <h2>We're a Mansa Business, Through and Through</h2>
+          <p>Rapid Stores and General Dealers Limited started here, serves here, and grows because of this community. We know Mansa — the streets, the neighbourhoods, and what families actually need.</p>
+          <ul class="icon-list">
+            <li><span class="li-icon">&#127968;</span> Locally owned and managed right here in Mansa, Luapula.</li>
+            <li><span class="li-icon">&#128588;</span> Our customers are our neighbours — we treat every order personally.</li>
+            <li><span class="li-icon">&#128205;</span> Collect from Hebron Plaza, Mansa Market, or Trade Centre — or we'll come to you.</li>
+          </ul>
+        </section>
+
+        <section id="room-collections" class="rs-reveal">
+          <span class="section-eyebrow">Collections</span>
+          <h2>Shop By Room</h2>
+          <p>Select by space to build a cohesive home setup without mixing styles.</p>
+          <div class="room-grid">
+            <article class="room-card">
+              <div class="room-card-visual" style="background: linear-gradient(135deg, #0a2e4a 0%, #1a5a8a 60%, #2a7ab3 100%);" aria-hidden="true">ðŸ›ï¸</div>
+              <div class="room-card-inner">
+                <h3>Bedroom Essentials</h3>
+                <p>Mattresses and storage pieces designed for comfort, layout efficiency, and long-term daily use.</p>
+                <a href="#offers" class="room-link" data-filter-target="mattresses">Browse Bedroom</a>
+              </div>
+            </article>
+            <article class="room-card">
+              <div class="room-card-visual" style="background: linear-gradient(135deg, #06182a 0%, #0d3055 60%, #1a4f88 100%);" aria-hidden="true">ðŸ“º</div>
+              <div class="room-card-inner">
+                <h3>Lounge & Media</h3>
+                <p>Smart TVs for focused entertainment setups with options for compact and larger living rooms.</p>
+                <a href="#offers" class="room-link" data-filter-target="tvs">Browse Lounge</a>
+              </div>
+            </article>
+            <article class="room-card">
+              <div class="room-card-visual" style="background: linear-gradient(135deg, #0d2240 0%, #1a4a78 60%, #2a6aa0 100%);" aria-hidden="true">ðŸ—„ï¸</div>
+              <div class="room-card-inner">
+                <h3>Storage Solutions</h3>
+                <p>Dressers and wardrobes for organized homes, rentals, and shared family spaces.</p>
+                <a href="#offers" class="room-link" data-filter-target="wardrobes">Browse Storage</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="new-arrivals" class="rs-reveal">
+          <span class="section-eyebrow">Fresh Stock</span>
+          <h2>New Arrivals</h2>
+          <p>Fresh stock for restful bedrooms, stylish storage, and better screen time at home.</p>
+          <div class="new-arrivals-grid">
+            <div class="arrival-item rs-reveal rs-reveal-delay-1">
+              <div class="arrival-icon">MT</div>
+              <h4>Mattresses</h4>
+              <p>Orthopedic, plush, and family-size comfort</p>
+            </div>
+            <div class="arrival-item rs-reveal rs-reveal-delay-2">
+              <div class="arrival-icon">TV</div>
+              <h4>Smart TVs</h4>
+              <p>Living-room screens with sharp 4K picture</p>
+            </div>
+            <div class="arrival-item rs-reveal rs-reveal-delay-3">
+              <div class="arrival-icon">DR</div>
+              <h4>Dressers</h4>
+              <p>Clean lines, roomy drawers, easy organization</p>
+            </div>
+            <div class="arrival-item rs-reveal rs-reveal-delay-4">
+              <div class="arrival-icon">WR</div>
+              <h4>Wardrobes</h4>
+              <p>Sliding and hinged storage for growing homes</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="offers" class="rs-reveal">
+          <span class="section-eyebrow">Prices in ZMW</span>
+          <h2>Featured Deals</h2>
+          <div class="category-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="mattresses">Mattresses</button>
+            <button class="filter-btn" data-category="tvs">TVs</button>
+            <button class="filter-btn" data-category="bicycles">Bicycles</button>
+            <button class="filter-btn" data-category="dressers">Dressers</button>
+            <button class="filter-btn" data-category="wardrobes">Wardrobes</button>
+          </div>
+          <div class="location-filter">
+            <span class="location-filter-label">&#128205; Pickup Point:</span>
+            <button class="location-btn active" data-location="all">All Locations</button>
+            <button class="location-btn" data-location="hebron-plaza">Hebron Plaza</button>
+            <button class="location-btn" data-location="mansa-market">Mansa Market</button>
+            <button class="location-btn" data-location="trade-centre">Trade Centre</button>
+          </div>
+          <div class="offers-toolbar">
+            <p class="results-count" id="results-count" aria-live="polite">8 offers shown</p>
+            <label class="sort-shell" for="sort-select">
+              <span>Sort:</span>
+              <select id="sort-select">
+                <option value="featured">Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A-Z</option>
+                <option value="name-desc">Name: Z-A</option>
+              </select>
+            </label>
+          </div>
+          <div class="product-grid" id="offer-grid">
+            <article class="product-card offer-item" data-category="mattresses" data-location="hebron-plaza" data-offer="CloudRest Queen Mattress" data-price="K2800" data-detail="Medium-firm queen mattress with breathable top fabric, edge support, and comfort layers built for daily use." data-icon="QM">
+              <div class="product-image" style="background: linear-gradient(135deg, #0d3a5c, #1a6a9a);">
+                <span class="card-image-icon">QM</span>
+                <span class="badge badge--hot">Available</span>
+              </div>
+              <div class="card-body">
+                <h3>CloudRest Queen Mattress</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Mattresses</span>
+                  <span class="product-tag">Queen size</span>
+                  <span class="location-tag">&#128205; Hebron Plaza</span>
+                </div>
+                <p class="product-note">A balanced comfort mattress for guest rooms, rentals, and primary bedrooms.</p>
+                <p class="price">K2,800</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="mattresses" data-location="mansa-market" data-offer="OrthoLux King Mattress" data-price="K4900" data-detail="Premium king mattress with orthopedic support, layered foam comfort, and reinforced side walls for long-term stability." data-icon="KM">
+              <div class="product-image" style="background: linear-gradient(135deg, #0a2e4a, #1e5980);">
+                <span class="card-image-icon">KM</span>
+                <span class="badge badge--new">In Stock</span>
+              </div>
+              <div class="card-body">
+                <h3>OrthoLux King Mattress</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Mattresses</span>
+                  <span class="product-tag">Back support</span>
+                  <span class="location-tag">&#128205; Mansa Market</span>
+                </div>
+                <p class="product-note">Designed for homeowners who want extra room, deeper cushioning, and firm overnight support.</p>
+                <p class="price">K4,900</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="tvs" data-location="hebron-plaza" data-offer="VistaView 55 inch Smart TV" data-price="K6200" data-detail="55-inch smart TV with HDR picture tuning, Wi-Fi apps, slim bezel design, and wall-mount ready frame." data-icon="55">
+              <div class="product-image" style="background: linear-gradient(135deg, #0d2540, #224a72);">
+                <span class="card-image-icon">55</span>
+              </div>
+              <div class="card-body">
+                <h3>VistaView 55 inch Smart TV</h3>
+                <div class="product-meta">
+                  <span class="product-tag">TVs</span>
+                  <span class="product-tag">4K streaming</span>
+                  <span class="location-tag">&#128205; Hebron Plaza</span>
+                </div>
+                <p class="product-note">A practical screen size for lounges, bedrooms, and entertainment corners.</p>
+                <p class="price">K6,200</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="tvs" data-location="trade-centre" data-offer="CinemaEdge 65 inch 4K TV" data-price="K9800" data-detail="65-inch UHD television with vivid contrast, Dolby audio support, voice remote, and premium ultra-thin profile." data-icon="65">
+              <div class="product-image" style="background: linear-gradient(135deg, #080e1a, #1a2e44);">
+                <span class="card-image-icon">65</span>
+                <span class="badge badge--hot">Available</span>
+              </div>
+              <div class="card-body">
+                <h3>CinemaEdge 65 inch 4K TV</h3>
+                <div class="product-meta">
+                  <span class="product-tag">TVs</span>
+                  <span class="product-tag">Voice remote</span>
+                  <span class="location-tag">&#128205; Trade Centre</span>
+                </div>
+                <p class="product-note">Built for bigger living rooms where the screen needs to carry the whole space.</p>
+                <p class="price">K9,800</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="bicycles" data-location="hebron-plaza" data-offer="Vision Bicycle" data-price="K3395" data-detail="Vision Bicycle for everyday road use and light off-road riding." data-icon="VB">
+              <div class="product-image" style="background: linear-gradient(135deg, #0f3b2f, #2a8d6f);">
+                <span class="card-image-icon">VB</span>
+                <span class="badge badge--new">In Stock</span>
+              </div>
+              <div class="card-body">
+                <h3>Vision Bicycle</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Bicycles</span>
+                  <span class="product-tag">Standard</span>
+                  <span class="location-tag">&#128205; Hebron Plaza</span>
+                </div>
+                <p class="product-note">Reliable bicycle for home, work, and town movement.</p>
+                <p class="price">K3,395</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="bicycles" data-location="trade-centre" data-offer="Flying Eagle Bicycle" data-price="K2050" data-detail="Flying Eagle bicycle at a budget-friendly price for daily rides." data-icon="FE">
+              <div class="product-image" style="background: linear-gradient(135deg, #124066, #3a8fd4);">
+                <span class="card-image-icon">FE</span>
+                <span class="badge badge--hot">Available</span>
+              </div>
+              <div class="card-body">
+                <h3>Flying Eagle Bicycle</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Bicycles</span>
+                  <span class="product-tag">Value</span>
+                  <span class="location-tag">&#128205; Trade Centre</span>
+                </div>
+                <p class="product-note">Affordable bike option with practical comfort for everyday use.</p>
+                <p class="price">K2,050</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="dressers" data-location="mansa-market" data-offer="Heritage 6-Drawer Dresser" data-price="K3600" data-detail="Six-drawer dresser in a warm walnut finish with smooth glides, metal pulls, and a broad top surface for decor." data-icon="D6">
+              <div class="product-image" style="background: linear-gradient(135deg, #102040, #1e4a7a);">
+                <span class="card-image-icon">D6</span>
+                <span class="badge badge--new">In Stock</span>
+              </div>
+              <div class="card-body">
+                <h3>Heritage 6-Drawer Dresser</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Dressers</span>
+                  <span class="product-tag">Walnut finish</span>
+                  <span class="location-tag">&#128205; Mansa Market</span>
+                </div>
+                <p class="product-note">Ideal for bedrooms that need structured clothing storage without taking over the room.</p>
+                <p class="price">K3,600</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+            <article class="product-card offer-item" data-category="wardrobes" data-location="trade-centre" data-offer="GrandLine 3-Door Wardrobe" data-price="K7500" data-detail="Three-door wardrobe with mirrored center panel, hanging rail, upper shelf, and split compartments for shared storage." data-icon="W3">
+              <div class="product-image" style="background: linear-gradient(135deg, #06182a, #0d3055);">
+                <span class="card-image-icon">W3</span>
+                <span class="badge badge--lowstock">Low Stock</span>
+              </div>
+              <div class="card-body">
+                <h3>GrandLine 3-Door Wardrobe</h3>
+                <div class="product-meta">
+                  <span class="product-tag">Wardrobes</span>
+                  <span class="product-tag">Mirror front</span>
+                  <span class="location-tag">&#128205; Trade Centre</span>
+                </div>
+                <p class="product-note">A full-height wardrobe for master bedrooms, family rooms, and upgraded rentals.</p>
+                <p class="price">K7,500</p>
+                <div class="card-actions">
+                  <button class="btn offer-btn" type="button">View</button>
+                  <button class="btn add-cart" type="button">+ Cart</button>
+                </div>
+                <a class="wa-product-btn" target="_blank" rel="noopener noreferrer"><svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg> Ask on WhatsApp</a>
+              </div>
+            </article>
+          </div>
+          <div id="offer-detail" class="offer-detail" aria-live="polite"></div>
+        </section>
+
+        <section id="zambia" class="rs-reveal">
+          <h2>Mansa Local Updates</h2>
+          <ul class="icon-list">
+            <li><span class="li-icon">1.</span> Weekly pickup coordination is available for mattresses, TVs, and flat-pack storage pieces.</li>
+            <li><span class="li-icon">2.</span> WhatsApp order support: <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20place%20an%20order." target="_blank" rel="noopener noreferrer" class="wa-inline-link">0977 891 850</a>.</li>
+            <li><span class="li-icon">3.</span> Delivery fees depend on item size, assembly needs, and courier availability.</li>
+          </ul>
+        </section>
+
+        <section id="safety" class="rs-reveal">
+          <span class="section-eyebrow">Built on Community Trust</span>
+          <h2>Why Mansa Families Choose Us</h2>
+          <div class="trust-grid">
+            <div class="trust-item rs-reveal rs-reveal-delay-1"><div class="trust-icon">&#129309;</div><strong>Neighbour-to-Neighbour Service</strong><span>We live here too — your satisfaction is personal to us</span></div>
+            <div class="trust-item rs-reveal rs-reveal-delay-2"><div class="trust-icon">&#128176;</div><strong>Honest Community Prices</strong><span>All prices in ZMW, nothing hidden, no surprises</span></div>
+            <div class="trust-item rs-reveal rs-reveal-delay-3"><div class="trust-icon">&#128172;</div><strong>Chat with Us Anytime</strong><span>Real people on WhatsApp — not bots, not scripts</span></div>
+            <div class="trust-item rs-reveal rs-reveal-delay-4"><div class="trust-icon">&#128205;</div><strong>Right in Your Town</strong><span>3 pickup spots across Mansa you already know</span></div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar" id="popular">
+        <h3>&#127968; Popular in Mansa</h3>
+        <ul>
+          <li><strong>Mattresses:</strong> queen, king, and orthopedic options</li>
+          <li><strong>TVs:</strong> smart screens for bedroom and lounge setups</li>
+          <li><strong>Dressers:</strong> drawer storage with wood-look finishes</li>
+          <li><strong>Wardrobes:</strong> mirrored and family-size storage units</li>
+        </ul>
+        <a id="wa-sidebar-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20enquire%20about%20your%20furniture." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+          Chat on WhatsApp
+        </a>
+
+        <section id="cart" class="cart">
+          <h4>Your Cart</h4>
+          <div id="cart-empty" class="cart-empty">Nothing here yet! Browse the collection and tap <strong>+ Cart</strong> to start your order &#128522;</div>
+          <ul id="cart-items" class="cart-items"></ul>
+          <div class="cart-summary">
+            <span>Total:</span> <strong id="cart-total">K0</strong>
+          </div>
+          <div class="cart-actions">
+            <button id="wa-checkout-btn" class="wa-checkout-btn cart-action-primary" type="button" aria-label="Send your order via WhatsApp">
+              <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              Order via WhatsApp
+            </button>
+            <p class="cart-action-hint">Opens WhatsApp with your full order — fastest way to confirm.</p>
+            <button id="checkout-btn" class="btn cart-action-secondary" type="button">
+              Checkout Online
+            </button>
+            <p class="cart-action-hint">Review delivery details on the checkout page.</p>
+            <button id="clear-cart-btn" class="cart-clear-btn" type="button" aria-label="Remove all items from cart">
+              &#128465; Clear cart
+            </button>
+          </div>
+          <p class="cart-note">Cart is saved in your browser across pages.</p>
+        </section>
+      </aside>
+
+      <footer>
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Rapid Stores and General Dealers Limited</h3>
+            <p>A community business, proudly rooted in Mansa. We help Luapula families furnish their homes with quality pieces at honest prices.</p>
+            <p>&#128588; Thank you for shopping local — it keeps our community growing.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#featured">Featured</a></li>
+              <li><a href="#offers">Offers</a></li>
+              <li><a href="page1.html">Top Sellers</a></li>
+              <li><a href="page3.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Customer Service</h4>
+            <ul>
+              <li><a href="page2.html">Support &amp; FAQ</a></li>
+              <li><a href="page2.html">Track My Order</a></li>
+              <li><a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%20need%20help%20with%20my%20order." target="_blank" rel="noopener noreferrer" class="wa-inline-link footer-wa-link">WhatsApp: 0977 891 850</a></li>
+              <li>Delivery timing depends on route planning and item size</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Find Us</h4>
+            <ul>
+              <li>Hebron Plaza, Mansa</li>
+              <li>Mansa Market</li>
+              <li>Trade Centre, Mansa</li>
+              <li>Monâ€“Sat: 8 AM â€“ 6 PM (Sat until 2 PM)</li>
+            </ul>
+          </div>
+        </div>
+        <p>&copy; 2026 Rapid Stores and General Dealers Limited &middot; Mansa, Luapula &middot; All rights reserved.</p>
+      </footer>
+    </div>
+
+    <button class="back-to-top" aria-label="Back to top" title="Back to top">â†‘</button>
+
+    <a id="wa-float" href="https://wa.me/260977891850?text=Hi%21%20I%27m%20a%20neighbour%20browsing%20Rapid%20Stores%20and%20I%27d%20love%20some%20help%20choosing%20furniture." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="wa-float" title="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.524 5.824L0 24l6.336-1.51A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0"/></svg>
+      <span class="wa-float-label">WhatsApp</span>
+    </a>
+
+    <div id="settings-panel" class="settings-panel" aria-hidden="true" role="dialog" aria-label="Settings">
+      <div class="settings-backdrop" id="settings-backdrop"></div>
+      <section class="settings-content">
+        <h2>Settings</h2>
+        <button id="close-settings" type="button" class="btn">Close</button>
+
+        <div class="settings-item">
+          <label for="theme-select">Theme</label>
+          <select id="theme-select">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+
+        <div class="settings-item">
+          <label><input type="checkbox" id="show-featured" /> Show featured section</label>
+        </div>
+
+        <div class="settings-item">
+          <label><input type="checkbox" id="compact-cards" /> Compact product cards</label>
+        </div>
+
+        <button id="save-settings" type="button" class="btn">Save settings</button>
+      </section>
+    </div>
+
+    <div id="product-modal" class="product-modal" aria-hidden="true" role="dialog" aria-label="Product Details">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <section class="modal-content">
+        <button id="close-modal" type="button" class="btn modal-close">Ã—</button>
+        <div id="modal-body"></div>
+      </section>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script>
+      const offerGrid = document.getElementById('offer-grid');
+      const offerButtons = document.querySelectorAll('.offer-btn');
+      const addCartButtons = document.querySelectorAll('.add-cart');
+      const detailArea = document.getElementById('offer-detail');
+      const searchInput = document.getElementById('offer-search');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const searchFeedbackEl = document.getElementById('search-feedback');
+      const searchResultsEl = document.getElementById('search-results');
+      const themeToggle = document.getElementById('theme-toggle');
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartEmptyEl = document.getElementById('cart-empty');
+      const pageSelect = document.getElementById('page-select');
+      const goPageBtn = document.getElementById('go-page');
+      const cartTotalEl = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('checkout-btn');
+      const clearCartBtn = document.getElementById('clear-cart-btn');
+      const openSettingsBtn = document.getElementById('open-settings');
+      const closeSettingsBtn = document.getElementById('close-settings');
+      const saveSettingsBtn = document.getElementById('save-settings');
+      const settingsPanel = document.getElementById('settings-panel');
+      const settingsBackdrop = document.getElementById('settings-backdrop');
+      const themeSelect = document.getElementById('theme-select');
+      const showFeaturedCheckbox = document.getElementById('show-featured');
+      const compactCardsCheckbox = document.getElementById('compact-cards');
+      const productModal = document.getElementById('product-modal');
+      const modalBackdrop = document.getElementById('modal-backdrop');
+      const closeModalBtn = document.getElementById('close-modal');
+      const modalBody = document.getElementById('modal-body');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const locationButtons = document.querySelectorAll('.location-btn');
+      const roomLinks = document.querySelectorAll('.room-link[data-filter-target]');
+      const toastContainer = document.getElementById('toast-container');
+      const sortSelect = document.getElementById('sort-select');
+      const resultsCountEl = document.getElementById('results-count');
+      const headerCartCountEl = document.getElementById('header-cart-count');
+      const offerCards = Array.from(offerGrid.querySelectorAll('.offer-item'));
+      const navLinks = Array.from(document.querySelectorAll('header nav a[href^="#"]'));
+
+      const localeOptions = { style: 'currency', currency: 'ZMW', minimumFractionDigits: 0 };
+      let activeCategory = 'all';
+      let activeLocation = 'all';
+      let activeSearchResults = [];
+      let activeSearchIndex = -1;
+
+      function showToast(message, type = 'success') {
+        const icons = { success: 'âœ“', error: 'âœ•', warning: 'âš ' };
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<span class="toast-icon">${icons[type] || 'â„¹'}</span><span>${message}</span>`;
+        toastContainer.appendChild(toast);
+        setTimeout(() => toast.remove(), 3500);
+      }
+
+      function readStorage(key, fallback) {
+        try { const v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : fallback; }
+        catch (e) { return fallback; }
+      }
+      function writeStorage(key, value) {
+        try { localStorage.setItem(key, JSON.stringify(value)); }
+        catch (e) { /* storage unavailable */ }
+      }
+      function removeStorage(key) {
+        try { localStorage.removeItem(key); } catch (e) {}
+      }
+
+      function isValidCart(data) {
+        if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+        return Object.values(data).every(e =>
+          e && typeof e === 'object' &&
+          typeof e.name === 'string' && e.name.length > 0 &&
+          typeof e.qty === 'number' && e.qty >= 0 &&
+          typeof e.unitPrice === 'number' && e.unitPrice >= 0
+        );
+      }
+
+      const rawCart = readStorage('rapidStoresCart', {});
+      let cart = isValidCart(rawCart) ? rawCart : {};
+
+      function saveCart() {
+        writeStorage('rapidStoresCart', cart);
+      }
+
+      function formatPrice(value) {
+        const numeric = Number(value.toString().replace(/[^0-9\.]/g, '')) || 0;
+        return new Intl.NumberFormat('en-ZM', localeOptions).format(numeric);
+      }
+
+      function updateCartUI() {
+        cartItemsEl.innerHTML = '';
+        const keys = Object.keys(cart);
+
+        if (!keys.length) {
+          cartEmptyEl.style.display = 'block';
+          cartTotalEl.textContent = 'K0';
+          headerCartCountEl.textContent = '0';
+          return;
+        }
+
+        cartEmptyEl.style.display = 'none';
+        let total = 0;
+        let itemCount = 0;
+
+        keys.forEach(id => {
+          const entry = cart[id];
+          const li = document.createElement('li');
+          li.className = 'cart-qty-row';
+          li.innerHTML = `
+            <span class="cart-item-name" title="${entry.name}">${entry.name}</span>
+            <span class="cart-qty-controls">
+              <button class="cart-qty-btn" data-action="dec" data-id="${id}" aria-label="Decrease quantity">âˆ’</button>
+              <span class="cart-qty-num">${entry.qty}</span>
+              <button class="cart-qty-btn" data-action="inc" data-id="${id}" aria-label="Increase quantity">+</button>
+              <button class="cart-qty-btn cart-remove-btn" data-action="remove" data-id="${id}" aria-label="Remove item">âœ•</button>
+            </span>
+            <span class="cart-item-price">${formatPrice(entry.qty * entry.unitPrice)}</span>
+          `;
+          cartItemsEl.appendChild(li);
+          total += entry.qty * entry.unitPrice;
+          itemCount += entry.qty;
+        });
+
+        cartTotalEl.textContent = `K${total.toLocaleString('en-ZM')}`;
+        headerCartCountEl.textContent = String(itemCount);
+      }
+
+      cartItemsEl.addEventListener('click', event => {
+        const btn = event.target.closest('.cart-qty-btn');
+        if (!btn) return;
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+        if (!cart[id]) return;
+        if (action === 'inc') {
+          cart[id].qty += 1;
+        } else if (action === 'dec') {
+          cart[id].qty -= 1;
+          if (cart[id].qty <= 0) delete cart[id];
+        } else if (action === 'remove') {
+          delete cart[id];
+        }
+        saveCart();
+        updateCartUI();
+      });
+
+      function getCardPrice(card) {
+        return Number((card.dataset.price || '').replace(/[^0-9]/g, '')) || 0;
+      }
+
+      function sortMatches(cards, mode) {
+        const sorted = [...cards];
+        if (mode === 'price-asc') {
+          sorted.sort((a, b) => getCardPrice(a) - getCardPrice(b));
+        } else if (mode === 'price-desc') {
+          sorted.sort((a, b) => getCardPrice(b) - getCardPrice(a));
+        } else if (mode === 'name-asc') {
+          sorted.sort((a, b) => a.dataset.offer.localeCompare(b.dataset.offer));
+        } else if (mode === 'name-desc') {
+          sorted.sort((a, b) => b.dataset.offer.localeCompare(a.dataset.offer));
+        }
+        return sorted;
+      }
+
+      function addToCart(card) {
+        const id = card.dataset.offer || '';
+        if (!id) return;
+        const name = id;
+        const unitPrice = Number((card.dataset.price || '').replace(/[^0-9]/g, '')) || 0;
+
+        if (!cart[id]) {
+          cart[id] = { name, qty: 0, unitPrice };
+        } else {
+          cart[id].unitPrice = unitPrice;
+        }
+        cart[id].qty += 1;
+        saveCart();
+        updateCartUI();
+        showToast(`${name} added to cart! (Ã—${cart[id].qty})`, 'success');
+        detailArea.innerHTML = `<p>âœ“ ${name} added to cart. Quantity: ${cart[id].qty}</p>`;
+      }
+
+      function showOfferDetail(card) {
+        const title = card.dataset.offer;
+        const price = card.dataset.price;
+        const details = card.dataset.detail;
+
+        detailArea.innerHTML = `
+          <h3>${title}</h3>
+          <p><strong>Price:</strong> ${price}</p>
+          <p>${details}</p>
+        `;
+      }
+
+      function showProductModal(card) {
+        const title = card.dataset.offer;
+        const price = card.dataset.price;
+        const details = card.dataset.detail;
+        const icon = card.dataset.icon || '\uD83D\uDED2';
+        const category = card.dataset.category || '';
+        const imgEl = card.querySelector('.product-image');
+        const bgValue = imgEl ? imgEl.getAttribute('style') : 'background:#eef2f8';
+
+        modalBody.innerHTML = `
+          <div class="modal-product">
+            <div class="modal-product-image" style="${bgValue}">
+              <span class="card-image-icon" style="font-size:3.5rem">${icon}</span>
+            </div>
+            <div class="modal-product-info">
+              <h2>${title}</h2>
+              <div class="product-meta">
+                <span class="product-tag">${category}</span>
+              </div>
+              <p class="modal-price">${formatPrice(price)}</p>
+              <p class="modal-desc">${details}</p>
+              <div class="modal-actions">
+                <button class="btn add-cart-modal" type="button">Add to Cart</button>
+                <a class="wa-modal-btn" target="_blank" rel="noopener noreferrer"
+                   href="https://wa.me/260977891850?text=${encodeURIComponent(`Hi Rapid Stores and General Dealers Limited, I'm interested in the ${title} (${price}). Is it available?`)}">
+                  <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                  Ask on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const addBtn = modalBody.querySelector('.add-cart-modal');
+        addBtn.addEventListener('click', () => {
+          addToCart(card);
+          closeModal();
+        });
+
+        productModal.classList.add('open');
+        productModal.setAttribute('aria-hidden', 'false');
+        closeModalBtn.focus();
+      }
+
+      function normalizeSearchText(value) {
+        return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+      }
+
+      function getCardSearchText(card) {
+        return [card.dataset.offer, card.dataset.detail, card.dataset.category, card.dataset.price].join(' ');
+      }
+
+      function setSearchFeedback(message) {
+        searchFeedbackEl.textContent = message;
+      }
+
+      function hideSearchResults() {
+        searchResultsEl.style.display = 'none';
+        searchResultsEl.innerHTML = '';
+        searchInput.setAttribute('aria-expanded', 'false');
+        activeSearchResults = [];
+        activeSearchIndex = -1;
+      }
+
+      function setActiveSearchResult(index) {
+        const items = searchResultsEl.querySelectorAll('.search-result-item');
+        if (!items.length) {
+          activeSearchIndex = -1;
+          return;
+        }
+
+        activeSearchIndex = Math.max(0, Math.min(index, items.length - 1));
+        items.forEach((item, itemIndex) => {
+          const isActive = itemIndex === activeSearchIndex;
+          item.classList.toggle('active', isActive);
+          item.setAttribute('aria-selected', String(isActive));
+          if (isActive) {
+            item.scrollIntoView({ block: 'nearest' });
+          }
+        });
+      }
+
+      function getVisibleMatches(query) {
+        const normalizedQuery = normalizeSearchText(query);
+        const terms = normalizedQuery.split(/\s+/).filter(Boolean);
+
+        return offerCards.filter(card => {
+          const matchesCategory = activeCategory === 'all' || card.dataset.category === activeCategory;
+          const matchesLocation = activeLocation === 'all' || card.dataset.location === activeLocation;
+          if (!matchesCategory || !matchesLocation) {
+            return false;
+          }
+
+          if (!terms.length) {
+            return true;
+          }
+
+          const haystack = normalizeSearchText(getCardSearchText(card));
+          return terms.every(term => haystack.includes(term));
+        });
+      }
+
+      function openSearchResult(card) {
+        searchInput.value = card.dataset.offer;
+        applyBrowseState();
+        hideSearchResults();
+        setSearchFeedback(`Showing ${card.dataset.offer}.`);
+        showProductModal(card);
+      }
+
+      function renderSearchResults(matches, query) {
+        if (!query) {
+          hideSearchResults();
+          setSearchFeedback(activeCategory === 'all'
+            ? 'Search by product, room category, feature, or price.'
+            : `Browsing ${activeCategory} offers. Add a search term to narrow it further.`);
+          return;
+        }
+
+        searchResultsEl.innerHTML = '';
+        activeSearchResults = matches;
+        activeSearchIndex = -1;
+
+        const summary = document.createElement('div');
+        summary.className = 'search-results-summary';
+
+        if (!matches.length) {
+          summary.textContent = `No results for "${query}".`;
+          const emptyState = document.createElement('div');
+          emptyState.className = 'search-empty-state';
+          emptyState.textContent = 'Try terms like mattress, TV, dresser, wardrobe, king, or mirrored.';
+          searchResultsEl.append(summary, emptyState);
+          searchResultsEl.style.display = 'block';
+          searchInput.setAttribute('aria-expanded', 'true');
+          setSearchFeedback(`No matches for "${query}".`);
+          return;
+        }
+
+        summary.textContent = `${matches.length} match${matches.length === 1 ? '' : 'es'} found. Use arrow keys and Enter to open one.`;
+        searchResultsEl.appendChild(summary);
+
+        matches.slice(0, 6).forEach((card, index) => {
+          const title = card.dataset.offer;
+          const price = card.dataset.price;
+          const details = card.dataset.detail;
+          const shortDesc = details.includes('. ') ? `${details.split('. ')[0]}.` : details;
+
+          const item = document.createElement('div');
+          item.className = 'search-result-item';
+          item.setAttribute('role', 'option');
+          item.setAttribute('aria-selected', 'false');
+          item.dataset.index = String(index);
+          item.innerHTML = `
+            <div class="search-result-title">${title}</div>
+            <div class="search-result-meta">
+              <span class="search-result-price">${price}</span>
+              <span class="search-result-category">${card.dataset.category}</span>
+            </div>
+            <div class="search-result-desc">${shortDesc}</div>
+          `;
+          item.addEventListener('click', () => openSearchResult(card));
+          searchResultsEl.appendChild(item);
+        });
+
+        searchResultsEl.style.display = 'block';
+        searchInput.setAttribute('aria-expanded', 'true');
+        setSearchFeedback(`${matches.length} result${matches.length === 1 ? '' : 's'} shown for "${query}".`);
+        setActiveSearchResult(0);
+      }
+
+      function applyBrowseState() {
+        const query = searchInput.value.trim();
+        const sortedMatches = sortMatches(getVisibleMatches(query), sortSelect?.value || 'featured');
+
+        offerCards.forEach(card => {
+          card.style.display = sortedMatches.includes(card) ? 'block' : 'none';
+        });
+
+        sortedMatches.forEach(card => offerGrid.appendChild(card));
+
+        if (resultsCountEl) {
+          resultsCountEl.textContent = `${sortedMatches.length} offer${sortedMatches.length === 1 ? '' : 's'} shown`;
+        }
+
+        renderSearchResults(sortedMatches, query);
+      }
+
+      function clearSearch(options = {}) {
+        const { restoreFocus = true } = options;
+        searchInput.value = '';
+        applyBrowseState();
+        setSearchFeedback(activeCategory === 'all' ? 'Search cleared. Showing all offers.' : `Search cleared. Showing ${activeCategory} offers.`);
+        if (restoreFocus) {
+          searchInput.focus();
+        }
+      }
+
+      offerButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+          const card = event.target.closest('.offer-item');
+          if (card) showProductModal(card);
+        });
+      });
+
+      addCartButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+          const card = event.target.closest('.offer-item');
+          if (card) addToCart(card);
+        });
+      });
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+          activeCategory = event.target.dataset.category;
+          applyBrowseState();
+          filterButtons.forEach(b => b.classList.remove('active'));
+          event.target.classList.add('active');
+        });
+      });
+
+      locationButtons.forEach(btn => {
+        btn.addEventListener('click', event => {
+          activeLocation = event.target.dataset.location;
+          applyBrowseState();
+          locationButtons.forEach(b => b.classList.remove('active'));
+          event.target.classList.add('active');
+        });
+      });
+
+      roomLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          const targetCategory = link.dataset.filterTarget;
+          const targetFilter = Array.from(filterButtons).find(btn => btn.dataset.category === targetCategory);
+          if (targetFilter) {
+            event.preventDefault();
+            targetFilter.click();
+            document.getElementById('offers')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', () => {
+          applyBrowseState();
+        });
+      }
+
+      searchInput.addEventListener('input', event => {
+        applyBrowseState();
+      });
+
+      searchInput.addEventListener('focus', () => {
+        if (searchInput.value.trim()) {
+          applyBrowseState();
+        }
+      });
+
+      searchInput.addEventListener('keydown', event => {
+        if (!activeSearchResults.length || searchResultsEl.style.display === 'none') {
+          if (event.key === 'Escape' && searchInput.value) {
+            event.preventDefault();
+            event.stopPropagation();
+            clearSearch();
+          }
+          return;
+        }
+
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          event.stopPropagation();
+          setActiveSearchResult(activeSearchIndex + 1);
+        }
+
+        if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          event.stopPropagation();
+          setActiveSearchResult(activeSearchIndex - 1);
+        }
+
+        if (event.key === 'Enter' && activeSearchIndex >= 0) {
+          event.preventDefault();
+          event.stopPropagation();
+          openSearchResult(activeSearchResults[activeSearchIndex]);
+        }
+
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          event.stopPropagation();
+          hideSearchResults();
+          setSearchFeedback('Search suggestions hidden.');
+        }
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        clearSearch();
+      });
+
+      // Hide suggestions when clicking outside
+      document.addEventListener('click', event => {
+        if (!searchInput.contains(event.target) && !searchResultsEl.contains(event.target)) {
+          hideSearchResults();
+        }
+      });
+
+      function setTheme(mode) {
+        if (mode === 'system') {
+          const prefersDark = typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          mode = prefersDark ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = mode;
+        themeToggle.textContent = mode === 'dark' ? 'Light mode' : 'Dark mode';
+      }
+
+      function applySettings(settings) {
+        if (!settings) return;
+        if (settings.theme) {
+          if (themeSelect) themeSelect.value = settings.theme;
+          setTheme(settings.theme);
+          if (settings.theme !== 'system') {
+            writeStorage('rapidStoresTheme', settings.theme);
+          } else {
+            removeStorage('rapidStoresTheme');
+          }
+        }
+
+        const featuredSection = document.getElementById('featured');
+        if (showFeaturedCheckbox) showFeaturedCheckbox.checked = settings.showFeatured !== false;
+        if (featuredSection) featuredSection.style.display = settings.showFeatured === false ? 'none' : 'block';
+
+        if (compactCardsCheckbox) compactCardsCheckbox.checked = Boolean(settings.compactCards);
+        if (offerGrid) offerGrid.classList.toggle('compact', Boolean(settings.compactCards));
+      }
+
+      function saveSettings() {
+        const settings = {
+          theme: themeSelect.value,
+          showFeatured: showFeaturedCheckbox.checked,
+          compactCards: compactCardsCheckbox.checked,
+        };
+        writeStorage('rapidStoresSettings', settings);
+        if (settings.theme !== 'system') {
+          writeStorage('rapidStoresTheme', settings.theme);
+        } else {
+          removeStorage('rapidStoresTheme');
+        }
+        applySettings(settings);
+        detailArea.innerHTML = '<p>Settings saved and applied.</p>';
+      }
+
+      function openSettings() {
+        settingsPanel.classList.add('open');
+        settingsPanel.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeSettings() {
+        settingsPanel.classList.remove('open');
+        settingsPanel.setAttribute('aria-hidden', 'true');
+      }
+
+      openSettingsBtn.addEventListener('click', openSettings);
+      closeSettingsBtn.addEventListener('click', closeSettings);
+      settingsBackdrop.addEventListener('click', closeSettings);
+      saveSettingsBtn.addEventListener('click', () => {
+        saveSettings();
+        closeSettings();
+      });
+
+      function closeModal() {
+        productModal.classList.remove('open');
+        productModal.setAttribute('aria-hidden', 'true');
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      modalBackdrop.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          if (productModal.classList.contains('open')) {
+            closeModal();
+          }
+        }
+      });
+
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        writeStorage('rapidStoresTheme', next);
+        setTheme(next);
+      });
+
+      goPageBtn.addEventListener('click', () => {
+        const target = pageSelect.value;
+        if (target) {
+          window.location.href = target;
+        }
+      });
+
+      pageSelect.addEventListener('keyup', event => {
+        if (event.key === 'Enter') {
+          goPageBtn.click();
+        }
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', event => {
+        if (event.key === '/') {
+          event.preventDefault();
+          searchInput.focus();
+          searchInput.select();
+        }
+        if (event.key === 'Escape') {
+          if (document.activeElement === searchInput && searchInput.value) {
+            clearSearch({ restoreFocus: false });
+            return;
+          }
+          hideSearchResults();
+          if (productModal.classList.contains('open')) {
+            closeModal();
+          }
+          if (settingsPanel.classList.contains('open')) {
+            closeSettings();
+          }
+        }
+      });
+
+      const storedTheme = readStorage('rapidStoresTheme', 'light') || 'light';
+      const storedSettings = readStorage('rapidStoresSettings', null);
+      applySettings(storedSettings || { theme: storedTheme, showFeatured: true, compactCards: false });
+      updateCartUI();
+      applyBrowseState();
+
+      function updateActiveNavLink() {
+        const linksWithSections = navLinks
+          .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+          .filter(item => item.section);
+
+        let current = linksWithSections[0]?.link || null;
+        const offset = window.scrollY + 180;
+        linksWithSections.forEach(item => {
+          if (item.section.offsetTop <= offset) {
+            current = item.link;
+          }
+        });
+
+        navLinks.forEach(link => link.classList.remove('nav-active'));
+        if (current) current.classList.add('nav-active');
+      }
+
+      window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+      updateActiveNavLink();
+
+      clearCartBtn.addEventListener('click', () => {
+        cart = {};
+        saveCart();
+        updateCartUI();
+        showToast('Cart cleared', 'warning');
+        detailArea.innerHTML = '<p>Cart cleared. You can add a new offer.</p>';
+      });
+
+      checkoutBtn.addEventListener('click', () => {
+        if (Object.keys(cart).length === 0) {
+          showToast('Please add items to cart first', 'error');
+          detailArea.innerHTML = '<p>Please add items to cart before checkout.</p>';
+          return;
+        }
+        window.location.href = 'page2.html';
+      });
+
+      // WhatsApp cart checkout
+      const waCheckoutBtn = document.getElementById('wa-checkout-btn');
+      if (waCheckoutBtn) {
+        waCheckoutBtn.addEventListener('click', () => {
+          const keys = Object.keys(cart);
+          if (!keys.length) { showToast('Add items to cart first', 'error'); return; }
+          const lines = ["Hi Rapid Stores and General Dealers Limited, I'd like to order the following:"];
+          let total = 0;
+          keys.forEach(id => {
+            const e = cart[id];
+            const lineTotal = e.qty * e.unitPrice;
+            lines.push(`\u2022 ${e.name} x${e.qty} = K${lineTotal.toLocaleString('en-ZM')}`);
+            total += lineTotal;
+          });
+          lines.push(`Total: K${total.toLocaleString('en-ZM')}`);
+          lines.push('Please confirm availability and delivery details. Thank you!');
+          window.open('https://wa.me/260977891850?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      // Wire Ask on WhatsApp buttons per product card
+      document.querySelectorAll('.wa-product-btn').forEach(btn => {
+        const card = btn.closest('.product-card');
+        if (!card) return;
+        const name = card.dataset.offer || '';
+        const price = card.dataset.price || '';
+        const msg = `Hi Rapid Stores and General Dealers Limited, I'm interested in the ${name} (${price}). Is it available and what are the delivery options?`;
+        btn.href = 'https://wa.me/260977891850?text=' + encodeURIComponent(msg);
+      });
+
+      // Back to top
+      const backToTopBtn = document.querySelector('.back-to-top');
+      if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+          backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+        }, { passive: true });
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // â”€â”€ Scroll-reveal â”€â”€
+      const revealEls = document.querySelectorAll('.product-card, .arrival-item, .trust-item, main section, aside.sidebar');
+      revealEls.forEach((el, i) => {
+        el.classList.add('reveal');
+        el.classList.add(`reveal-delay-${(i % 6) + 1}`);
+      });
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+      }
+
+      // â”€â”€ Ripple on buttons â”€â”€
+      document.addEventListener('click', e => {
+        const btn = e.target.closest('button, .btn');
+        if (!btn) return;
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        Object.assign(ripple.style, {
+          width: size + 'px',
+          height: size + 'px',
+          left: x + 'px',
+          top: y + 'px'
+        });
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+      });
+
+      // â”€â”€ Animated featured banner border â”€â”€
+      const featuredBanner = document.querySelector('.featured-banner');
+      if (featuredBanner) {
+        setTimeout(() => featuredBanner.classList.add('banner-animated'), 400);
+      }
+
+      // â”€â”€ 3D card tilt â”€â”€
+      const tiltCards = document.querySelectorAll('.product-card');
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = (e.clientX - cx) / (rect.width / 2);
+          const dy = (e.clientY - cy) / (rect.height / 2);
+          card.style.transform = `perspective(800px) rotateX(${(-dy * 6).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg) translateY(-6px) scale(1.02)`;
+          card.style.transition = 'box-shadow 0.2s ease, border-color 0.2s ease';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.transition = 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.28s ease, border-color 0.28s ease';
+        });
+      });
+
+      // â”€â”€ Page preloader â”€â”€
+      const preloaderEl = document.getElementById('site-preloader');
+      const finishPageLoading = () => {
+        document.body.classList.remove('is-loading');
+        document.body.classList.add('page-ready');
+        if (preloaderEl) {
+          preloaderEl.classList.add('is-hidden');
+          setTimeout(() => preloaderEl.remove(), 520);
+        }
+      };
+
+      window.addEventListener('load', finishPageLoading, { once: true });
+      setTimeout(() => {
+        if (document.body.classList.contains('is-loading')) finishPageLoading();
+      }, 2200);
+
+      // â”€â”€ Scroll reveal â”€â”€
+      const rsRevealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('rs-visible');
+            rsRevealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.rs-reveal').forEach(el => rsRevealObserver.observe(el));
+
+      // Also trigger section h2 underlines via rs-visible on parent
+      document.querySelectorAll('main section.rs-reveal').forEach(sec => {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) { sec.classList.add('rs-visible'); }
+        }, { threshold: 0.08 }).observe(sec);
+      });
+
+      // â”€â”€ Product card stagger on first scroll into grid â”€â”€
+      const productGrid = document.getElementById('offer-grid');
+      if (productGrid) {
+        const cardObserver = new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) {
+            productGrid.querySelectorAll('.product-card').forEach((card, i) => {
+              card.style.transitionDelay = `${i * 0.06}s`;
+              card.classList.add('rs-visible');
+            });
+            cardObserver.disconnect();
+          }
+        }, { threshold: 0.05 });
+        productGrid.querySelectorAll('.product-card').forEach(c => c.classList.add('rs-reveal'));
+        cardObserver.observe(productGrid);
+      }
+
+      // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      // ALIVE — extra layer
+      // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+      // â”€â”€ Scroll progress bar â”€â”€
+      const progressBar = document.getElementById('rs-progress');
+      if (progressBar) {
+        const updateProgress = () => {
+          const scrolled = window.scrollY;
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          progressBar.style.width = total > 0 ? ((scrolled / total) * 100).toFixed(2) + '%' : '0%';
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+      }
+
+      // â”€â”€ Hero cursor glow + orb parallax â”€â”€
+      const heroEl = document.querySelector('.hero');
+      const orb1 = document.querySelector('.header-orb-1');
+      const orb2 = document.querySelector('.header-orb-2');
+      if (heroEl) {
+        heroEl.addEventListener('mousemove', e => {
+          const r = heroEl.getBoundingClientRect();
+          const px = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%';
+          const py = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
+          heroEl.style.setProperty('--mx', px);
+          heroEl.style.setProperty('--my', py);
+          const dx = (e.clientX - r.left - r.width  / 2) / r.width;
+          const dy = (e.clientY - r.top  - r.height / 2) / r.height;
+          if (orb1) orb1.style.transform = `translate(${dx * 22}px, ${dy * 14}px)`;
+          if (orb2) orb2.style.transform = `translate(${dx * -18}px, ${dy * -10}px)`;
+        });
+        heroEl.addEventListener('mouseleave', () => {
+          if (orb1) orb1.style.transform = '';
+          if (orb2) orb2.style.transform = '';
+        });
+      }
+
+      // â”€â”€ Hero h1 word-by-word reveal â”€â”€
+      const heroH1 = document.querySelector('.hero h1');
+      if (heroH1 && !heroH1.dataset.split) {
+        heroH1.dataset.split = '1';
+        const words = heroH1.textContent.trim().split(/\s+/);
+        heroH1.innerHTML = words.map((w, i) =>
+          `<span class="hw" style="animation-delay:${(i * 0.08 + 0.15).toFixed(2)}s">${w}</span>`
+        ).join(' ');
+      }
+
+      // â”€â”€ Floating hero particles â”€â”€
+      if (heroEl) {
+        const sizes = [6, 8, 5, 10, 7, 4, 9];
+        const durations = [6, 8, 5, 9, 7, 10, 6.5];
+        sizes.forEach((s, i) => {
+          const p = document.createElement('div');
+          p.className = 'hero-particle';
+          p.style.cssText = [
+            `width:${s}px`, `height:${s}px`,
+            `left:${Math.round(10 + i * 13)}%`,
+            `top:${Math.round(20 + (i % 3) * 25)}%`,
+            `animation-duration:${durations[i]}s`,
+            `animation-delay:${(i * 0.7).toFixed(1)}s`
+          ].join(';');
+          heroEl.appendChild(p);
+        });
+      }
+
+      // â”€â”€ Live store status â”€â”€
+      (function updateStoreStatus() {
+        const badge  = document.getElementById('store-status-badge');
+        const label  = document.getElementById('store-status-text');
+        if (!badge || !label) return;
+        const now   = new Date();
+        const day   = now.getDay(); // 0=Sun
+        const hour  = now.getHours();
+        const mins  = hour * 60 + now.getMinutes();
+        const isOpen = (day >= 1 && day <= 5 && mins >= 480 && mins < 1080) || (day === 6 && mins >= 480 && mins < 840);
+        badge.className = 'store-status ' + (isOpen ? 'open' : 'closed');
+        label.textContent = isOpen ? 'Open Now · Monâ€“Fri 8AMâ€“6PM | Sat 8AMâ€“2PM' : 'Closed · Opens Mon 8AM';
+      })();
+
+      // â”€â”€ Page exit transition â”€â”€
+      document.querySelectorAll('a[href]').forEach(a => {
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('javascript')) return;
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          document.body.classList.add('page-exit');
+          setTimeout(() => { window.location.href = href; }, 320);
+        });
+      });
+
+      // â”€â”€ Activity notifications â”€â”€
+      const actItems = [
+        { icon: '\uD83D\uDECF\uFE0F', text: 'Someone in <strong>Mansa</strong> just added the <strong>CloudRest Queen Mattress</strong>' },
+        { icon: '\uD83D\uDCFA', text: 'A family in <strong>Mansa</strong> is looking at the <strong>VistaView 55\u201d TV</strong>' },
+        { icon: '\uD83D\uDEAA', text: 'Customer near <strong>Hebron Plaza</strong> ordered the <strong>GrandLine 3-Door Wardrobe</strong>' },
+        { icon: '\uD83D\uDDA4', text: 'Someone browsing <strong>Mansa Market</strong> added the <strong>OrthoLux King Mattress</strong>' },
+        { icon: '\uD83D\uDCC1', text: 'A neighbour just enquired about the <strong>Heritage 6-Drawer Dresser</strong>' },
+        { icon: '\uD83D\uDCF1', text: '<strong>3 people</strong> are viewing the Top Sellers page right now' }
+      ];
+      const actEl = document.createElement('div');
+      actEl.className = 'rs-activity';
+      actEl.setAttribute('aria-live', 'polite');
+      document.body.appendChild(actEl);
+      let actIdx = 0;
+      function showActivity() {
+        const item = actItems[actIdx % actItems.length];
+        actEl.innerHTML = `<span class="rs-act-icon">${item.icon}</span>${item.text}`;
+        actEl.classList.add('rs-act-show');
+        actIdx++;
+        setTimeout(() => actEl.classList.remove('rs-act-show'), 4200);
+      }
+      setTimeout(showActivity, 6000);
+      setInterval(showActivity, 18000);
+    </script>
+  </body>
+</html>

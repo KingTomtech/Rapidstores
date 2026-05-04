@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rapid Stores Top Sellers � best-selling mattresses, smart TVs, dressers, and wardrobes for Mansa homes. Local delivery and pickup available." />
+  <meta name="theme-color" content="#0a2e4a" />
+  <title>Top Sellers � Rapid Stores Furniture Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* -- Scroll reveal -------------------------- */
+    .rs-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .rs-reveal.rs-visible { opacity: 1; transform: translateY(0); }
+    .rs-reveal-delay-1 { transition-delay: 0.1s; }
+    .rs-reveal-delay-2 { transition-delay: 0.2s; }
+    .rs-reveal-delay-3 { transition-delay: 0.3s; }
+    .rs-reveal-delay-4 { transition-delay: 0.4s; }
+    .rs-reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* -- Animated mission banner ---------------- */
+    .mission-quote-strip {
+      background-size: 200% 200% !important;
+      animation: mqShift 7s ease-in-out infinite;
+    }
+    @keyframes mqShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .mission-quote-text { animation: mqFadeIn 1.1s 0.3s ease both; }
+    @keyframes mqFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -- Hero stat pop -------------------------- */
+    .hero-stat strong { display: inline-block; animation: statPop 0.6s cubic-bezier(0.22,1.4,0.36,1) both; }
+    .hero-stat:nth-child(1) strong { animation-delay: 0.25s; }
+    .hero-stat:nth-child(2) strong { animation-delay: 0.40s; }
+    .hero-stat:nth-child(3) strong { animation-delay: 0.55s; }
+    .hero-stat:nth-child(4) strong { animation-delay: 0.70s; }
+    @keyframes statPop {
+      from { opacity: 0; transform: scale(0.7) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* -- Featured banner shimmer ---------------- */
+    .featured-banner { position: relative; overflow: hidden; }
+    .featured-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(74,168,232,0.18) 50%, transparent 70%);
+      background-size: 200% 100%;
+      animation: bannerShimmer 3s linear infinite;
+      pointer-events: none; border-radius: inherit;
+    }
+    @keyframes bannerShimmer {
+      from { background-position: 200% 0; }
+      to   { background-position: -200% 0; }
+    }
+
+    /* -- Product cards enhanced hover ---------- */
+    .product-card {
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+    }
+    .product-card:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 14px 36px rgba(10,46,74,0.15) !important;
+    }
+    .product-image { transition: transform 0.4s ease !important; }
+    .product-card:hover .product-image { transform: scale(1.04) !important; }
+    .product-card .price { transition: color 0.2s, transform 0.2s; }
+    .product-card:hover .price { color: #1a5a8a; transform: scale(1.04); }
+    .badge { transition: transform 0.25s ease !important; }
+    .product-card:hover .badge { transform: translateY(-2px) scale(1.06) !important; }
+
+    /* -- Trust items hover underline ----------- */
+    .trust-item::after {
+      content: '';
+      display: block; height: 2px; width: 0;
+      background: var(--brand-secondary, #4aa8e8);
+      margin-top: 0.6rem;
+      transition: width 0.35s ease;
+    }
+    .trust-item:hover::after { width: 100%; }
+
+    /* -- Back to top ---------------------------- */
+    .back-to-top {
+      transition: transform 0.25s cubic-bezier(0.22,1.4,0.36,1), opacity 0.25s !important;
+      opacity: 0;
+    }
+    .back-to-top:hover { transform: translateY(-4px) !important; }
+
+    /* -- Insights panel ------------------------- */
+    .p1-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.85rem; margin-bottom: 1rem;
+    }
+    .p1-insight-card {
+      border-radius: 0.75rem; padding: 0.9rem 1rem;
+      border: 1px solid; position: relative;
+    }
+    .p1-insight-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 3px;
+      border-radius: 0 0 0.75rem 0.75rem;
+    }
+    .p1-insight-card.blue  { background: #edf5ff; border-color: #c2d9f0; }
+    .p1-insight-card.blue::after { background: linear-gradient(90deg, #3a8bd6, #4aa8e8); }
+    .p1-insight-card.green { background: #f2fbf5; border-color: #b6e8c8; }
+    .p1-insight-card.green::after { background: linear-gradient(90deg, #1a9f52, #26cc68); }
+    .p1-insight-card.amber { background: #fffbf0; border-color: #f0d89a; }
+    .p1-insight-card.amber::after { background: linear-gradient(90deg, #d4930a, #f5b92e); }
+    .p1-insight-card.red   { background: #fff5f5; border-color: #f0c0c0; }
+    .p1-insight-card.red::after { background: linear-gradient(90deg, #c23535, #e05555); }
+    .p1-insight-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; color: #7a92a8; margin: 0 0 0.25rem; }
+    .p1-insight-val   { font-size: 1.5rem; font-weight: 800; font-family: 'Inter', sans-serif; color: #0c2d4a; margin: 0; line-height: 1; }
+
+    /* -- Budget planner ------------------------- */
+    .p1-planner-results { list-style: none; margin: 0.8rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .p1-planner-item {
+      background: #f5f9ff; border: 1px solid #d5e5f5;
+      border-left: 3px solid #4aa8e8; border-radius: 0.5rem;
+      padding: 0.55rem 0.85rem;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.84rem; color: #1a3d5c;
+    }
+    .p1-planner-price { font-weight: 800; color: #1a5a8a; }
+
+    /* -- Recently viewed ------------------------ */
+    .p1-recent-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .p1-recent-list li {
+      background: #f5f9ff; border: 1px solid #d5e5f5;
+      border-radius: 0.5rem; padding: 0.5rem 0.75rem;
+      font-size: 0.83rem; color: #2a4560;
+    }
+
+    /* -- Compare toolbar ------------------------ */
+    .p1-compare-toolbar { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; font-size: 0.83rem; color: #5a7a92; }
+
+    /* -- Product star ratings ------------------- */
+    .product-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.28rem;
+      margin: 0.25rem 0 0.45rem;
+    }
+    .stars-visual { color: #f5a623; font-size: 0.78rem; letter-spacing: 0.04em; }
+    .stars-score { font-size: 0.74rem; font-weight: 800; color: #b8860b; }
+    .stars-count { font-size: 0.7rem; color: #8a9ab0; }
+
+    /* -- Bundle section ------------------------- */
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 0.9rem;
+    }
+    .bundle-card {
+      background: var(--card);
+      border: 1.5px solid rgba(26,90,138,0.18);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .bundle-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+    }
+    .bundle-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .bundle-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--brand-secondary);
+      margin-bottom: 0.4rem;
+    }
+    .bundle-card h3 { font-size: 0.96rem; margin: 0 0 0.35rem; color: var(--brand-primary); }
+    .bundle-items-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .bundle-items-list li {
+      font-size: 0.8rem;
+      color: #4a5f72;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .bundle-items-list li::before { content: '?'; color: #1fad52; font-weight: 700; font-size: 0.72rem; }
+    .bundle-total {
+      font-size: 0.82rem;
+      color: #6a7d95;
+    }
+    .bundle-total strong { color: var(--brand-primary); font-size: 1.05rem; font-weight: 800; }
+    .bundle-saving {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #1a7a40;
+      background: rgba(31,173,82,0.1);
+      border: 1px solid rgba(31,173,82,0.2);
+      padding: 0.18rem 0.55rem;
+      border-radius: 2rem;
+      margin-left: 0.4rem;
+    }
+    [data-theme='dark'] .bundle-card { border-color: rgba(255,255,255,0.1); }
+  </style>
+  <style>
+    /* ------------------------------------------
+       PAGE 1 � MODERN UPGRADE LAYER
+    ------------------------------------------ */
+
+    body { font-family: 'Manrope', 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+
+    /* -- Gradient hero title ------------------- */
+    .hero h1 {
+      background: linear-gradient(130deg, #ffffff 0%, #c8e8f8 45%, #4aa8e8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+
+    /* -- Hero badge pill ----------------------- */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(74,168,232,0.14);
+      border: 1px solid rgba(74,168,232,0.32);
+      border-radius: 2rem;
+      padding: 0.28rem 0.85rem;
+      font-size: 0.72rem; font-weight: 700;
+      color: #7dcbf5; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.75rem; backdrop-filter: blur(8px); width: fit-content;
+    }
+
+    /* -- Glass hero stats ---------------------- */
+    .hero-stat {
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+      border-radius: 0.9rem !important;
+      padding: 0.7rem 1.15rem !important;
+    }
+    .hero-stat span { font-family: 'Manrope', sans-serif; font-size: 0.7rem; letter-spacing: 0.04em; opacity: 0.72; }
+    .hero-spotlight {
+      background: rgba(255,255,255,0.06) !important;
+      border: 1px solid rgba(255,255,255,0.13) !important;
+      backdrop-filter: blur(10px) !important;
+      border-radius: 0.85rem !important;
+    }
+
+    /* -- Mission quote ------------------------- */
+    .mission-quote-text { font-family: 'Playfair Display', serif !important; font-size: 1.05rem !important; font-style: italic; }
+
+    /* -- Section eyebrow label ----------------- */
+    .section-eyebrow {
+      display: inline-block; font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: #4aa8e8;
+      margin-bottom: 0.3rem; font-family: 'Manrope', sans-serif;
+    }
+
+    /* -- Section headings underline ------------ */
+    main section > h2 { position: relative; display: inline-block; }
+    main section > h2::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      height: 3px; width: 0;
+      background: linear-gradient(90deg, #1a5a8a, #4aa8e8);
+      border-radius: 2px; transition: width 0.55s ease;
+    }
+    main section.rs-visible > h2::after { width: 55%; }
+
+    /* -- Premium highlights -------------------- */
+    .premium-highlight-card {
+      border-radius: 0.9rem !important;
+      border-top: 2px solid rgba(74,168,232,0.18) !important;
+    }
+    .premium-highlight-card:hover { border-top-color: #4aa8e8 !important; }
+    .premium-highlight-card h3 { font-size: 0.95rem !important; letter-spacing: -0.01em; }
+
+    /* -- Banner badge -------------------------- */
+    .banner-badge { background: linear-gradient(135deg, #1a5a8a, #3a9ad6) !important; font-weight: 700 !important; letter-spacing: 0.04em; }
+
+    /* -- Ticker elegance layer ----------------- */
+    .rs-ticker-wrap {
+      border: 1px solid rgba(74,168,232,0.15);
+      background: linear-gradient(135deg, rgba(13,58,92,0.06), rgba(255,255,255,0.75));
+      border-radius: 999px;
+      padding: 0.35rem 0.1rem;
+    }
+    .rs-ticker-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(74,168,232,0.14);
+      border-radius: 999px;
+      padding: 0.2rem 0.62rem;
+      font-size: 0.75rem;
+      color: #1b3f5f;
+      white-space: nowrap;
+    }
+    .ticker-item .ti-label {
+      color: #1a5a8a;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+    }
+    .rs-ticker-sep {
+      color: rgba(26,90,138,0.5);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* -- Sticky search toolbar ----------------- */
+    #offers-p1 .offers-toolbar {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--card, #fff);
+      box-shadow: 0 2px 16px rgba(10,46,74,0.09);
+      border-radius: 0.85rem;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 0.85rem;
+      border: 1px solid rgba(74,168,232,0.13);
+      backdrop-filter: blur(8px);
+    }
+
+    /* -- Search input -------------------------- */
+    #offer-search-page1 {
+      border-radius: 0.55rem !important;
+      border: 1px solid rgba(74,168,232,0.28) !important;
+      background: rgba(237,245,255,0.7) !important;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #offer-search-page1:focus {
+      outline: none;
+      border-color: #4aa8e8 !important;
+      box-shadow: 0 0 0 3px rgba(74,168,232,0.15) !important;
+    }
+
+    /* -- Category filter pill upgrade --------- */
+    .category-filter { gap: 0.45rem !important; flex-wrap: wrap; }
+    .filter-btn {
+      border-radius: 2rem !important;
+      font-size: 0.78rem !important;
+      font-weight: 700 !important;
+      font-family: 'Manrope', sans-serif !important;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, color 0.2s, transform 0.18s, box-shadow 0.18s !important;
+    }
+    .filter-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(10,46,74,0.12); }
+    .filter-btn.active { animation: pillActivate 0.3s cubic-bezier(0.22,1.4,0.36,1) both; }
+    @keyframes pillActivate { from { transform: scale(0.88); } to { transform: scale(1); } }
+
+    /* -- Product image taller + glow ----------- */
+    .product-image {
+      min-height: 130px !important;
+      border-radius: 0.6rem 0.6rem 0 0 !important;
+      position: relative;
+    }
+    .product-card:hover .product-image {
+      box-shadow: inset 0 -4px 20px rgba(74,168,232,0.2) !important;
+    }
+    .card-image-icon {
+      font-size: 1.4rem !important; font-weight: 800 !important;
+      font-family: 'Inter', sans-serif !important; letter-spacing: -0.03em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    /* -- Category colour accents on cards ------ */
+    .offer-item[data-category="mattresses"] .product-image { border-top: 3px solid #4aa8e8; }
+    .offer-item[data-category="tvs"]        .product-image { border-top: 3px solid #a86afa; }
+    .offer-item[data-category="dressers"]   .product-image { border-top: 3px solid #26cc68; }
+    .offer-item[data-category="wardrobes"]  .product-image { border-top: 3px solid #f5b92e; }
+    .offer-item[data-category="bicycles"]  .product-image { border-top: 3px solid #1bb37a; }
+    .offer-item[data-category="special-offers"] .product-image { border-top: 3px solid #ff4f4f; }
+
+    /* -- Price pop ----------------------------- */
+    .price {
+      font-family: 'Inter', sans-serif !important;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    /* -- Product card -------------------------- */
+    .product-card { border-radius: 0.9rem !important; }
+    .card-body { padding: 0.9rem 1rem 1rem !important; }
+    .card-body h3 { font-size: 0.93rem !important; letter-spacing: -0.01em; line-height: 1.35; }
+
+    /* -- WA product button --------------------- */
+    .wa-product-btn {
+      border-radius: 0.5rem !important;
+      font-size: 0.75rem !important;
+      font-family: 'Manrope', sans-serif !important;
+      font-weight: 700 !important;
+    }
+
+    /* -- Trust grid ---------------------------- */
+    .trust-grid { gap: 1rem !important; }
+    .trust-item {
+      border-radius: 1rem !important;
+      border: 1px solid rgba(74,168,232,0.12) !important;
+      position: relative; overflow: hidden;
+      transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease !important;
+    }
+    .trust-item:hover { transform: translateY(-4px) !important; box-shadow: 0 10px 28px rgba(10,46,74,0.12) !important; }
+    .trust-icon { font-size: 1.6rem !important; display: inline-block; transition: transform 0.3s cubic-bezier(0.22,1.5,0.36,1); }
+    .trust-item:hover .trust-icon { transform: scale(1.25) rotate(-8deg); }
+    blockquote.trust-item { font-style: normal !important; }
+    blockquote.trust-item strong { font-size: 0.82rem; display: block; margin-bottom: 0.3rem; }
+    blockquote.trust-item span { font-style: italic; font-size: 0.82rem; color: #4a6a82; line-height: 1.55; }
+
+    /* -- Review star --------------------------- */
+    .trust-item .review-star { color: #f5b92e; font-size: 0.8rem; letter-spacing: 0.1em; display: block; margin-bottom: 0.2rem; }
+
+    /* -- Insights grid upgrade ----------------- */
+    .p1-insights-grid { gap: 1rem !important; }
+    .p1-insight-card {
+      border-radius: 1rem !important;
+      padding: 1.1rem 1.2rem !important;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .p1-insight-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(10,46,74,0.1); }
+    .p1-insight-val { font-size: 1.65rem !important; }
+
+    /* -- Cart overview ------------------------- */
+    #cart-overview {
+      background: linear-gradient(135deg, rgba(13,58,92,0.06), rgba(74,168,232,0.08));
+      border: 1px solid rgba(74,168,232,0.16);
+      border-radius: 1rem;
+      padding: 1.1rem 1.4rem !important;
+    }
+    #cart-overview h2 { font-size: 1rem !important; margin-bottom: 0.35rem; }
+    #cart-summary-text { font-family: 'Manrope', sans-serif; font-size: 0.88rem; color: #2a4a68; }
+
+    /* -- Planner form -------------------------- */
+    .planner-form input, .planner-form select {
+      border-radius: 0.5rem !important;
+      border: 1px solid rgba(74,168,232,0.28) !important;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .planner-form input:focus, .planner-form select:focus {
+      outline: none; border-color: #4aa8e8 !important;
+      box-shadow: 0 0 0 3px rgba(74,168,232,0.15) !important;
+    }
+    .p1-planner-item { border-radius: 0.65rem !important; font-family: 'Manrope', sans-serif; }
+
+    /* -- Recently viewed ----------------------- */
+    .p1-recent-list li { border-radius: 0.65rem !important; font-family: 'Manrope', sans-serif; transition: background 0.2s; }
+    .p1-recent-list li:hover { background: #e8f3fd !important; }
+
+    /* -- Offer detail -------------------------- */
+    .offer-detail {
+      border-radius: 0.9rem !important;
+      border: 1px solid rgba(74,168,232,0.18) !important;
+      background: linear-gradient(135deg, rgba(237,245,255,0.9), rgba(255,255,255,0.98)) !important;
+    }
+
+    /* -- Footer -------------------------------- */
+    footer { border-top: 1px solid rgba(74,168,232,0.15) !important; }
+    .footer-section h3, .footer-section h4 { font-family: 'Inter', sans-serif; }
+
+    /* -- WA float pulse ------------------------ */
+    .wa-float { animation: waPulse 2.2s ease-in-out infinite !important; }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(31,173,82,0.45), 0 0 0 0 rgba(31,173,82,0.35); }
+      50%      { box-shadow: 0 4px 18px rgba(31,173,82,0.6), 0 0 0 10px rgba(31,173,82,0); }
+    }
+  </style>
+</head>
+<body class="is-loading">
+  <div id="site-preloader" class="site-preloader" aria-hidden="true">
+    <div class="preloader-mark">Rapid Stores General Dealers Limited</div>
+    <div class="preloader-line" role="presentation"></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="page-control">
+    <label for="page-select">Go to page:</label>
+    <select id="page-select">
+      <option value="index.html">Home</option>
+      <option value="about.html">About</option>
+      <option value="page1.html" selected>Top Sellers</option>
+      <option value="page2.html">Checkout</option>
+      <option value="page3.html">Contact</option>
+      <option value="live-hub.html">Live Hub</option>
+    </select>
+    <button id="go-page" class="btn" type="button">Go</button>
+  </div>
+
+  <div class="container">
+    <header class="hero" role="banner">
+      <div class="header-orb header-orb-1"></div>
+      <div class="header-orb header-orb-2"></div>
+      <div class="logo-row">
+        <img src="logo.svg" alt="Rapid Stores General Dealers Limited logo" class="site-logo" />
+        <div>
+          <div class="hero-badge">&#11088; Most-Ordered Furniture � 2026</div>
+          <h1>Rapid Stores General Dealers Limited</h1>
+          <p class="hero__eyetitle" style="font-size:0.72rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin:0.1rem 0 0.25rem;font-family:'Manrope',sans-serif;">Top Sellers � Furniture Gallery</p>
+          <p class="hero__subtitle">Best-selling mattresses, smart TVs, dressers, and wardrobes chosen by Mansa families.</p>
+          <div class="hero-spotlight" role="note" aria-label="Page spotlight">
+            <span>Most-Ordered Furniture � 2026</span>
+            <p>These are the pieces our customers keep coming back for � comfort, storage, and entertainment essentials for the home.</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>8</strong><span>Top Picks</span></div>
+        <div class="hero-stat"><strong>4</strong><span>Categories</span></div>
+        <div class="hero-stat"><strong>K2,100</strong><span>Starting from</span></div>
+        <div class="hero-stat"><strong>3</strong><span>Pickup Points</span></div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="page1.html" aria-current="page">Top Sellers</a>
+        <a href="page2.html">Checkout</a>
+        <a href="page3.html">Contact</a>
+        <a href="live-hub.html">Live Hub</a>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <!-- Mission strip -->
+      <div class="mission-quote-strip" role="note" aria-label="Our top sellers promise">
+        <blockquote class="mission-quote-text">
+          "Selected by real homes in Mansa: practical comfort, trusted quality, and prices that make sense."
+        </blockquote>
+        <cite class="mission-quote-cite">Rapid Stores, Mansa</cite>
+      </div>
+
+      <!-- Ticker -->
+      <div class="rs-ticker-wrap" aria-hidden="true">
+        <span class="rs-ticker-track">
+          <span class="ticker-item"><span class="ti-label">Qualitex King 12"</span> K3,550</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex King 10"</span> K2,800</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex King 8"</span> K2,350</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 12"</span> K2,250</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 10"</span> K1,395</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 8"</span> K1,850</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 6"</span> K1,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex � 8"</span> K1,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex � 6"</span> K925</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Yachisa 43" Smart TV</span> K4,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Eoco 49" TV</span> K4,450</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision 55" Smart TV</span> K8,195</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision Non-Smart TV</span> K3,995</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Samsung 70" Smart TV</span> K12,550</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Heritage Dresser</span> K3,600</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">GrandLine Wardrobe</span> K7,500</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">SlimLine Wardrobe</span> K4,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Compact Chest</span> K2,100</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision Bicycle</span> K3,395</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Flying Eagle</span> K2,050</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Atlas Bicycle</span> K2,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Normal</span> K2,050</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Ladies Bicycle</span> K2,095</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Size 20</span> K1,795</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Size 16</span> K1,595</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain 12</span> K1,495</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Buffalo Carrier</span> K2,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Bison Buffalo</span> K3,950</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">?? Tiger Generator</span> K6,895</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Free Pickup</span> 3 points in Mansa</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">WhatsApp</span> 0977 891 850</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Pickup</span> Hebron Plaza, Mansa Market, Trade Centre</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex King 12"</span> K3,550</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex King 10"</span> K2,800</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex King 8"</span> K2,350</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 12"</span> K2,250</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 10"</span> K1,395</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 8"</span> K1,850</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex Double 6"</span> K1,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex � 8"</span> K1,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Qualitex � 6"</span> K925</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Yachisa 43" Smart TV</span> K4,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Eoco 49" TV</span> K4,450</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision 55" Smart TV</span> K8,195</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision Non-Smart TV</span> K3,995</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Samsung 70" Smart TV</span> K12,550</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Heritage Dresser</span> K3,600</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">GrandLine Wardrobe</span> K7,500</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">SlimLine Wardrobe</span> K4,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Compact Chest</span> K2,100</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Vision Bicycle</span> K3,395</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Flying Eagle</span> K2,050</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Atlas Bicycle</span> K2,200</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Normal</span> K2,050</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Ladies Bicycle</span> K2,095</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Size 20</span> K1,795</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Size 16</span> K1,595</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain 12</span> K1,495</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Mountain Buffalo Carrier</span> K2,150</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Bison Buffalo</span> K3,950</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">?? Tiger Generator</span> K6,895</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Free Pickup</span> 3 points in Mansa</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">WhatsApp</span> 0977 891 850</span><span class="rs-ticker-sep">�</span>
+          <span class="ticker-item"><span class="ti-label">Pickup</span> Hebron Plaza, Mansa Market, Trade Centre</span><span class="rs-ticker-sep">�</span>
+        </span>
+      </div>
+
+      <!-- Welcome / highlights -->
+      <section id="featured" class="rs-reveal">
+        <span class="section-eyebrow">Customer Picks 2026</span>
+        <h2>This Season's Best Sellers</h2>
+        <div class="featured-banner">
+          <p><strong>Customer favourites:</strong> Bedroom comfort, living-room screens, and storage pieces chosen by Mansa families.</p>
+          <span class="banner-badge">Top Picks 2026</span>
+        </div>
+        <p>Every product on this page has been ordered by real local customers. Browse by category, search by feature, or sort by price � then add to cart and order on WhatsApp.</p>
+        <div class="premium-highlights" aria-label="Why these products">
+          <article class="premium-highlight-card rs-reveal rs-reveal-delay-1">
+            <h3>Proven by Customers</h3>
+            <p>Only our most-ordered items make this list � pieces Mansa families keep coming back for.</p>
+          </article>
+          <article class="premium-highlight-card rs-reveal rs-reveal-delay-2">
+            <h3>All Categories in One Place</h3>
+            <p>Mattresses, TVs, dressers, and wardrobes � filter to your room type and budget in seconds.</p>
+          </article>
+          <article class="premium-highlight-card rs-reveal rs-reveal-delay-3">
+            <h3>Easy Local Ordering</h3>
+            <p>Add to cart, then send your full order to our team on WhatsApp for fast local fulfilment.</p>
+          </article>
+        </div>
+        <div class="btn-group">
+          <a href="#offers-p1" class="btn">Shop Top Sellers</a>
+          <a href="index.html" class="btn btn--outline">Full Catalogue</a>
+          <a href="page2.html" class="btn btn--ghost">Checkout &amp; Delivery</a>
+        </div>
+      </section>
+
+      <!-- Cart summary -->
+      <section id="cart-overview" class="rs-reveal">
+        <h2>&#128722; Your Cart</h2>
+        <p id="cart-summary-text">Loading cart�</p>
+        <a href="index.html" class="btn btn--outline" style="margin-top:0.5rem;display:inline-block;">&#8592; Back to Main Catalogue</a>
+      </section>
+
+      <!-- Products section -->
+      <section id="offers-p1" class="rs-reveal">
+        <span class="section-eyebrow">All Prices in ZMW</span>
+        <h2>Top Selling Products</h2>
+
+        <!-- Search + sort toolbar -->
+        <div class="offers-toolbar">
+          <div style="display:flex;gap:0.5rem;align-items:center;flex:1;flex-wrap:wrap;">
+            <input
+              id="offer-search-page1"
+              type="search"
+              placeholder="Search mattresses, TVs, bicycles, dressers, wardrobes... (Press / to focus)"
+              aria-label="Search top sellers"
+              style="flex:1;min-width:200px;padding:0.42rem 0.75rem;border:1px solid var(--border);border-radius:0.5rem;font-size:0.84rem;background:var(--card);color:var(--text);"
+            />
+          </div>
+          <p class="results-count" id="results-count-page1" aria-live="polite">29 offers shown</p>
+          <label class="sort-shell" for="sort-select-page1">
+            <span>Sort:</span>
+            <select id="sort-select-page1">
+              <option value="featured">Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A�Z</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Category filter -->
+        <div class="category-filter" id="page1-category-filter">
+          <button class="filter-btn active" type="button" data-category="all">All</button>
+          <button class="filter-btn" type="button" data-category="mattresses">Mattresses</button>
+          <button class="filter-btn" type="button" data-category="tvs">TVs</button>
+          <button class="filter-btn" type="button" data-category="bicycles">Bicycles</button>
+          <button class="filter-btn" type="button" data-category="dressers">Dressers</button>
+          <button class="filter-btn" type="button" data-category="wardrobes">Wardrobes</button>
+          <button class="filter-btn" type="button" data-category="special-offers">Special Offers</button>
+        </div>
+
+        <!-- Product grid -->
+        <div class="product-grid" id="offer-grid-page1">
+
+          <!-- Mattress 1: King 12" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex King Size 12 inch Mattress" data-price="K3550" data-detail="King size 12-inch high density Qualitex mattress � deep comfort layers, firm edge support, and durable high-density foam for a great night's sleep.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0d3a5c, #1a6a9a);">
+              <span class="card-image-icon">K12"</span>
+              <span class="badge badge--hot">&#128293; Top Pick</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex King 12" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.9</span>
+                <span class="stars-count">(21 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">King � 12"</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Maximum comfort for king-size beds � thick 12-inch high density foam built to last.</p>
+              <p class="price">K3,550</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20King%2012%22%20HD%20Mattress%20(K3%2C550)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 2: King 10" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex King Size 10 inch Mattress" data-price="K2800" data-detail="King size 10-inch high density Qualitex mattress � excellent support and comfort at a great price point for any master bedroom.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0a2e4a, #1e5980);">
+              <span class="card-image-icon">K10"</span>
+              <span class="badge badge--new">&#11088; Best Value</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex King 10" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.8</span>
+                <span class="stars-count">(17 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">King � 10"</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Solid high-density king size � great balance of firmness and cushion for daily use.</p>
+              <p class="price">K2,800</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20King%2010%22%20HD%20Mattress%20(K2%2C800)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 3: King 8" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex King Size 8 inch Mattress" data-price="K2350" data-detail="King size 8-inch high density Qualitex mattress � reliable firmness and comfort for families who want king space at a smart price.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0d3550, #1a5a82);">
+              <span class="card-image-icon">K8"</span>
+              <span class="badge badge--new">&#9989; Most Ordered</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex King 8" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.7</span>
+                <span class="stars-count">(29 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">King � 8"</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">Our most ordered king size � reliable high-density foam at an accessible price.</p>
+              <p class="price">K2,350</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20King%208%22%20HD%20Mattress%20(K2%2C350)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 4: Double 12" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Double 12 inch Mattress" data-price="K2250" data-detail="Double 12-inch high density Qualitex mattress � deep luxury comfort for double beds, couples or anyone who wants extra cushioning.">
+            <div class="product-image" style="background: linear-gradient(135deg, #1a3a5c, #2a6090);">
+              <span class="card-image-icon">D12"</span>
+              <span class="badge badge--hot">&#128142; Premium</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex Double 12" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.8</span>
+                <span class="stars-count">(14 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Double � 12"</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Deep 12-inch comfort for double beds � the thickest double available in store.</p>
+              <p class="price">K2,250</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Double%2012%22%20HD%20Mattress%20(K2%2C250)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 5: Double 10" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Double 10 inch Mattress" data-price="K1395" data-detail="Double 10-inch high density Qualitex mattress � comfortable, firm, and great value for couples and growing families.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0d2e50, #1a5278);">
+              <span class="card-image-icon">D10"</span>
+              <span class="badge badge--new">&#11088; Best Value</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex Double 10" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.6</span>
+                <span class="stars-count">(22 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Double � 10"</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">A popular double-bed choice � firm high-density support at excellent value.</p>
+              <p class="price">K1,395</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Double%2010%22%20HD%20Mattress%20(K1%2C395)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 6: Double 8" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Double 8 inch Mattress" data-price="K1850" data-detail="Double 8-inch high density Qualitex mattress � a dependable everyday choice with firm support and a comfortable sleeping surface.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0a2840, #185070);">
+              <span class="card-image-icon">D8"</span>
+              <span class="badge badge--new">&#9989; Most Ordered</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex Double 8" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.6</span>
+                <span class="stars-count">(31 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Double � 8"</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">One of our bestsellers � solid 8-inch double mattress for everyday comfort.</p>
+              <p class="price">K1,850</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Double%208%22%20HD%20Mattress%20(K1%2C850)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 7: Double 6" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Double 6 inch Mattress" data-price="K1150" data-detail="Double 6-inch high density Qualitex mattress � budget-friendly and reliable, great for rentals, guest rooms, and spare bedrooms.">
+            <div class="product-image" style="background: linear-gradient(135deg, #162a40, #284a68);">
+              <span class="card-image-icon">D6"</span>
+              <span class="badge badge--new">&#127991; Great Value</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex Double 6" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.4</span>
+                <span class="stars-count">(19 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Double � 6"</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Affordable and dependable � perfect for rentals, guest rooms, and spare beds.</p>
+              <p class="price">K1,150</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Double%206%22%20HD%20Mattress%20(K1%2C150)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 8: 3/4 8" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Three Quarter 8 inch Mattress" data-price="K1150" data-detail="Three-quarter 8-inch high density Qualitex mattress � ideal for children, teens, and single sleepers who want the extra width of a three-quarter.">
+            <div class="product-image" style="background: linear-gradient(135deg, #102038, #1e3e60);">
+              <span class="card-image-icon">� 8"</span>
+              <span class="badge badge--new">&#128100; Kids &amp; Teens</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex � 8" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.5</span>
+                <span class="stars-count">(12 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Three-Quarter � 8"</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Three-quarter size with 8-inch HD foam � great for teens and single sleepers wanting more width.</p>
+              <p class="price">K1,150</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Three-Quarter%208%22%20HD%20Mattress%20(K1%2C150)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Mattress 9: 3/4 6" -->
+          <article class="product-card offer-item" data-category="mattresses" data-offer="Qualitex Three Quarter 6 inch Mattress" data-price="K925" data-detail="Three-quarter 6-inch high density Qualitex mattress � our most affordable three-quarter option, ideal for children and compact bedrooms.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0e1e30, #1a3450);">
+              <span class="card-image-icon">� 6"</span>
+              <span class="badge badge--new">&#127991; Great Value</span>
+            </div>
+            <div class="card-body">
+              <h3>Qualitex � 6" HD Mattress</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.3</span>
+                <span class="stars-count">(8 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Mattresses</span>
+                <span class="product-tag">Three-Quarter � 6"</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">The most affordable three-quarter in store � great for children and compact single rooms.</p>
+              <p class="price">K925</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Qualitex%20Three-Quarter%206%22%20HD%20Mattress%20(K925)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- TV 1: Yachisa 43" Smart -->
+          <article class="product-card offer-item" data-category="tvs" data-offer="Yachisa 43 inch Smart TV" data-price="K4200" data-detail="43-inch Smart TV by Yachisa with built-in Wi-Fi apps, clear picture quality, and a slim profile great for bedrooms and small lounges.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0d2540, #1a5a8a);">
+              <span class="card-image-icon">43"</span>
+              <span class="badge badge--new">&#128161; Smart TV</span>
+            </div>
+            <div class="card-body">
+              <h3>Yachisa 43" Smart TV</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.5</span>
+                <span class="stars-count">(18 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">TVs</span>
+                <span class="product-tag">Smart � Wi-Fi</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">A compact smart screen perfect for bedrooms and smaller lounges � easy to set up and use.</p>
+              <p class="price">K4,200</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Yachisa%2043%22%20Smart%20TV%20(K4%2C200)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- TV 2: Eoco 49" Non-Smart -->
+          <article class="product-card offer-item" data-category="tvs" data-offer="Eoco 49 inch TV" data-price="K4450" data-detail="49-inch full HD non-smart TV by Eoco � large screen, great picture, and simple to operate with your aerial or decoder.">
+            <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2a3a5a);">
+              <span class="card-image-icon">49"</span>
+              <span class="badge badge--hot">&#128250; Big Screen</span>
+            </div>
+            <div class="card-body">
+              <h3>Eoco 49" TV</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.4</span>
+                <span class="stars-count">(11 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">TVs</span>
+                <span class="product-tag">Non-Smart � HD</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Big screen value � clear full HD picture for decoders and aerials, no internet needed.</p>
+              <p class="price">K4,450</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Eoco%2049%22%20TV%20(K4%2C450)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- TV 3: Vision 55" Smart -->
+          <article class="product-card offer-item" data-category="tvs" data-offer="Vision 55 inch Smart TV" data-price="K8195" data-detail="55-inch Vision Smart TV with Wi-Fi streaming, vibrant colours, slim bezel, and wall-mount ready frame � excellent for living rooms.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0a2040, #1a5080);">
+              <span class="card-image-icon">55"</span>
+              <span class="badge badge--new">&#128161; Smart TV</span>
+            </div>
+            <div class="card-body">
+              <h3>Vision 55" Smart TV</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.8</span>
+                <span class="stars-count">(24 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">TVs</span>
+                <span class="product-tag">Smart � Streaming</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">A top living-room choice � smart apps, vivid picture, and a wall-mount ready design.</p>
+              <p class="price">K8,195</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Vision%2055%22%20Smart%20TV%20(K8%2C195)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- TV 4: Vision Non-Smart -->
+          <article class="product-card offer-item" data-category="tvs" data-offer="Vision Non-Smart TV" data-price="K3995" data-detail="Vision non-smart TV � reliable HD picture, straightforward controls, works perfectly with a decoder or aerial. No subscription needed.">
+            <div class="product-image" style="background: linear-gradient(135deg, #1a2030, #2a3848);">
+              <span class="card-image-icon">TV</span>
+              <span class="badge badge--new">&#128250; Great Value</span>
+            </div>
+            <div class="card-body">
+              <h3>Vision Non-Smart TV</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.3</span>
+                <span class="stars-count">(9 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">TVs</span>
+                <span class="product-tag">Non-Smart � HD</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Reliable and affordable � pairs with any decoder for local and satellite channels.</p>
+              <p class="price">K3,995</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Vision%20Non-Smart%20TV%20(K3%2C995)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- TV 5: Samsung 70" Smart -->
+          <article class="product-card offer-item" data-category="tvs" data-offer="Samsung 70 inch Smart TV" data-price="K12550" data-detail="70-inch Samsung Smart TV � flagship screen with 4K resolution, Wi-Fi streaming, Dolby audio, voice remote, and Samsung's premium smart platform.">
+            <div class="product-image" style="background: linear-gradient(135deg, #050e1f, #0e2a50);">
+              <span class="card-image-icon">70"</span>
+              <span class="badge badge--hot">&#128142; Samsung</span>
+            </div>
+            <div class="card-body">
+              <h3>Samsung 70" Smart TV</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">5.0</span>
+                <span class="stars-count">(7 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">TVs</span>
+                <span class="product-tag">4K � Samsung</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">The ultimate living room screen � Samsung's finest in 70 inches of pure 4K picture and smart features.</p>
+              <p class="price">K12,550</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Samsung%2070%22%20Smart%20TV%20(K12%2C550)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card offer-item" data-category="dressers" data-offer="Heritage 6-Drawer Dresser" data-price="K3600" data-detail="Six-drawer dresser in a warm walnut finish with smooth glides, metal pulls, and a broad top surface for decor.">
+            <div class="product-image" style="background: linear-gradient(135deg, #102040, #1e4a7a);">
+              <span class="card-image-icon">D6</span>
+              <span class="badge badge--new">&#9989; Most Ordered</span>
+            </div>
+            <div class="card-body">
+              <h3>Heritage 6-Drawer Dresser</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.8</span>
+                <span class="stars-count">(19 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Dressers</span>
+                <span class="product-tag">Walnut finish</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Structured clothing storage that fits without taking over the bedroom.</p>
+              <p class="price">K3,600</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Heritage%206-Drawer%20Dresser%20(K3%2C600)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card offer-item" data-category="wardrobes" data-offer="GrandLine 3-Door Wardrobe" data-price="K7500" data-detail="Three-door wardrobe with mirrored center panel, hanging rail, upper shelf, and split compartments for shared storage.">
+            <div class="product-image" style="background: linear-gradient(135deg, #06182a, #0d3055);">
+              <span class="card-image-icon">W3</span>
+              <span class="badge badge--lowstock">&#128308; Low Stock</span>
+            </div>
+            <div class="card-body">
+              <h3>GrandLine 3-Door Wardrobe</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">4.9</span>
+                <span class="stars-count">(8 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Wardrobes</span>
+                <span class="product-tag">Mirror front</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">Full-height wardrobe for master bedrooms, family rooms, and upgraded rentals.</p>
+              <p class="price">K7,500</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20GrandLine%203-Door%20Wardrobe%20(K7%2C500)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card offer-item" data-category="wardrobes" data-offer="SlimLine 2-Door Wardrobe" data-price="K4200" data-detail="Compact two-door wardrobe with hanging rail and shelf. Ideal for smaller bedrooms, rentals, and single occupant rooms.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0a1e36, #1a3a60);">
+              <span class="card-image-icon">W2</span>
+              <span class="badge badge--new">&#127991; Great Value</span>
+            </div>
+            <div class="card-body">
+              <h3>SlimLine 2-Door Wardrobe</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.6</span>
+                <span class="stars-count">(22 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Wardrobes</span>
+                <span class="product-tag">Compact size</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Space-efficient wardrobe for rental units, smaller rooms, and young adults.</p>
+              <p class="price">K4,200</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20SlimLine%202-Door%20Wardrobe%20(K4%2C200)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <article class="product-card offer-item" data-category="dressers" data-offer="Compact 4-Drawer Chest" data-price="K2100" data-detail="Four-drawer chest with a light oak finish, metal glide rails, and a narrow profile that fits tight bedroom corners.">
+            <div class="product-image" style="background: linear-gradient(135deg, #1a2e50, #2a4e80);">
+              <span class="card-image-icon">D4</span>
+              <span class="badge badge--new">&#128293; Space Saver</span>
+            </div>
+            <div class="card-body">
+              <h3>Compact 4-Drawer Chest</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="stars-score">4.5</span>
+                <span class="stars-count">(27 reviews)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Dressers</span>
+                <span class="product-tag">Oak finish</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Great entry-level storage piece for small rooms and budget-conscious shoppers.</p>
+              <p class="price">K2,100</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Compact%204-Drawer%20Chest%20(K2%2C100)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Special Offer: Tiger Generator -->
+          <article class="product-card offer-item" data-category="special-offers" data-offer="Tiger Generator" data-price="K6895" data-detail="Tiger Generator � reliable backup power for your home or business. Ideal for load-shedding and outages. Available now at Rapid Stores Mansa.">
+            <div class="product-image" style="background: linear-gradient(135deg, #b22000, #ff6b35);">
+              <span class="card-image-icon">&#9889;</span>
+              <span class="badge badge--hot">&#128293; Special Offer</span>
+            </div>
+            <div class="card-body">
+              <h3>Tiger Generator</h3>
+              <div class="product-stars">
+                <span class="stars-visual">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="stars-score">5.0</span>
+                <span class="stars-count">(New)</span>
+              </div>
+              <div class="product-meta">
+                <span class="product-tag">Special Offers</span>
+                <span class="product-tag">Generator</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Reliable backup power for home and business. Beat load-shedding with a Tiger Generator.</p>
+              <p class="price">K6,895</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Tiger%20Generator%20(K6%2C895)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 1 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Vision Bicycle" data-price="K3395" data-detail="Vision Bicycle for everyday road use and light off-road riding.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0f3b2f, #2a8d6f);">
+              <span class="card-image-icon">VB</span>
+              <span class="badge badge--new">In Stock</span>
+            </div>
+            <div class="card-body">
+              <h3>Vision Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Standard</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Reliable bicycle for home, work, and town movement.</p>
+              <p class="price">K3,395</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Vision%20Bicycle%20(K3%2C395)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 2 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Flying Eagle Bicycle" data-price="K2050" data-detail="Flying Eagle bicycle at a budget-friendly price for daily rides.">
+            <div class="product-image" style="background: linear-gradient(135deg, #124066, #3a8fd4);">
+              <span class="card-image-icon">FE</span>
+              <span class="badge badge--hot">Popular</span>
+            </div>
+            <div class="card-body">
+              <h3>Flying Eagle Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Value</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Affordable bike option with practical comfort for everyday use.</p>
+              <p class="price">K2,050</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Flying%20Eagle%20Bicycle%20(K2%2C050)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 3 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Atlas Bicycle" data-price="K2200" data-detail="Atlas Bicycle with durable build quality for regular transport.">
+            <div class="product-image" style="background: linear-gradient(135deg, #19422b, #35a06f);">
+              <span class="card-image-icon">AT</span>
+            </div>
+            <div class="card-body">
+              <h3>Atlas Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Daily Ride</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">Practical and reliable road bicycle for everyday town use.</p>
+              <p class="price">K2,200</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Atlas%20Bicycle%20(K2%2C200)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 4 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Mountain Normal Bicycle" data-price="K2050" data-detail="Mountain Normal bicycle suitable for rough roads and daily commuting.">
+            <div class="product-image" style="background: linear-gradient(135deg, #0f4f40, #2db08d);">
+              <span class="card-image-icon">MN</span>
+            </div>
+            <div class="card-body">
+              <h3>Mountain Normal Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Mountain</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Good-value mountain bicycle made for mixed roads and practical daily use.</p>
+              <p class="price">K2,050</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Mountain%20Normal%20Bicycle%20(K2%2C050)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 5 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Ladies Bicycle" data-price="K2095" data-detail="Ladies Bicycle designed for comfort and easy control in town.">
+            <div class="product-image" style="background: linear-gradient(135deg, #7a2f68, #d36ab8);">
+              <span class="card-image-icon">LB</span>
+            </div>
+            <div class="card-body">
+              <h3>Ladies Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Comfort</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Comfortable frame style with easy step-through access for errands.</p>
+              <p class="price">K2,095</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Ladies%20Bicycle%20(K2%2C095)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 6 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Mountain Size 20 Bicycle" data-price="K1795" data-detail="Mountain Size 20 bicycle for younger riders and compact rider height.">
+            <div class="product-image" style="background: linear-gradient(135deg, #1f4d7a, #67a9e3);">
+              <span class="card-image-icon">M20</span>
+            </div>
+            <div class="card-body">
+              <h3>Mountain Size 20 Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Size 20</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">Great size option for young riders needing control and stability.</p>
+              <p class="price">K1,795</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Mountain%20Size%2020%20Bicycle%20(K1%2C795)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 7 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Mountain Size 16 Bicycle" data-price="K1595" data-detail="Mountain Size 16 bicycle for kids and smaller riders.">
+            <div class="product-image" style="background: linear-gradient(135deg, #134c5a, #4bb7cf);">
+              <span class="card-image-icon">M16</span>
+            </div>
+            <div class="card-body">
+              <h3>Mountain Size 16 Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Size 16</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Compact mountain bike size for younger riders learning control.</p>
+              <p class="price">K1,595</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Mountain%20Size%2016%20Bicycle%20(K1%2C595)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 8 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Mountain 12 Bicycle" data-price="K1495" data-detail="Mountain 12 bicycle designed for younger children.">
+            <div class="product-image" style="background: linear-gradient(135deg, #5a3a14, #c78c41);">
+              <span class="card-image-icon">M12</span>
+            </div>
+            <div class="card-body">
+              <h3>Mountain 12 Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Size 12</span>
+                <span class="location-tag">&#128205; Mansa Market</span>
+              </div>
+              <p class="product-note">Starter-size mountain bike for young children beginning to ride.</p>
+              <p class="price">K1,495</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Mountain%2012%20Bicycle%20(K1%2C495)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 9 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Mountain Buffalo Carrier Bicycle" data-price="K2150" data-detail="Mountain Buffalo Carrier bicycle with rear carrier support.">
+            <div class="product-image" style="background: linear-gradient(135deg, #4b2d1a, #b06b3b);">
+              <span class="card-image-icon">BC</span>
+            </div>
+            <div class="card-body">
+              <h3>Mountain Buffalo Carrier Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Carrier</span>
+                <span class="location-tag">&#128205; Trade Centre</span>
+              </div>
+              <p class="product-note">Utility-focused bike with carrier support for errands and loads.</p>
+              <p class="price">K2,150</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Mountain%20Buffalo%20Carrier%20Bicycle%20(K2%2C150)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+          <!-- Bicycle 10 -->
+          <article class="product-card offer-item" data-category="bicycles" data-offer="Bison Buffalo Bicycle" data-price="K3950" data-detail="Bison Buffalo premium bicycle with sturdy frame and smooth ride quality.">
+            <div class="product-image" style="background: linear-gradient(135deg, #202f4f, #5077c9);">
+              <span class="card-image-icon">BB</span>
+              <span class="badge badge--hot">Premium</span>
+            </div>
+            <div class="card-body">
+              <h3>Bison Buffalo Bicycle</h3>
+              <div class="product-meta">
+                <span class="product-tag">Bicycles</span>
+                <span class="product-tag">Premium</span>
+                <span class="location-tag">&#128205; Hebron Plaza</span>
+              </div>
+              <p class="product-note">Premium bicycle option for added durability and stronger performance.</p>
+              <p class="price">K3,950</p>
+              <div class="card-actions">
+                <button class="btn offer-btn" type="button">View</button>
+                <button class="btn add-cart" type="button">+ Cart</button>
+              </div>
+              <a class="wa-product-btn" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Bison%20Buffalo%20Bicycle%20(K3%2C950)." target="_blank" rel="noopener noreferrer">
+                <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Ask on WhatsApp
+              </a>
+            </div>
+          </article>
+
+        </div><!-- /#offer-grid-page1 -->
+        <p id="no-results-page1" class="compare-empty" style="display:none;margin-top:0.85rem;">No products match your search or filter.</p>
+        <div id="offer-detail" class="offer-detail" aria-live="polite"></div>
+      </section>
+
+      <!-- Why Local Matters -->
+      <section class="rs-reveal">
+        <span class="section-eyebrow">Our Promise</span>
+        <h2>Why Local Matters</h2>
+        <div class="trust-grid">
+          <div class="trust-item rs-reveal rs-reveal-delay-1">
+            <div class="trust-icon">??</div>
+            <strong>Same-Day Store Support</strong>
+            <span>Bring any damaged or incorrect item back to our Mansa locations the same day.</span>
+          </div>
+          <div class="trust-item rs-reveal rs-reveal-delay-2">
+            <div class="trust-icon">??</div>
+            <strong>Mobile Money Accepted</strong>
+            <span>MTN MoMo, Airtel Money, and bank transfer � pay the way that suits you.</span>
+          </div>
+          <div class="trust-item rs-reveal rs-reveal-delay-3">
+            <div class="trust-icon">??</div>
+            <strong>English &amp; Bemba Support</strong>
+            <span>Our team serves you in both languages � no confusion, just helpful service.</span>
+          </div>
+          <div class="trust-item rs-reveal rs-reveal-delay-4">
+            <div class="trust-icon">??</div>
+            <strong>Local Delivery</strong>
+            <span>Delivery across Mansa from K45, and to surrounding districts by arrangement.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Reviews -->
+      <section class="rs-reveal">
+        <span class="section-eyebrow">Verified Buyers</span>
+        <h2>Customer Reviews</h2>
+        <div class="trust-grid">
+          <blockquote class="trust-item rs-reveal rs-reveal-delay-1" style="font-style:italic;">
+            <div class="trust-icon">&#128100;</div>
+            <span class="review-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <strong>Mwansa � Mansa</strong>
+            <span>"Best service and fast delivery � the queen mattress arrived in perfect condition."</span>
+          </blockquote>
+          <blockquote class="trust-item rs-reveal rs-reveal-delay-2" style="font-style:italic;">
+            <div class="trust-icon">&#128100;</div>
+            <span class="review-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <strong>Chileshe � Mansa</strong>
+            <span>"Great mobile payments. Ordered the 55-inch TV and received it in 24 hours."</span>
+          </blockquote>
+          <blockquote class="trust-item rs-reveal rs-reveal-delay-3" style="font-style:italic;">
+            <div class="trust-icon">&#128100;</div>
+            <span class="review-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <strong>Banda � Samfya</strong>
+            <span>"The wardrobe is solid and fits perfectly. WhatsApp support was quick and helpful."</span>
+          </blockquote>
+          <blockquote class="trust-item rs-reveal rs-reveal-delay-4" style="font-style:italic;">
+            <div class="trust-icon">&#128100;</div>
+            <span class="review-star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <strong>Mutale � Mansa</strong>
+            <span>"Picked up the dresser at Hebron Plaza � staff were friendly and the price was right."</span>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- Store Insights -->
+      <section id="insights" class="rs-reveal">
+        <span class="section-eyebrow">Live Metrics</span>
+        <h2>Store Insights</h2>
+        <p>Numbers update live as you filter and search.</p>
+        <div class="p1-insights-grid">
+          <div class="p1-insight-card blue">
+            <p class="p1-insight-label">Visible Offers</p>
+            <p class="p1-insight-val" id="insight-visible">8</p>
+          </div>
+          <div class="p1-insight-card green">
+            <p class="p1-insight-label">Average Price</p>
+            <p class="p1-insight-val" id="insight-avg">K0</p>
+          </div>
+          <div class="p1-insight-card amber">
+            <p class="p1-insight-label">Lowest Price</p>
+            <p class="p1-insight-val" id="insight-low">K0</p>
+          </div>
+          <div class="p1-insight-card red">
+            <p class="p1-insight-label">Highest Price</p>
+            <p class="p1-insight-val" id="insight-high">K0</p>
+          </div>
+        </div>
+        <div class="category-bars" id="category-bars"></div>
+      </section>
+
+      <!-- Compare Lab -->
+      <section id="compare-lab" class="rs-reveal">
+        <span class="section-eyebrow">Side-by-Side</span>
+        <h2>Compare Lab</h2>
+        <div class="p1-compare-toolbar">
+          <span id="compare-count">0 selected</span>
+          <button id="clear-compare" class="btn btn--ghost" type="button">Clear compare</button>
+        </div>
+        <div id="compare-table" class="compare-table"></div>
+      </section>
+
+      <!-- Bundle Suggestions -->
+      <section id="bundle-picks" class="rs-reveal">
+        <span class="section-eyebrow">Curated Sets</span>
+        <h2>Complete Your Room</h2>
+        <p style="font-size:0.88rem;color:#6a7d95;margin:0 0 0.25rem;">Save time by bundling the right pieces together. Chat on WhatsApp to confirm a bundle deal.</p>
+        <div class="bundle-grid">
+
+          <div class="bundle-card rs-reveal rs-reveal-delay-1">
+            <div class="bundle-label">&#127981; Bedroom Starter</div>
+            <h3>Sleep &amp; Store Set</h3>
+            <ul class="bundle-items-list">
+              <li>Qualitex King 10" HD Mattress (K2,800)</li>
+              <li>Heritage 6-Drawer Dresser (K3,600)</li>
+            </ul>
+            <div class="bundle-total">Combined: <strong>K6,400</strong> <span class="bundle-saving">Best combo</span></div>
+            <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Bedroom%20Starter%20bundle%20%E2%80%94%20Qualitex%20King%2010%22%20Mattress%20(K2%2C800)%20%2B%20Heritage%206-Drawer%20Dresser%20(K3%2C600)." target="_blank" rel="noopener noreferrer" class="whatsapp-btn" style="margin-top:0.85rem;display:inline-flex;align-items:center;gap:0.45rem;font-size:0.8rem;padding:0.5rem 0.85rem;text-decoration:none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              Ask about this bundle
+            </a>
+          </div>
+
+          <div class="bundle-card rs-reveal rs-reveal-delay-2">
+            <div class="bundle-label">&#127769; Master Bedroom</div>
+            <h3>King Comfort Set</h3>
+            <ul class="bundle-items-list">
+              <li>Qualitex King 12" HD Mattress (K3,550)</li>
+              <li>GrandLine 3-Door Wardrobe (K7,500)</li>
+            </ul>
+            <div class="bundle-total">Combined: <strong>K11,050</strong> <span class="bundle-saving">Premium pair</span></div>
+            <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20King%20Comfort%20bundle%20%E2%80%94%20Qualitex%20King%2012%22%20HD%20Mattress%20(K3%2C550)%20%2B%20GrandLine%203-Door%20Wardrobe%20(K7%2C500)." target="_blank" rel="noopener noreferrer" class="whatsapp-btn" style="margin-top:0.85rem;display:inline-flex;align-items:center;gap:0.45rem;font-size:0.8rem;padding:0.5rem 0.85rem;text-decoration:none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              Ask about this bundle
+            </a>
+          </div>
+
+          <div class="bundle-card rs-reveal rs-reveal-delay-3">
+            <div class="bundle-label">&#127968; Lounge &amp; Bedroom</div>
+            <h3>Screen &amp; Sleep Set</h3>
+            <ul class="bundle-items-list">
+              <li>Vision 55" Smart TV (K8,195)</li>
+              <li>Qualitex King 10" HD Mattress (K2,800)</li>
+              <li>Compact 4-Drawer Chest (K2,100)</li>
+            </ul>
+            <div class="bundle-total">Combined: <strong>K13,095</strong> <span class="bundle-saving">Full room</span></div>
+            <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20interested%20in%20the%20Screen%20%26%20Sleep%20bundle%20%E2%80%94%20Vision%2055%22%20Smart%20TV%20%2B%20Qualitex%20King%2010%22%20Mattress%20%2B%20Compact%20Chest." target="_blank" rel="noopener noreferrer" class="whatsapp-btn" style="margin-top:0.85rem;display:inline-flex;align-items:center;gap:0.45rem;font-size:0.8rem;padding:0.5rem 0.85rem;text-decoration:none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+              Ask about this bundle
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Budget Planner -->
+      <section id="budget-planner" class="rs-reveal">
+        <span class="section-eyebrow">Find Your Range</span>
+        <h2>Budget Planner</h2>
+        <p>Enter your budget and category to instantly see which top sellers you can afford.</p>
+        <form id="planner-form" class="planner-form">
+          <label for="planner-budget">Budget (ZMW)</label>
+          <input id="planner-budget" type="number" min="100" step="100" value="5000" />
+          <label for="planner-category">Category</label>
+          <select id="planner-category">
+            <option value="all">All categories</option>
+            <option value="mattresses">Mattresses</option>
+            <option value="tvs">TVs</option>
+            <option value="dressers">Dressers</option>
+            <option value="wardrobes">Wardrobes</option>
+          </select>
+          <button class="btn" type="submit">Build shortlist</button>
+        </form>
+        <ul id="planner-results" class="p1-planner-results"></ul>
+      </section>
+
+      <!-- Recently Viewed -->
+      <section class="recently-viewed rs-reveal">
+        <span class="section-eyebrow">Your History</span>
+        <h2>Recently Viewed</h2>
+        <ul id="recently-viewed-list" class="p1-recent-list">
+          <li>Nothing viewed yet.</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <aside class="sidebar" id="popular">
+      <h3>Popular Categories</h3>
+      <ul>
+        <li><strong>Mattresses:</strong> queen, king, and orthopedic options</li>
+        <li><strong>TVs:</strong> 55" and 65" smart screens for bedroom and lounge</li>
+        <li><strong>Dressers:</strong> 4- and 6-drawer storage with wood-look finishes</li>
+        <li><strong>Wardrobes:</strong> 2-door and 3-door mirrored storage units</li>
+      </ul>
+      <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20enquire%20about%20your%20top%20seller%20furniture." class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        Chat on WhatsApp
+      </a>
+
+      <section id="cart" class="cart">
+        <h4>Your Cart</h4>
+        <div id="cart-empty" class="cart-empty">Your cart is empty � browse products above and tap <strong>+ Cart</strong> to add items.</div>
+        <ul id="cart-items" class="cart-items"></ul>
+        <div class="cart-summary">
+          <span>Total:</span> <strong id="cart-total">K0</strong>
+        </div>
+        <div class="cart-actions">
+          <button id="wa-checkout-btn" class="wa-checkout-btn cart-action-primary" type="button">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+            Order via WhatsApp
+          </button>
+          <p class="cart-action-hint">Opens WhatsApp with your full order � fastest way to confirm.</p>
+          <button id="checkout-btn" class="btn cart-action-secondary" type="button">Checkout Online</button>
+          <p class="cart-action-hint">Review delivery details on the checkout page.</p>
+          <button id="clear-cart-btn" class="cart-clear-btn" type="button">&#128465; Clear cart</button>
+        </div>
+        <p class="cart-note">Cart is saved in your browser across pages.</p>
+      </section>
+    </aside>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Rapid Stores General Dealers Limited</h3>
+          <p>Luapula's furniture and TV source for modern home comfort and storage.</p>
+          <p>Serving customers in Mansa and surrounding areas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="page1.html">Top Sellers</a></li>
+            <li><a href="page2.html">Checkout</a></li>
+            <li><a href="page3.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="page2.html">Support &amp; FAQ</a></li>
+            <li><a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%20need%20help%20with%20my%20order." target="_blank" rel="noopener noreferrer" class="wa-inline-link footer-wa-link">WhatsApp: 0977 891 850</a></li>
+            <li>WhatsApp: 0977 891 850</li>
+            <li>Visit: Mon-Sat, 8 AM - 6 PM (Sat until 2 PM)</li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Find Us</h4>
+          <ul>
+            <li>Hebron Plaza, Mansa</li>
+            <li>Mansa Market</li>
+            <li>Trade Centre, Mansa</li>
+            <li>Mon-Sat: 8 AM - 6 PM (Sat until 2 PM)</li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; 2026 Rapid Stores General Dealers Limited &middot; Mansa, Luapula &middot; All rights reserved.</p>
+    </footer>
+  </div><!-- /.container -->
+
+  <button class="back-to-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+
+  <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20browsing%20your%20top%20sellers%20and%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="wa-float" title="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.104 1.524 5.824L0 24l6.336-1.51A11.93 11.93 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0"/></svg>
+    <span class="wa-float-label">WhatsApp</span>
+  </a>
+
+  <div id="toast-container"></div>
+
+  <div id="quick-checkout" class="quick-checkout" aria-live="polite">
+    <p><strong id="quick-cart-count">0</strong> items in cart &bull; <span id="quick-cart-total">K0</span></p>
+    <button id="quick-checkout-btn" class="btn" type="button">Proceed to Checkout</button>
+  </div>
+
+  <script>
+    /* -- Helpers -------------------------------- */
+    function readStorage(key, fallback) {
+      try { const v = localStorage.getItem(key); return v !== null ? JSON.parse(v) : fallback; } catch { return fallback; }
+    }
+    function writeStorage(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
+
+    function showToast(msg, type = 'success') {
+      const icons = { success: '&#10003;', error: '&#10005;', warning: '&#9888;' };
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.innerHTML = `<span class="toast-icon">${icons[type] || 'i'}</span><span>${msg}</span>`;
+      document.getElementById('toast-container').appendChild(t);
+      setTimeout(() => t.remove(), 3500);
+    }
+
+    /* -- Cart ----------------------------------- */
+    let cart = readStorage('rapidStoresCart', {});
+    function saveCart() { writeStorage('rapidStoresCart', cart); }
+    function getCardPrice(card) { return Number((card.dataset.price || '').replace(/[^0-9]/g, '')) || 0; }
+
+    function renderCart() {
+      const entries = Object.entries(cart);
+      const total   = entries.reduce((s, [, i]) => s + i.qty * i.unitPrice, 0);
+      const qty     = entries.reduce((s, [, i]) => s + i.qty, 0);
+
+      const cartItemsEl = document.getElementById('cart-items');
+      const cartEmptyEl = document.getElementById('cart-empty');
+      const cartTotalEl = document.getElementById('cart-total');
+      const quickCount  = document.getElementById('quick-cart-count');
+      const quickTotal  = document.getElementById('quick-cart-total');
+      const quickBar    = document.getElementById('quick-checkout');
+      const summaryEl   = document.getElementById('cart-summary-text');
+
+      cartItemsEl.innerHTML = entries.map(([id, item]) =>
+        `<li>${item.name} &times;${item.qty} &mdash; K${(item.qty * item.unitPrice).toLocaleString('en-ZM')}
+          <button class="cart-item-remove" data-id="${id}" type="button">Remove</button></li>`
+      ).join('');
+
+      cartEmptyEl.style.display = entries.length ? 'none' : '';
+      cartItemsEl.style.display = entries.length ? '' : 'none';
+      cartTotalEl.textContent   = `K${total.toLocaleString('en-ZM')}`;
+      quickCount.textContent    = String(qty);
+      quickTotal.textContent    = `K${total.toLocaleString('en-ZM')}`;
+      quickBar.style.display    = entries.length ? '' : 'none';
+
+      if (summaryEl) {
+        summaryEl.innerHTML = entries.length
+          ? `<strong>${qty}</strong> item(s) in cart &mdash; total <strong>K${total.toLocaleString('en-ZM')}</strong>`
+          : 'Your cart is empty. Browse products below and add to cart.';
+      }
+
+      document.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => { delete cart[btn.dataset.id]; saveCart(); renderCart(); });
+      });
+    }
+
+    function addToCart(card) {
+      const id = card.dataset.offer;
+      const unitPrice = getCardPrice(card);
+      if (!cart[id]) cart[id] = { name: id, qty: 0, unitPrice };
+      else cart[id].unitPrice = unitPrice;
+      cart[id].qty++;
+      saveCart(); renderCart();
+      showToast(`${id} added to cart (&times;${cart[id].qty})`, 'success');
+      const detail = document.getElementById('offer-detail');
+      if (detail) detail.innerHTML = `<p><strong>${id}</strong> added to cart. Quantity: ${cart[id].qty}</p>`;
+    }
+
+    function showOfferDetail(card) {
+      const detail = document.getElementById('offer-detail');
+      if (detail) {
+        detail.innerHTML = `
+          <h3>${card.dataset.offer}</h3>
+          <p><strong>Price:</strong> ${card.dataset.price}</p>
+          <p>${card.dataset.detail}</p>`;
+      }
+      const recent   = readStorage('rs-recent-p1', []);
+      const filtered = recent.filter(r => r.name !== card.dataset.offer);
+      filtered.unshift({ name: card.dataset.offer, price: card.dataset.price });
+      writeStorage('rs-recent-p1', filtered.slice(0, 5));
+      renderRecentlyViewed();
+    }
+
+    function renderRecentlyViewed() {
+      const ul = document.getElementById('recently-viewed-list');
+      const recent = readStorage('rs-recent-p1', []);
+      if (!recent.length) { ul.innerHTML = '<li>Nothing viewed yet.</li>'; return; }
+      ul.innerHTML = recent.map(r => `<li><strong>${r.name}</strong> &mdash; ${r.price}</li>`).join('');
+    }
+
+    /* -- Filter / search / sort ----------------- */
+    const offerCards     = Array.from(document.querySelectorAll('.offer-item'));
+    const offerGrid      = document.getElementById('offer-grid-page1');
+    const searchInput    = document.getElementById('offer-search-page1');
+    const sortSelect     = document.getElementById('sort-select-page1');
+    const resultsCountEl = document.getElementById('results-count-page1');
+    const noResultsEl    = document.getElementById('no-results-page1');
+    let activeCategory   = 'all';
+    let browseTimer;
+
+    function applyBrowseState() {
+      const q    = searchInput.value.trim().toLowerCase();
+      const sort = sortSelect.value;
+
+      const matches = offerCards.filter(c => {
+        if (activeCategory !== 'all' && c.dataset.category !== activeCategory) return false;
+        if (!q) return true;
+        return `${c.dataset.offer} ${c.dataset.detail} ${c.dataset.category} ${c.dataset.price}`.toLowerCase().includes(q);
+      });
+
+      if (sort === 'price-asc')  matches.sort((a, b) => getCardPrice(a) - getCardPrice(b));
+      if (sort === 'price-desc') matches.sort((a, b) => getCardPrice(b) - getCardPrice(a));
+      if (sort === 'name-asc')   matches.sort((a, b) => (a.dataset.offer || '').localeCompare(b.dataset.offer || ''));
+
+      offerCards.forEach(c => { c.style.display = 'none'; });
+      matches.forEach(c => { c.style.display = ''; offerGrid.appendChild(c); });
+
+      resultsCountEl.textContent = `${matches.length} offer${matches.length === 1 ? '' : 's'} shown`;
+      noResultsEl.style.display  = matches.length ? 'none' : 'block';
+      updateInsights(matches);
+    }
+
+    function updateInsights(visible) {
+      document.getElementById('insight-visible').textContent = visible.length;
+      if (!visible.length) {
+        ['insight-avg','insight-low','insight-high'].forEach(id => { document.getElementById(id).textContent = 'K0'; });
+        return;
+      }
+      const prices = visible.map(getCardPrice);
+      const fmt = n => 'K' + Math.round(n).toLocaleString('en-ZM');
+      document.getElementById('insight-avg').textContent  = fmt(prices.reduce((s,p) => s+p, 0) / prices.length);
+      document.getElementById('insight-low').textContent  = fmt(Math.min(...prices));
+      document.getElementById('insight-high').textContent = fmt(Math.max(...prices));
+    }
+
+    /* -- Category filter ------------------------ */
+    document.querySelectorAll('#page1-category-filter .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#page1-category-filter .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        applyBrowseState();
+      });
+    });
+
+    searchInput.addEventListener('input', () => { clearTimeout(browseTimer); browseTimer = setTimeout(applyBrowseState, 120); });
+    sortSelect.addEventListener('change', applyBrowseState);
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); }
+    });
+
+    /* -- Card buttons --------------------------- */
+    document.querySelectorAll('.offer-btn').forEach(btn => {
+      btn.addEventListener('click', e => { const c = e.target.closest('.offer-item'); if (c) showOfferDetail(c); });
+    });
+    document.querySelectorAll('.add-cart').forEach(btn => {
+      btn.addEventListener('click', e => { const c = e.target.closest('.offer-item'); if (c) addToCart(c); });
+    });
+
+    /* -- Cart sidebar WA checkout --------------- */
+    document.getElementById('wa-checkout-btn').addEventListener('click', () => {
+      const entries = Object.values(cart);
+      if (!entries.length) { showToast('Cart is empty. Add a product first.', 'warning'); return; }
+      const lines = entries.map(i => `* ${i.name} x${i.qty} = K${(i.qty*i.unitPrice).toLocaleString('en-ZM')}`).join('%0A');
+      const total = entries.reduce((s,i) => s + i.qty*i.unitPrice, 0);
+      window.open(`https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20order%3A%0A${lines}%0ATotal%3A%20K${total.toLocaleString('en-ZM')}`, '_blank');
+    });
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      if (!Object.keys(cart).length) { showToast('Cart is empty.', 'warning'); return; }
+      window.location.href = 'page2.html';
+    });
+    document.getElementById('clear-cart-btn').addEventListener('click', () => {
+      cart = {}; saveCart(); renderCart(); showToast('Cart cleared.', 'success');
+    });
+
+    /* -- Quick checkout bar --------------------- */
+    document.getElementById('quick-checkout-btn').addEventListener('click', () => {
+      if (!Object.keys(cart).length) { showToast('Cart is empty. Add a product first.', 'warning'); return; }
+      window.location.href = 'page2.html';
+    });
+
+    /* -- Page navigator ------------------------- */
+    document.getElementById('go-page').addEventListener('click', () => {
+      const v = document.getElementById('page-select').value; if (v) window.location.href = v;
+    });
+    document.getElementById('page-select').addEventListener('keyup', e => {
+      if (e.key === 'Enter') document.getElementById('go-page').click();
+    });
+
+    /* -- Budget planner ------------------------- */
+    document.getElementById('planner-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const budget = Number(document.getElementById('planner-budget').value) || 0;
+      const cat    = document.getElementById('planner-category').value;
+      const ul     = document.getElementById('planner-results');
+      const items  = offerCards
+        .filter(c => (cat === 'all' || c.dataset.category === cat) && getCardPrice(c) <= budget)
+        .sort((a, b) => getCardPrice(b) - getCardPrice(a));
+      if (!items.length) {
+        ul.innerHTML = '<li style="color:#a82020;font-size:0.84rem;padding:0.4rem 0;">No products fit this budget and category.</li>';
+        return;
+      }
+      ul.innerHTML = items.map(c =>
+        `<li class="p1-planner-item"><span>${c.dataset.offer}</span><span class="p1-planner-price">${c.dataset.price}</span></li>`
+      ).join('');
+    });
+
+    /* -- Compare clear -------------------------- */
+    document.getElementById('clear-compare').addEventListener('click', () => {
+      document.getElementById('compare-count').textContent = '0 selected';
+      document.getElementById('compare-table').innerHTML   = '';
+    });
+
+    /* -- Back to top ---------------------------- */
+    const backBtn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => { backBtn.style.opacity = window.scrollY > 400 ? '1' : '0'; });
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* -- Scroll reveal -------------------------- */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('rs-visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.rs-reveal').forEach(el => revealObs.observe(el));
+
+    /* -- Preloader ------------------------------ */
+    window.addEventListener('load', () => {
+      document.body.classList.remove('is-loading');
+      const pre = document.getElementById('site-preloader');
+      if (pre) { pre.style.opacity = '0'; setTimeout(() => pre.remove(), 400); }
+    });
+
+    /* -- Init ----------------------------------- */
+    renderCart();
+    renderRecentlyViewed();
+    applyBrowseState();
+  </script>
+  <script src="advanced-shared.js"></script>
+  <script>
+    if (window.rapidStoresAdvanced) window.rapidStoresAdvanced.init();
+  </script>
+</body>
+</html>

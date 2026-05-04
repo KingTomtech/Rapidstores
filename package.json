@@ -1,0 +1,14 @@
+{
+  "name": "rapid-stores-server",
+  "version": "1.0.0",
+  "description": "Rapid Stores static storefront with Express static file serving",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

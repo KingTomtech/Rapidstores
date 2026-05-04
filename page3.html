@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Rapid Stores Mansa — WhatsApp, email, Instagram, and visit us at Hebron Plaza, Mansa Market, or Trade Centre." />
+  <meta name="theme-color" content="#0a2e4a" />
+  <title>Contact — Rapid Stores Furniture Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── page3 styles ── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+
+    .p3-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .p3-section h2 {
+      margin: 0 0 1rem;
+      font-size: 1.15rem;
+    }
+
+    /* Contact method cards */
+    .contact-channels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1.25rem;
+    }
+    .channel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.45rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .channel-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .channel-icon { font-size: 1.6rem; }
+    .channel-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8a9ab0;
+    }
+    .channel-value {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      word-break: break-all;
+    }
+    .channel-card.wa-channel { border-color: rgba(18,140,62,0.3); }
+    .channel-card.wa-channel .channel-value { color: #1a7a40; }
+    .channel-cta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--brand-secondary);
+    }
+    .channel-cta::after { content: '→'; }
+
+    /* Hours & location sidebar */
+    .location-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .location-block-header {
+      background: linear-gradient(135deg, #0a2e4a, #1a5a8a);
+      color: #fff;
+      padding: 1rem 1.1rem;
+    }
+    .location-block-header h3 { margin: 0; font-size: 0.95rem; }
+    .location-block-header p { margin: 0.2rem 0 0; font-size: 0.78rem; opacity: 0.82; }
+    .location-block-body { padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+    .location-row {
+      display: flex;
+      gap: 0.65rem;
+      align-items: flex-start;
+      font-size: 0.86rem;
+    }
+    .location-row .lr-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .location-row strong { display: block; font-size: 0.78rem; font-weight: 800; color: var(--brand-primary); }
+    .location-row span { color: #5a6d80; font-size: 0.82rem; }
+
+    /* Hours table */
+    .hours-grid {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .hours-grid-header {
+      background: linear-gradient(135deg, #0a2e4a, #1a5a8a);
+      color: #fff;
+      padding: 0.8rem 1.1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.55rem 1.1rem;
+      font-size: 0.84rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: #4a5f72; font-weight: 600; }
+    .hours-row .time { font-weight: 700; color: var(--brand-primary); }
+    .hours-row.closed .time { color: #c0392b; }
+    .hours-row.today { background: rgba(26,90,138,0.07); }
+    .hours-row.today .day { color: var(--brand-secondary); font-weight: 800; }
+
+    /* Message form */
+    #contact-form label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #3a4f66;
+      margin: 0.85rem 0 0.28rem;
+    }
+    #contact-form label:first-of-type { margin-top: 0; }
+    #contact-form input,
+    #contact-form textarea,
+    #contact-form select {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid var(--border);
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: var(--card);
+      color: var(--text-dark);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+    }
+    #contact-form input:focus,
+    #contact-form textarea:focus,
+    #contact-form select:focus {
+      outline: none;
+      border-color: var(--brand-secondary);
+      box-shadow: 0 0 0 3px rgba(26,90,138,0.12);
+    }
+    #contact-form input.error,
+    #contact-form textarea.error {
+      border-color: #e05252;
+      box-shadow: 0 0 0 3px rgba(224,82,82,0.1);
+    }
+    #contact-form textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+
+    .topic-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+    }
+    .topic-chip {
+      padding: 0.3rem 0.7rem;
+      border: 1.5px solid var(--border);
+      border-radius: 2rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #4a5f72;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .topic-chip:hover { background: rgba(26,90,138,0.07); border-color: var(--brand-secondary); color: var(--brand-secondary); }
+    .topic-chip.selected { background: var(--brand-primary); border-color: var(--brand-primary); color: #fff; }
+
+    /* Confirmation state */
+    #contact-confirmation {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .confirm-icon { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    #contact-confirmation h3 { font-size: 1.3rem; color: var(--brand-primary); margin: 0 0 0.5rem; }
+    #contact-confirmation p { color: #4a6080; font-size: 0.9rem; margin: 0.3rem 0; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.5rem; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 0.65rem;
+      overflow: hidden;
+      background: var(--card);
+    }
+    .faq-item summary {
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--brand-primary);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.15s ease;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--brand-secondary);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item summary:hover { background: rgba(10,46,74,0.04); }
+    .faq-item p {
+      padding: 0 1rem 0.9rem;
+      margin: 0;
+      font-size: 0.86rem;
+      color: #5a6d80;
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    /* Insights */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.9rem;
+    }
+    .insight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.9rem;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+    .insight-card h3 {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #8a9ab0;
+      margin: 0 0 0.4rem;
+    }
+    .insight-value { font-size: 1.4rem; font-weight: 800; color: var(--brand-primary); margin: 0; }
+
+    [data-theme='dark'] .channel-card,
+    [data-theme='dark'] .location-block,
+    [data-theme='dark'] .hours-grid,
+    [data-theme='dark'] .faq-item,
+    [data-theme='dark'] .insight-card,
+    [data-theme='dark'] .p3-section { background: var(--card); border-color: var(--border); }
+    [data-theme='dark'] #contact-form input,
+    [data-theme='dark'] #contact-form textarea,
+    [data-theme='dark'] #contact-form select { background: #0f1e30; border-color: var(--border); color: var(--text-dark); }
+    [data-theme='dark'] .hours-row .day { color: #8aaac8; }
+    [data-theme='dark'] .location-row span { color: #8aaac8; }
+
+    /* ── Scroll progress bar ── */
+    #p3-progress {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #0a2e4a, #4aa8e8, #7dcbf5);
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 10px rgba(74,168,232,0.65);
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── Preloader ── */
+    .p3-preloader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #071e30;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.1rem;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+    .p3-preloader.done { opacity: 0; visibility: hidden; }
+    .p3-preloader-mark {
+      font-family: 'Manrope', sans-serif; font-size: 0.88rem; font-weight: 800;
+      letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7);
+    }
+    .p3-preloader-line {
+      width: 160px; height: 2px;
+      background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;
+    }
+    .p3-preloader-line::after {
+      content: ''; display: block; height: 100%;
+      background: linear-gradient(90deg, transparent, #4aa8e8, transparent);
+      animation: p3Load 1s linear infinite;
+    }
+    @keyframes p3Load {
+      from { transform: translateX(-100%); }
+      to   { transform: translateX(200%); }
+    }
+
+    /* ── Hero enhancements ── */
+    .hero { --mx: 50%; --my: 50%; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(700px circle at var(--mx) var(--my), rgba(74,168,232,0.09), transparent 65%);
+    }
+    .hero-particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(74,168,232,0.22); pointer-events: none; z-index: 0;
+      animation: p3PtFloat linear infinite;
+    }
+    @keyframes p3PtFloat {
+      0%   { transform: translateY(0) scale(1);     opacity: 0.55; }
+      50%  { transform: translateY(-24px) scale(1.1); opacity: 0.2; }
+      100% { transform: translateY(0) scale(1);     opacity: 0.55; }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(74,168,232,0.14); border: 1px solid rgba(74,168,232,0.32);
+      border-radius: 2rem; padding: 0.28rem 0.85rem;
+      font-size: 0.72rem; font-weight: 700; color: #7dcbf5;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.55rem; backdrop-filter: blur(8px); width: fit-content;
+    }
+    .hero h1 {
+      background: linear-gradient(130deg, #ffffff 0%, #c8e8f8 45%, #4aa8e8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; letter-spacing: -0.02em;
+    }
+    header nav a { position: relative; }
+    header nav a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      height: 2px; width: 0;
+      background: linear-gradient(90deg, #4aa8e8, #7dcbf5);
+      border-radius: 2px; transition: width 0.28s ease;
+    }
+    header nav a:hover::after { width: 100%; }
+
+    /* ── Page exit fade ── */
+    .page-exit { animation: p3PageExit 0.3s ease forwards; }
+    @keyframes p3PageExit { to { opacity: 0; transform: translateY(-5px); } }
+
+    /* ── Dark mode toggle ── */
+    .p3-theme-btn {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); border-radius: 2rem;
+      padding: 0.28rem 0.85rem; font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s; font-family: 'Manrope', sans-serif;
+    }
+    .p3-theme-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Channel card top-accent colours ── */
+    .channel-card:nth-child(1) { border-top: 3px solid #1fad52; }
+    .channel-card:nth-child(2) { border-top: 3px solid #4aa8e8; }
+    .channel-card:nth-child(3) { border-top: 3px solid #e1306c; }
+    .channel-card:nth-child(4) { border-top: 3px solid #6366f1; }
+
+    /* ── Insight card hover ── */
+    .insight-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .insight-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .insight-card::after {
+      content: ''; display: block; height: 3px;
+      background: linear-gradient(90deg, #0a2e4a, #4aa8e8);
+      border-radius: 0 0 0.75rem 0.75rem; margin-top: 0.6rem;
+    }
+
+    /* ── FAQ open animation ── */
+    .faq-item { transition: box-shadow 0.2s ease; }
+    .faq-item[open] { box-shadow: 0 4px 16px rgba(10,46,74,0.1); }
+    .faq-item[open] summary { background: rgba(10,46,74,0.04); }
+
+    /* ── Char counter ── */
+    .char-counter {
+      font-size: 0.72rem; color: #8a9ab0;
+      text-align: right; margin-top: 0.2rem;
+      font-family: 'Manrope', sans-serif;
+    }
+    .char-counter.warn { color: #e05252; }
+
+    /* ── Insights category bars ── */
+    .cat-bar-row {
+      display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.45rem;
+    }
+    .cat-bar-label { font-size: 0.74rem; font-weight: 700; color: var(--brand-primary); min-width: 90px; }
+    .cat-bar-track {
+      flex: 1; height: 7px; background: rgba(10,46,74,0.08);
+      border-radius: 4px; overflow: hidden;
+    }
+    .cat-bar-fill { height: 100%; border-radius: 4px; transition: width 0.7s cubic-bezier(0.22,1,0.36,1); width: 0; }
+    .cat-bar-count { font-size: 0.72rem; color: #8a9ab0; min-width: 20px; text-align: right; }
+
+    /* Store status badge */
+    .store-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.32rem 0.85rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+    }
+    .store-status-badge.open {
+      background: rgba(31,173,82,0.15);
+      color: #1a7a40;
+      border: 1.5px solid rgba(31,173,82,0.3);
+    }
+    .store-status-badge.closed {
+      background: rgba(192,57,43,0.1);
+      color: #c0392b;
+      border: 1.5px solid rgba(192,57,43,0.25);
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .store-status-badge.open .status-dot {
+      background: #1fad52;
+      box-shadow: 0 0 0 3px rgba(31,173,82,0.25);
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    .store-status-badge.closed .status-dot { background: #c0392b; }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(31,173,82,0.25); }
+      50% { box-shadow: 0 0 0 5px rgba(31,173,82,0.1); }
+    }
+
+    /* Channel card enhancement */
+    .channel-reply-time {
+      font-size: 0.72rem;
+      color: #1a7a40;
+      font-weight: 600;
+      margin-top: 0.1rem;
+    }
+
+    /* Trust strip */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+      padding: 0.85rem 1rem;
+      background: linear-gradient(135deg, rgba(10,46,74,0.04), rgba(26,90,138,0.06));
+      border: 1px solid rgba(26,90,138,0.12);
+      border-radius: var(--radius);
+    }
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      padding: 0.28rem 0.7rem;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(26,90,138,0.15);
+      border-radius: 2rem;
+    }
+    [data-theme='dark'] .trust-pill { background: rgba(255,255,255,0.05); }
+    [data-theme='dark'] .trust-strip { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.08); }
+  </style>
+</head>
+<body>
+  <div id="p3-progress" aria-hidden="true"></div>
+  <div id="p3-preloader" class="p3-preloader" aria-hidden="true">
+    <div class="p3-preloader-mark">Rapid Stores — Contact</div>
+    <div class="p3-preloader-line" role="presentation"></div>
+  </div>
+  <div class="page-control">
+    <label for="page-select">Go to page:</label>
+    <select id="page-select">
+      <option value="index.html">Home</option>
+      <option value="about.html">About</option>
+      <option value="page1.html">Top Sellers</option>
+      <option value="page2.html">Checkout</option>
+      <option value="page3.html" selected>Contact</option>
+      <option value="live-hub.html">Live Hub</option>
+    </select>
+    <button id="go-page" class="btn" type="button">Go</button>
+  </div>
+
+  <div class="container">
+    <header class="hero" role="banner">
+      <div class="header-orb header-orb-1"></div>
+      <div class="header-orb header-orb-2"></div>
+      <div class="logo-row">
+        <div>
+          <div id="store-status-badge" class="store-status-badge open"><span class="status-dot"></span><span id="store-status-text">Open now</span></div>
+          <div class="hero-badge">&#128172; We reply within 1 hour</div>
+          <h1 style="font-size:clamp(1.55rem,3.4vw,2.45rem);line-height:1.15;font-weight:800;">Contact Rapid Stores</h1>
+          <p class="hero__subtitle">WhatsApp us, drop by a pickup point, or send a message — we're always nearby.</p>
+          <div style="margin-top:0.55rem;">
+            <button id="p3-theme-btn" class="p3-theme-btn" type="button" aria-label="Toggle dark mode">&#9790; Dark mode</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>WhatsApp</strong><span>Fastest response</span></div>
+        <div class="hero-stat"><strong>3 Locations</strong><span>Mansa pickup points</span></div>
+        <div class="hero-stat"><strong>Mon – Sat</strong><span>8 AM – 6 PM (Sat until 2 PM)</span></div>
+        <div class="hero-stat"><strong>7-Day Support</strong><span>After every order</span></div>
+      </div>
+      <nav aria-label="Secondary navigation">
+        <a href="index.html">Home</a>
+        <a href="page1.html">Top Sellers</a>
+        <a href="page2.html">Checkout</a>
+        <a href="live-hub.html">Live Hub</a>
+        <a href="https://instagram.com/rapidstoresandtrucking" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <!-- Contact channel cards -->
+      <div class="trust-strip" aria-label="Why contact us">
+        <span class="trust-pill">&#9989; Verified local business</span>
+        <span class="trust-pill">&#128247; Real products in store</span>
+        <span class="trust-pill">&#127757; English &amp; Bemba support</span>
+        <span class="trust-pill">&#128722; Free pickup — 3 locations</span>
+        <span class="trust-pill">&#128336; Replies within 1 hour</span>
+      </div>
+
+      <div class="contact-channels" role="list">
+        <a class="channel-card wa-channel" href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%20need%20help." target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Chat on WhatsApp">
+          <span class="channel-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#1fad52" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+          </span>
+          <span class="channel-label">WhatsApp — Primary</span>
+          <span class="channel-value">0977 891 850</span>
+          <span class="channel-reply-time">&#9989; Typically replies within 1 hour</span>
+          <span class="channel-cta">Chat now</span>
+        </a>
+        <a class="channel-card" href="mailto:rapidstoresandtrucking@gmail.com" role="listitem" aria-label="Send email">
+          <span class="channel-icon">✉️</span>
+          <span class="channel-label">Email</span>
+          <span class="channel-value">rapidstoresandtrucking@gmail.com</span>
+          <span class="channel-cta">Send email</span>
+        </a>
+        <a class="channel-card" href="https://instagram.com/rapidstoresandtrucking" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Instagram">
+          <span class="channel-icon">📸</span>
+          <span class="channel-label">Instagram</span>
+          <span class="channel-value">@rapidstoresandtrucking</span>
+          <span class="channel-cta">View page</span>
+        </a>
+        <a class="channel-card" href="tel:+260977891850" role="listitem" aria-label="Call us">
+          <span class="channel-icon">📞</span>
+          <span class="channel-label">Phone — Primary</span>
+          <span class="channel-value">0977 891 850</span>
+          <span class="channel-cta">Call us</span>
+        </a>
+      </div>
+
+      <div class="contact-layout">
+
+        <!-- Left: message form + FAQ -->
+        <div>
+
+          <section class="p3-section" id="message-section">
+            <h2>📨 Send a Message</h2>
+            <p style="font-size:0.84rem;color:#6a7d95;margin:-0.25rem 0 1rem;">Your message will open in WhatsApp pre-filled and ready to send.</p>
+
+            <form id="contact-form" novalidate>
+              <div style="margin-bottom:0.75rem;">
+                <p style="font-size:0.78rem;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;color:#8a9ab0;margin:0 0 0.5rem;">Topic (optional)</p>
+                <div class="topic-chips" id="topic-chips">
+                  <button type="button" class="topic-chip" data-topic="Product enquiry">Product enquiry</button>
+                  <button type="button" class="topic-chip" data-topic="Order status">Order status</button>
+                  <button type="button" class="topic-chip" data-topic="Pickup enquiry">Pickup enquiry</button>
+                  <button type="button" class="topic-chip" data-topic="Return / support">Return / support</button>
+                  <button type="button" class="topic-chip" data-topic="Price request">Price request</button>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="contact-name">Full Name</label>
+                  <input type="text" id="contact-name" name="name" placeholder="e.g. Chanda Mutale" required autocomplete="name" />
+                </div>
+                <div>
+                  <label for="contact-email">Email Address</label>
+                  <input type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+                </div>
+              </div>
+
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" placeholder="e.g. Question about the OrthoLux King Mattress" required />
+
+              <label for="contact-message">Your Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell us what you need and we'll get back to you on WhatsApp as soon as possible." required maxlength="500"></textarea>
+              <div class="char-counter" id="msg-counter">0 / 500</div>
+
+              <button type="submit" class="whatsapp-btn" style="width:100%;margin-top:1rem;padding:0.75rem;font-size:0.95rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Send via WhatsApp
+              </button>
+            </form>
+
+            <div id="contact-confirmation" style="display:none;">
+              <div class="confirm-icon">✅</div>
+              <h3>Message Ready!</h3>
+              <p>WhatsApp opened with your message pre-filled. Just hit Send in the chat.</p>
+              <p style="margin-top:0.75rem;display:flex;gap:0.55rem;justify-content:center;flex-wrap:wrap;">
+                <a href="index.html" class="btn">Back to Offers</a>
+                <button type="button" class="btn btn--outline" id="send-another-btn">Send Another</button>
+              </p>
+            </div>
+          </section>
+
+          <!-- FAQ -->
+          <section class="p3-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-search-wrap">
+              <input
+                type="search"
+                id="faq-search"
+                placeholder="Search FAQs…"
+                aria-label="Search frequently asked questions"
+                autocomplete="off"
+                style="width:100%;padding:0.6rem 0.85rem;border:1.5px solid var(--border);border-radius:0.55rem;font-size:0.9rem;margin-bottom:0.75rem;box-sizing:border-box;font-family:inherit;"
+              />
+            </div>
+            <p id="faq-no-results" style="display:none;color:#8a9ab0;font-size:0.9rem;">No FAQs match your search.</p>
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>How do I place an order?</summary>
+                <p>Browse our catalogue on the home page, add items to your cart, then visit the Checkout page to enter your details. We'll confirm your order and payment via WhatsApp — it takes just a few minutes.</p>
+              </details>
+              <details class="faq-item">
+                <summary>How do I pick up my order?</summary>
+                <p>Once payment is confirmed, we'll WhatsApp you to let you know your items are ready. You can then collect from <strong>Hebron Plaza</strong>, <strong>Mansa Market</strong>, or <strong>Trade Centre</strong> — Monday to Saturday, 8 AM to 6 PM (Saturday until 2 PM). Pickup is always free.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What is your return and support policy?</summary>
+                <p>We offer 7-day after-care from the date you collect. If something is damaged or not as described, WhatsApp us a photo of the issue and we'll arrange a replacement or resolve it — no lengthy forms.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Which pickup point is best for me?</summary>
+                <p><strong>Hebron Plaza</strong> is our main showroom and the most accessible. <strong>Mansa Market</strong> is centrally located. <strong>Trade Centre</strong> is ideal for larger items. WhatsApp us first and we'll tell you where your specific item is ready from.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What payment methods do you accept?</summary>
+                <p>We accept <strong>MTN MoMo</strong> and <strong>Airtel Money</strong> — pay via mobile money before or at collection. Cash on collection is also available by arrangement. Payment details are confirmed with you on WhatsApp before pickup.</p>
+              </details>
+              <details class="faq-item">
+                <summary>How long does it take for my order to be ready?</summary>
+                <p>Most items are available for same-day or next-day pickup. Once we confirm payment, we'll send you a WhatsApp message telling you when and where to collect. During busy periods it may take up to 24 hours.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Can I request a product not listed on your site?</summary>
+                <p>Yes — send us a WhatsApp message describing what you're looking for, your budget, and your preferred size or style. We regularly source new items based on customer requests and will let you know if we can help.</p>
+              </details>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right: location + hours -->
+        <aside>
+
+          <div class="location-block">
+            <div class="location-block-header">
+              <h3>📍 Find Us in Mansa</h3>
+              <p>Three convenient pickup points across town</p>
+            </div>
+            <div class="location-block-body">
+              <div class="location-row">
+                <span class="lr-icon">🏪</span>
+                <div>
+                  <strong>Hebron Plaza</strong>
+                  <span>Mansa Town — main showroom location</span>
+                </div>
+              </div>
+              <div class="location-row">
+                <span class="lr-icon">🏬</span>
+                <div>
+                  <strong>Mansa Market</strong>
+                  <span>Town centre — walk-in and collect</span>
+                </div>
+              </div>
+              <div class="location-row">
+                <span class="lr-icon">🏢</span>
+                <div>
+                  <strong>Trade Centre</strong>
+                  <span>Mansa — larger items and delivery staging</span>
+                </div>
+              </div>
+              <div class="location-row" style="padding-top:0.5rem;border-top:1px solid var(--border);margin-top:0.25rem;">
+                <span class="lr-icon">📌</span>
+                <div>
+                  <strong>Province</strong>
+                  <span>Luapula Province, Zambia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hours-grid" style="margin-top:1rem;">
+            <div class="hours-grid-header">🕐 Opening Hours</div>
+            <div class="hours-row today"><span class="day">Monday</span><span class="time">8:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Tuesday</span><span class="time">8:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Wednesday</span><span class="time">8:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Thursday</span><span class="time">8:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Friday</span><span class="time">8:00 AM – 6:00 PM</span></div>
+            <div class="hours-row"><span class="day">Saturday</span><span class="time">9:00 AM – 2:00 PM</span></div>
+            <div class="hours-row closed"><span class="day">Sunday</span><span class="time">Closed</span></div>
+          </div>
+
+          <div class="p3-section" style="margin-top:1rem;">
+            <h2 style="font-size:0.95rem;">⚡ Quick Actions</h2>
+            <div style="display:flex;flex-direction:column;gap:0.55rem;margin-top:0.25rem;">
+              <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20place%20an%20order." target="_blank" rel="noopener noreferrer" class="whatsapp-btn" style="display:flex;align-items:center;gap:0.45rem;font-size:0.85rem;padding:0.6rem 0.85rem;text-decoration:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Order via WhatsApp
+              </a>
+              <a href="index.html#offers" class="btn" style="font-size:0.85rem;padding:0.6rem 0.85rem;text-align:center;">Browse Offers</a>
+              <a href="page2.html" class="btn btn--outline" style="font-size:0.85rem;padding:0.6rem 0.85rem;text-align:center;">Go to Checkout</a>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- Insights -->
+      <section class="p3-section" id="insights">
+        <h2>📊 Store Snapshot</h2>
+        <p style="font-size:0.84rem;color:#6a7d95;margin:-0.25rem 0 0.5rem;">Live stats from the product catalog.</p>
+        <div class="insights-grid">
+          <article class="insight-card"><h3>Offers</h3><p id="insight-visible" class="insight-value">0</p></article>
+          <article class="insight-card"><h3>Avg Price</h3><p id="insight-avg" class="insight-value">K0</p></article>
+          <article class="insight-card"><h3>Lowest</h3><p id="insight-low" class="insight-value">K0</p></article>
+          <article class="insight-card"><h3>Highest</h3><p id="insight-high" class="insight-value">K0</p></article>
+        </div>
+        <div class="category-bars" id="category-bars" style="margin-top:1rem;"></div>
+      </section>
+
+      <!-- Recently viewed -->
+      <section class="recently-viewed p3-section">
+        <h2>👁 Recently Viewed</h2>
+        <ul id="recently-viewed-list" class="recently-viewed-list">
+          <li style="font-size:0.85rem;color:#8a9ab0;">Nothing viewed yet — <a href="index.html">browse offers</a>.</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Rapid Stores</h3>
+          <p>Mansa's trusted furniture gallery for bedroom, lounge, and storage pieces.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="page1.html">Top Sellers</a></li>
+            <li><a href="page2.html">Checkout</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/260977891850" target="_blank" rel="noopener noreferrer" class="wa-inline-link footer-wa-link">WhatsApp: 0977 891 850 (Primary)</a></li>
+            <li><a href="https://wa.me/260775902325" target="_blank" rel="noopener noreferrer" class="wa-inline-link footer-wa-link">WhatsApp: +260 775 902 325</a></li>
+            <li><a href="https://instagram.com/rapidstoresandtrucking" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="mailto:rapidstoresandtrucking@gmail.com">rapidstoresandtrucking@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Find Us</h4>
+          <ul>
+            <li>Hebron Plaza, Mansa</li>
+            <li>Mansa Market</li>
+            <li>Mon–Sat: 8 AM – 6 PM (Sat until 2 PM)</li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; 2026 Rapid Stores &middot; Mansa, Luapula &middot; All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // ── Preloader ────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+      const pl = document.getElementById('p3-preloader');
+      if (pl) { pl.classList.add('done'); setTimeout(() => pl.remove(), 500); }
+    });
+
+    // ── Scroll progress bar ──────────────────────────────────────
+    const progressBar = document.getElementById('p3-progress');
+    window.addEventListener('scroll', () => {
+      if (!progressBar) return;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+    }, { passive: true });
+
+    // ── Hero cursor glow + particles ────────────────────────────
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.addEventListener('mousemove', e => {
+        const r = hero.getBoundingClientRect();
+        hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+      for (let i = 0; i < 6; i++) {
+        const p = document.createElement('div');
+        p.className = 'hero-particle';
+        const s = Math.random() * 8 + 5;
+        p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*90+5}%;top:${Math.random()*70+10}%;animation-duration:${Math.random()*4+4}s;animation-delay:-${Math.random()*4}s;`;
+        hero.appendChild(p);
+      }
+    }
+
+    // ── Page exit fade ───────────────────────────────────────────
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('https://wa') || link.target === '_blank') return;
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(() => { window.location.href = href; }, 280);
+      });
+    });
+
+    // ── Dark mode toggle ─────────────────────────────────────────
+    const themeBtn = document.getElementById('p3-theme-btn');
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeBtn) themeBtn.textContent = '☀ Light mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (themeBtn) themeBtn.textContent = '☾ Dark mode';
+      }
+    }
+    try {
+      const saved = localStorage.getItem('rapidStoresTheme') || localStorage.getItem('rs-theme');
+      applyTheme(saved || 'light');
+    } catch (e) { applyTheme('light'); }
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('rapidStoresTheme', next); localStorage.setItem('rs-theme', next); } catch (e) {}
+      });
+    }
+
+    // ── Store open/closed badge ──────────────────────────────────
+    (function() {
+      const badge = document.getElementById('store-status-badge');
+      const text = document.getElementById('store-status-text');
+      if (!badge || !text) return;
+      const now = new Date();
+      const day = now.getDay();
+      const mins = now.getHours() * 60 + now.getMinutes();
+      let isOpen = false;
+      if (day >= 1 && day <= 5) isOpen = mins >= 480 && mins < 1080;
+      else if (day === 6) isOpen = mins >= 540 && mins < 840;
+      badge.className = 'store-status-badge ' + (isOpen ? 'open' : 'closed');
+      text.textContent = isOpen ? 'Open now — visiting hours' : (day === 0 ? 'Closed — Sunday' : 'Closed now — opens 8 AM');
+    })();
+
+    // ── Page navigator ───────────────────────────────────────────
+    const pageSelect = document.getElementById('page-select');
+    const goPageBtn = document.getElementById('go-page');
+    if (goPageBtn) {
+      goPageBtn.addEventListener('click', () => { if (pageSelect.value) window.location.href = pageSelect.value; });
+      pageSelect.addEventListener('keyup', e => { if (e.key === 'Enter') goPageBtn.click(); });
+    }
+
+    // ── Highlight today's hours row ──────────────────────────────
+    const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const todayName = DAYS[new Date().getDay()];
+    document.querySelectorAll('.hours-row').forEach(row => {
+      const dayEl = row.querySelector('.day');
+      row.classList.toggle('today', !!(dayEl && dayEl.textContent.trim() === todayName));
+    });
+
+    // ── FAQ search filter ────────────────────────────────────────
+    const faqSearchEl = document.getElementById('faq-search');
+    const faqNoResults = document.getElementById('faq-no-results');
+    if (faqSearchEl) {
+      faqSearchEl.addEventListener('input', () => {
+        const query = faqSearchEl.value.trim().toLowerCase();
+        const items = document.querySelectorAll('.faq-item');
+        let visible = 0;
+        items.forEach(item => {
+          const matches = !query || item.textContent.toLowerCase().includes(query);
+          item.style.display = matches ? '' : 'none';
+          if (matches) visible++;
+        });
+        faqNoResults.style.display = visible === 0 ? 'block' : 'none';
+      });
+    }
+
+    // ── FAQ single-open accordion ────────────────────────────────
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          document.querySelectorAll('.faq-item').forEach(other => {
+            if (other !== item && other.style.display !== 'none') other.removeAttribute('open');
+          });
+        }
+      });
+    });
+
+    // ── Topic chips ──────────────────────────────────────────────
+    document.querySelectorAll('.topic-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        const subjectEl = document.getElementById('contact-subject');
+        if (subjectEl) subjectEl.value = chip.dataset.topic;
+      });
+    });
+
+    // ── Message character counter ────────────────────────────────
+    const msgArea = document.getElementById('contact-message');
+    const msgCounter = document.getElementById('msg-counter');
+    if (msgArea && msgCounter) {
+      msgArea.addEventListener('input', () => {
+        const len = msgArea.value.length;
+        const max = parseInt(msgArea.getAttribute('maxlength') || '500');
+        msgCounter.textContent = `${len} / ${max}`;
+        msgCounter.classList.toggle('warn', len >= max * 0.9);
+      });
+    }
+
+    // ── Contact form submit ──────────────────────────────────────
+    const contactForm = document.getElementById('contact-form');
+    const contactConfirmation = document.getElementById('contact-confirmation');
+
+    function showToast(message, type = 'success') {
+      const icons = { success: '✓', error: '✕', warning: '⚠' };
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<span class="toast-icon">${icons[type] || 'ℹ'}</span><span>${message}</span>`;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+    }
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = (formData.get('name') || '').trim();
+      const email = (formData.get('email') || '').trim();
+      const subject = (formData.get('subject') || '').trim();
+      const message = (formData.get('message') || '').trim();
+      const fields = [
+        { el: document.getElementById('contact-name'),    ok: name.length >= 2 },
+        { el: document.getElementById('contact-email'),   ok: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) },
+        { el: document.getElementById('contact-subject'), ok: subject.length >= 2 },
+        { el: document.getElementById('contact-message'), ok: message.length >= 5 },
+      ];
+      let isValid = true;
+      fields.forEach(f => {
+        f.el.classList.toggle('error', !f.ok);
+        if (!f.ok) isValid = false;
+      });
+      if (!isValid) { showToast('Please fill in all fields correctly.', 'error'); return; }
+      const waText = encodeURIComponent(`Hi Rapid Stores,\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`);
+      window.open(`https://wa.me/260977891850?text=${waText}`, '_blank', 'noopener');
+      showToast('Opening WhatsApp with your message…', 'success');
+      contactForm.style.display = 'none';
+      contactConfirmation.style.display = 'block';
+    });
+
+    // Real-time field validation
+    ['contact-name','contact-email','contact-subject','contact-message'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', () => el.classList.remove('error'));
+    });
+
+    // Send Another reset
+    const sendAnotherBtn = document.getElementById('send-another-btn');
+    if (sendAnotherBtn) {
+      sendAnotherBtn.addEventListener('click', () => {
+        contactForm.reset();
+        if (msgCounter) msgCounter.textContent = '0 / 500';
+        document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('selected'));
+        contactConfirmation.style.display = 'none';
+        contactForm.style.display = '';
+      });
+    }
+
+    // ── Store snapshot / insights ────────────────────────────────
+    const CATALOG = [
+      { name: 'CloudRest Queen Mattress',   price: 2800, category: 'Mattresses' },
+      { name: 'OrthoLux King Mattress',     price: 4900, category: 'Mattresses' },
+      { name: 'VistaView 55" Smart TV',     price: 6200, category: 'Smart TVs' },
+      { name: 'CinemaEdge 65" 4K TV',       price: 9800, category: 'Smart TVs' },
+      { name: 'Heritage 6-Drawer Dresser',  price: 3600, category: 'Dressers' },
+      { name: 'GrandLine 3-Door Wardrobe',  price: 7500, category: 'Wardrobes' },
+    ];
+    const prices = CATALOG.map(p => p.price);
+    const avg = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+    const lo = Math.min(...prices);
+    const hi = Math.max(...prices);
+    document.getElementById('insight-visible').textContent = CATALOG.length;
+    document.getElementById('insight-avg').textContent = `K${avg.toLocaleString('en-ZM')}`;
+    document.getElementById('insight-low').textContent = `K${lo.toLocaleString('en-ZM')}`;
+    document.getElementById('insight-high').textContent = `K${hi.toLocaleString('en-ZM')}`;
+
+    // Category bars
+    const catCounts = {};
+    CATALOG.forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
+    const catColors = { Mattresses: '#0a2e4a', 'Smart TVs': '#1a5a8a', Dressers: '#2a7ab3', Wardrobes: '#4aa8e8' };
+    const maxCount = Math.max(...Object.values(catCounts));
+    const barsEl = document.getElementById('category-bars');
+    if (barsEl) {
+      barsEl.innerHTML = Object.entries(catCounts).map(([cat, count]) =>
+        `<div class="cat-bar-row">
+          <span class="cat-bar-label">${cat}</span>
+          <div class="cat-bar-track"><div class="cat-bar-fill" data-width="${(count/maxCount)*100}%" style="background:${catColors[cat]||'#0a2e4a'};"></div></div>
+          <span class="cat-bar-count">${count}</span>
+        </div>`
+      ).join('');
+      // Animate bars in
+      requestAnimationFrame(() => {
+        barsEl.querySelectorAll('.cat-bar-fill').forEach(el => {
+          el.style.width = el.dataset.width;
+        });
+      });
+    }
+
+    // ── Recently viewed from localStorage ───────────────────────
+    try {
+      const viewed = JSON.parse(localStorage.getItem('rapidStoresViewed') || '[]');
+      const listEl = document.getElementById('recently-viewed-list');
+      if (listEl && viewed.length) {
+        listEl.innerHTML = viewed.slice(-5).reverse().map(name =>
+          `<li style="font-size:0.85rem;padding:0.3rem 0;border-bottom:1px solid var(--border);">${name}</li>`
+        ).join('');
+      }
+    } catch (e) {}
+  </script>
+  <script src="advanced-shared.js"></script>
+  <script>
+    if (window.rapidStoresAdvanced) { window.rapidStoresAdvanced.init(); }
+  </script>
+  <button class="back-to-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+  <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27m%20on%20the%20contact%20page%20and%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="wa-float" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.845L.057 23.57a.5.5 0 0 0 .61.611l5.788-1.51A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.884 0-3.65-.49-5.18-1.348l-.37-.213-3.835 1.003 1.018-3.72-.23-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <span class="wa-float-label">WhatsApp</span>
+  </a>
+  <script>
+    const p3Btt = document.querySelector('.back-to-top');
+    if (p3Btt) {
+      window.addEventListener('scroll', () => p3Btt.classList.toggle('visible', window.scrollY > 280), { passive: true });
+      p3Btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  </script>
+</body>
+</html>

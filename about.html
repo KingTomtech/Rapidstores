@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Rapid Stores — Mansa's local furniture gallery for mattresses, smart TVs, dressers, and wardrobes. Locally run, honest prices, three pickup points." />
+  <meta name="theme-color" content="#0a2e4a" />
+  <title>About — Rapid Stores Furniture Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    /* ── about page styles ── */
+    .about-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .about-section h2 {
+      margin: 0 0 0.9rem;
+      font-size: 1.25rem;
+    }
+    .about-section p {
+      color: #4a6080;
+      line-height: 1.75;
+      margin: 0 0 0.75rem;
+      font-size: 0.92rem;
+    }
+    .about-section p:last-child { margin-bottom: 0; }
+
+    /* ── mission banner ── */
+    .mission-banner {
+      background: linear-gradient(135deg, #071e30 0%, #0e3a5c 55%, #1a5a8a 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 7s ease infinite;
+      border-radius: var(--radius);
+      padding: 2.8rem 2.6rem 2.4rem;
+      color: #fff;
+      margin-bottom: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      border-left: 5px solid #4aa8e8;
+      box-shadow: 0 8px 32px rgba(10,46,74,0.35);
+    }
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .mission-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 24px 24px;
+      pointer-events: none;
+    }
+    .mission-banner-quotemark {
+      position: absolute;
+      top: -1.2rem;
+      left: 1.6rem;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 11rem;
+      line-height: 1;
+      color: rgba(74,168,232,0.15);
+      pointer-events: none;
+      user-select: none;
+    }
+    .mission-banner blockquote {
+      margin: 0;
+      font-family: "Playfair Display", "Georgia", serif;
+      font-size: clamp(1.2rem, 2.8vw, 1.65rem);
+      font-weight: 700;
+      line-height: 1.7;
+      letter-spacing: 0.005em;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+    .mission-banner cite {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 1.2rem;
+      font-family: "Manrope", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #7ecbf5;
+      font-style: normal;
+      position: relative;
+      z-index: 1;
+    }
+    .mission-banner cite::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(to right, #4aa8e8, transparent);
+      border-radius: 2px;
+    }
+
+    /* ── stats strip ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+    .stat-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.2rem 0.9rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stat-block:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .stat-block::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0a2e4a, #2a7ab3);
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--brand-primary);
+      font-family: "Playfair Display", serif;
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #8a9ab0; }
+
+    /* ── two-col layout ── */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 1.3rem;
+      align-items: start;
+    }
+    @media (max-width: 780px) { .about-layout { grid-template-columns: 1fr; } }
+
+    /* ── section cards ── */
+    .about-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.6rem;
+      margin-bottom: 1.3rem;
+      transition: box-shadow 0.2s ease;
+    }
+    .about-section:hover { box-shadow: var(--shadow-md); }
+    .about-section h2 { margin: 0 0 1rem; font-size: 1.2rem; }
+    .about-section > p {
+      color: #4a6080;
+      line-height: 1.8;
+      margin: 0 0 0.75rem;
+      font-size: 0.92rem;
+    }
+    .about-section > p:last-child { margin-bottom: 0; }
+
+    /* ── product category cards ── */
+    .product-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .product-cat-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: var(--card);
+    }
+    .product-cat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .product-cat-visual {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+    }
+    .product-cat-body { padding: 0.75rem 0.85rem 0.9rem; }
+    .product-cat-body h3 { font-size: 0.88rem; font-weight: 800; color: var(--brand-primary); margin: 0 0 0.25rem; }
+    .product-cat-body p { font-size: 0.78rem; color: #5a6d80; line-height: 1.55; margin: 0; }
+
+    /* ── value pillars ── */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.1rem 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pillar-card:nth-child(1)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .pillar-card:nth-child(2)::before { background: linear-gradient(90deg, #0a2e4a, #2a7ab3); }
+    .pillar-card:nth-child(3)::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .pillar-card:nth-child(4)::before { background: linear-gradient(90deg, #1fad52, #34d399); }
+    .pillar-card:nth-child(5)::before { background: linear-gradient(90deg, #6366f1, #818cf8); }
+    .pillar-card:nth-child(6)::before { background: linear-gradient(90deg, #ef4444, #f97316); }
+    .pillar-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .pillar-icon {
+      font-size: 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 0.6rem;
+      background: rgba(10,46,74,0.06);
+      margin-bottom: 0.6rem;
+    }
+    .pillar-card h3 { font-size: 0.9rem; font-weight: 800; color: var(--brand-primary); margin: 0 0 0.3rem; }
+    .pillar-card p { font-size: 0.82rem; color: #5a6d80; line-height: 1.6; margin: 0; }
+
+    /* ── timeline ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 0.5rem; }
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 1.4rem;
+      position: relative;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 40px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(26,90,138,0.4), transparent);
+    }
+    .timeline-item:last-child::before { display: none; }
+    .tl-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a2e4a, #2a7ab3);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(10,46,74,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .tl-body { padding-top: 0.35rem; }
+    .tl-year { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--brand-secondary); margin-bottom: 0.1rem; }
+    .tl-title { font-size: 0.9rem; font-weight: 800; color: var(--brand-primary); margin: 0 0 0.2rem; }
+    .tl-desc { font-size: 0.82rem; color: #5a6d80; line-height: 1.6; margin: 0; }
+
+    /* ── team ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.85rem;
+      margin-top: 0.75rem;
+    }
+    .team-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.4rem 1rem;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .team-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a2e4a, #2a7ab3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 0.75rem;
+      box-shadow: 0 4px 14px rgba(10,46,74,0.25);
+    }
+    .team-name { font-size: 0.9rem; font-weight: 800; color: var(--brand-primary); margin: 0 0 0.2rem; }
+    .team-role { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #8a9ab0; margin: 0; }
+
+    /* ── sidebar cards ── */
+    .location-sidebar-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transition: box-shadow 0.2s ease;
+    }
+    .location-sidebar-card:hover { box-shadow: var(--shadow-md); }
+    .location-sidebar-header {
+      background: linear-gradient(135deg, #0a2e4a, #1a5a8a);
+      color: #fff;
+      padding: 0.9rem 1.1rem;
+    }
+    .location-sidebar-header h3 { margin: 0; font-size: 0.9rem; }
+    .location-sidebar-header p { margin: 0.2rem 0 0; font-size: 0.77rem; opacity: 0.8; }
+    .location-sidebar-body { padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .loc-item { display: flex; gap: 0.65rem; align-items: flex-start; }
+    .loc-item .li-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .loc-item strong { display: block; font-size: 0.82rem; font-weight: 800; color: var(--brand-primary); }
+    .loc-item span { font-size: 0.8rem; color: #5a6d80; }
+
+    /* ── CTA strip ── */
+    .cta-strip {
+      background: linear-gradient(135deg, #071e30 0%, #0e3a5c 55%, #1a5a8a 100%);
+      border-radius: var(--radius);
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-bottom: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .cta-strip p {
+      width: 100%;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 0.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-strip a { position: relative; z-index: 1; }
+    .cta-strip .btn { background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); }
+    .cta-strip .btn:hover { background: rgba(255,255,255,0.22); }
+    .cta-strip .btn--outline { background: transparent; color: #7ecbf5; border-color: #4aa8e8; }
+    .cta-strip .btn--outline:hover { background: rgba(74,168,232,0.15); }
+
+    /* ── pulsing WA button ── */
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 4px 14px rgba(18,140,62,0.4); }
+      50%       { box-shadow: 0 4px 28px rgba(18,140,62,0.7), 0 0 0 6px rgba(18,140,62,0.12); }
+    }
+    .wa-pulse { animation: waPulse 2.4s ease-in-out infinite; }
+
+    /* ── How It Started ── */
+    .origin-section { border-top: 3px solid #4aa8e8 !important; }
+    .origin-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: #4aa8e8; font-family: 'Manrope', sans-serif;
+      margin-bottom: 0.4rem;
+    }
+    .origin-section h2 { margin-bottom: 1.2rem; font-size: 1.3rem; }
+    .origin-body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 1.6rem;
+      align-items: start;
+    }
+    @media (max-width: 680px) { .origin-body { grid-template-columns: 1fr; } }
+    .origin-lead {
+      font-size: 1.02rem !important;
+      font-family: 'Playfair Display', serif !important;
+      font-style: italic;
+      color: #1a3d5c !important;
+      line-height: 1.75 !important;
+      margin-bottom: 1rem !important;
+    }
+    .origin-moment {
+      display: flex; gap: 0.9rem; align-items: flex-start;
+      background: linear-gradient(135deg, #f0f7ff, #e6f2fc);
+      border: 1px solid rgba(74,168,232,0.22);
+      border-left: 4px solid #4aa8e8;
+      border-radius: 0.75rem;
+      padding: 1rem 1.1rem;
+      margin: 1.1rem 0;
+    }
+    .origin-moment-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .origin-moment blockquote {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem; font-style: italic;
+      color: #1a3d5c; line-height: 1.7;
+    }
+    .origin-milestones {
+      display: flex; flex-direction: column; gap: 0.85rem;
+      position: sticky; top: 1rem;
+    }
+    .origin-milestone {
+      display: flex; gap: 0.75rem; align-items: flex-start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.85rem 0.95rem;
+      box-shadow: 0 2px 8px rgba(10,46,74,0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .origin-milestone:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(10,46,74,0.12); }
+    .om-icon {
+      font-size: 1.25rem; flex-shrink: 0;
+      width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(74,168,232,0.1);
+      border-radius: 0.5rem;
+    }
+    .origin-milestone strong { display: block; font-size: 0.83rem; font-weight: 800; color: var(--brand-primary); margin-bottom: 0.2rem; }
+    .origin-milestone span  { font-size: 0.78rem; color: #5a6d80; line-height: 1.55; }
+    [data-theme='dark'] .origin-moment { background: rgba(74,168,232,0.07); border-color: rgba(74,168,232,0.25); }
+    [data-theme='dark'] .origin-moment blockquote { color: #c0d8ee; }
+    [data-theme='dark'] .origin-lead { color: #c0d8ee !important; }
+
+    [data-theme='dark'] .about-section,
+    [data-theme='dark'] .pillar-card,
+    [data-theme='dark'] .team-card,
+    [data-theme='dark'] .stat-block,
+    [data-theme='dark'] .location-sidebar-card,
+    [data-theme='dark'] .product-cat-card { background: var(--card); border-color: var(--border); }
+    [data-theme='dark'] .about-section > p,
+    [data-theme='dark'] .pillar-card p,
+    [data-theme='dark'] .tl-desc,
+    [data-theme='dark'] .loc-item span,
+    [data-theme='dark'] .product-cat-body p { color: #8aaac8; }
+    [data-theme='dark'] .pillar-icon { background: rgba(255,255,255,0.06); }
+
+    /* ── Scroll progress bar ── */
+    #ab-progress {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #0a2e4a, #4aa8e8, #7dcbf5);
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 10px rgba(74,168,232,0.7);
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── Site preloader ── */
+    .ab-preloader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: #071e30;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.1rem;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
+    }
+    .ab-preloader.done { opacity: 0; visibility: hidden; }
+    .ab-preloader-mark {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.88rem; font-weight: 800;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .ab-preloader-line {
+      width: 160px; height: 2px;
+      background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;
+    }
+    .ab-preloader-line::after {
+      content: '';
+      display: block; height: 100%;
+      background: linear-gradient(90deg, transparent, #4aa8e8, transparent);
+      animation: abLoad 1s linear infinite;
+    }
+    @keyframes abLoad {
+      from { transform: translateX(-100%); }
+      to   { transform: translateX(200%); }
+    }
+
+    /* ── Hero enhancements ── */
+    .hero { --mx: 50%; --my: 50%; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(700px circle at var(--mx) var(--my), rgba(74,168,232,0.09), transparent 65%);
+    }
+    .hero-particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(74,168,232,0.22); pointer-events: none; z-index: 0;
+      animation: abPtFloat linear infinite;
+    }
+    @keyframes abPtFloat {
+      0%   { transform: translateY(0) scale(1);    opacity: 0.55; }
+      50%  { transform: translateY(-24px) scale(1.1); opacity: 0.2; }
+      100% { transform: translateY(0) scale(1);    opacity: 0.55; }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(74,168,232,0.14);
+      border: 1px solid rgba(74,168,232,0.32);
+      border-radius: 2rem; padding: 0.28rem 0.85rem;
+      font-size: 0.72rem; font-weight: 700;
+      color: #7dcbf5; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.65rem; backdrop-filter: blur(8px); width: fit-content;
+    }
+    .hero h1 {
+      background: linear-gradient(130deg, #ffffff 0%, #c8e8f8 45%, #4aa8e8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; letter-spacing: -0.02em;
+    }
+    .hero__subtitle { color: rgba(255,255,255,0.78); font-size: 0.92rem; line-height: 1.65; margin-top: 0.4rem; }
+    header nav a { position: relative; }
+    header nav a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      height: 2px; width: 0;
+      background: linear-gradient(90deg, #4aa8e8, #7dcbf5);
+      border-radius: 2px; transition: width 0.28s ease;
+    }
+    header nav a:hover::after { width: 100%; }
+
+    /* ── Page exit fade ── */
+    .page-exit { animation: abPageExit 0.32s ease forwards; }
+    @keyframes abPageExit { to { opacity: 0; transform: translateY(-5px); } }
+
+    /* ── Dark mode toggle btn ── */
+    .ab-theme-btn {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85); border-radius: 2rem;
+      padding: 0.28rem 0.85rem; font-size: 0.78rem; font-weight: 700;
+      cursor: pointer; transition: background 0.2s;
+      font-family: 'Manrope', sans-serif;
+    }
+    .ab-theme-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Testimonials ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem; margin-top: 0.75rem;
+    }
+    .testimonial-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow-sm);
+      padding: 1.2rem 1.1rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute; top: -0.5rem; left: 0.8rem;
+      font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1;
+      color: rgba(74,168,232,0.12); pointer-events: none;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .testimonial-stars { color: #f59e0b; font-size: 0.82rem; margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+    .testimonial-text {
+      font-size: 0.87rem; color: #4a6080; line-height: 1.7;
+      font-style: italic; margin: 0 0 0.9rem;
+      position: relative; z-index: 1;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 0.55rem; }
+    .testimonial-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: linear-gradient(135deg, #0a2e4a, #2a7ab3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .testimonial-author-name { font-size: 0.82rem; font-weight: 800; color: var(--brand-primary); }
+    .testimonial-author-loc { font-size: 0.72rem; color: #8a9ab0; }
+    [data-theme='dark'] .testimonial-card { background: var(--card); }
+    [data-theme='dark'] .testimonial-text { color: #8aaac8; }
+
+    /* ── Back-to-top ── */
+    .back-to-top {
+      transition: transform 0.25s cubic-bezier(0.22,1.4,0.36,1), opacity 0.25s !important;
+    }
+    .back-to-top:hover { transform: translateY(-4px) !important; }
+
+    /* Store status badge */
+    .store-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 2rem;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.55rem;
+    }
+    .store-status-badge.open { background: rgba(31,173,82,0.14); color: #1a7a40; border: 1.5px solid rgba(31,173,82,0.28); }
+    .store-status-badge.closed { background: rgba(192,57,43,0.1); color: #c0392b; border: 1.5px solid rgba(192,57,43,0.25); }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .store-status-badge.open .status-dot { background: #1fad52; animation: ab-pulse 2s ease-in-out infinite; }
+    .store-status-badge.closed .status-dot { background: #c0392b; }
+    @keyframes ab-pulse {
+      0%,100% { box-shadow: 0 0 0 3px rgba(31,173,82,0.25); }
+      50% { box-shadow: 0 0 0 5px rgba(31,173,82,0.1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="ab-progress" aria-hidden="true"></div>
+  <div id="ab-preloader" class="ab-preloader" aria-hidden="true">
+    <div class="ab-preloader-mark">Rapid Stores — About</div>
+    <div class="ab-preloader-line" role="presentation"></div>
+  </div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="page-control">
+    <label for="page-select">Go to page:</label>
+    <select id="page-select">
+      <option value="index.html">Home</option>
+      <option value="about.html" selected>About</option>
+      <option value="page1.html">Top Sellers</option>
+      <option value="page2.html">Checkout</option>
+      <option value="page3.html">Contact</option>
+      <option value="live-hub.html">Live Hub</option>
+    </select>
+    <button id="go-page" class="btn" type="button">Go</button>
+  </div>
+
+  <div class="container">
+    <header class="hero" role="banner">
+      <div class="header-orb header-orb-1"></div>
+      <div class="header-orb header-orb-2"></div>
+      <div class="logo-row">
+        <div>
+          <div id="store-status-badge" class="store-status-badge open"><span class="status-dot"></span><span id="store-status-text">Open now</span></div>
+          <div class="hero-badge">&#127968; Mansa, Luapula Province</div>
+          <h1 style="font-size:clamp(1.55rem,3.4vw,2.45rem);line-height:1.15;font-weight:800;">About Rapid Stores</h1>
+          <p class="hero__subtitle">A local furniture gallery born in Mansa — real pieces, real people, real homes.</p>
+          <div style="margin-top:0.55rem;">
+            <button id="ab-theme-btn" class="ab-theme-btn" type="button" aria-label="Toggle dark mode">&#9790; Dark mode</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>Mansa Based</strong><span>Luapula Province</span></div>
+        <div class="hero-stat"><strong>3 Pickup Points</strong><span>Town centre locations</span></div>
+        <div class="hero-stat"><strong>Furniture Focus</strong><span>Beds, TVs, Storage</span></div>
+        <div class="hero-stat"><strong>WhatsApp First</strong><span>Fast, personal support</span></div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="page1.html">Top Sellers</a>
+        <a href="page2.html">Checkout</a>
+        <a href="page3.html">Contact</a>
+        <a href="live-hub.html">Live Hub</a>
+        <a href="https://instagram.com/rapidstoresandtrucking" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </nav>
+    </header>
+
+    <main id="main">
+
+      <!-- Mission statement -->
+      <div class="mission-banner reveal" role="note">
+        <span class="mission-banner-quotemark" aria-hidden="true">"</span>
+        <blockquote>
+          "Great furniture shouldn't be a luxury. We bring quality home pieces to Mansa at honest prices — with the kind of service you get from people who actually know you."
+        </blockquote>
+        <cite>— Rapid Stores, Mansa</cite>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="stats-strip" aria-label="Store highlights">
+        <div class="stat-block reveal reveal-delay-1">
+          <span class="stat-num" data-count="8">0</span>
+          <span class="stat-label">Products in stock</span>
+        </div>
+        <div class="stat-block reveal reveal-delay-2">
+          <span class="stat-num" data-count="3">0</span>
+          <span class="stat-label">Pickup locations</span>
+        </div>
+        <div class="stat-block reveal reveal-delay-2">
+          <span class="stat-num" data-suffix="">K45</span>
+          <span class="stat-label">Delivery from</span>
+        </div>
+        <div class="stat-block reveal reveal-delay-3">
+          <span class="stat-num" data-count="7">0</span>
+          <span class="stat-label">Days after-sale support</span>
+        </div>
+        <div class="stat-block reveal reveal-delay-4">
+          <span class="stat-num" data-count="2">0</span>
+          <span class="stat-label">Mobile networks accepted</span>
+        </div>
+      </div>
+
+      <div class="about-layout">
+
+        <!-- Left column -->
+        <div>
+
+          <!-- How It Started -->
+          <section class="about-section origin-section reveal" id="how-it-started">
+            <div class="origin-eyebrow">&#127968; Founded in Mansa</div>
+            <h2>How It All Started</h2>
+            <div class="origin-body">
+              <div class="origin-text">
+                <p class="origin-lead">It started with a problem every family in Mansa knows — finding good furniture meant travelling far, waiting weeks, or settling for whatever arrived in town.</p>
+                <p>The founders of Rapid Stores General Dealers Limited saw this gap firsthand. Families were spending too much time and money chasing down a decent mattress or a reliable TV. There had to be a better way — and the answer was right here in Mansa.</p>
+                <p>The idea was simple: stock the pieces Mansa homes actually need, price them honestly, and make ordering as easy as sending a WhatsApp message. No inflated margins. No confusing catalogues. Just real furniture, from real people, in your town.</p>
+                <p>We opened our doors at a single location and started small — a few mattresses, some storage pieces, and a phone number. Word spread the way it always does in a close-knit town: neighbour told neighbour. Orders came in. Trust was built one delivery at a time.</p>
+                <div class="origin-moment">
+                  <span class="origin-moment-icon">&#128161;</span>
+                  <blockquote>"We didn't set out to build a big company. We set out to make sure our community had somewhere honest to buy furniture — and that's still what drives us today."</blockquote>
+                </div>
+                <p>Today, Rapid Stores General Dealers Limited operates across three pickup points in Mansa — Hebron Plaza, Mansa Market, and Trade Centre — with a full digital catalogue and WhatsApp ordering that reaches customers across Luapula Province. But the spirit that started it all hasn't changed: we are your neighbours, and we take that seriously.</p>
+              </div>
+              <div class="origin-milestones">
+                <div class="origin-milestone">
+                  <span class="om-icon">&#127807;</span>
+                  <div>
+                    <strong>The Idea</strong>
+                    <span>A gap in Mansa's furniture market and a belief that local families deserved better access.</span>
+                  </div>
+                </div>
+                <div class="origin-milestone">
+                  <span class="om-icon">&#128205;</span>
+                  <div>
+                    <strong>First Location</strong>
+                    <span>Started with a single spot in Mansa Town — mattresses, dressers, and word-of-mouth.</span>
+                  </div>
+                </div>
+                <div class="origin-milestone">
+                  <span class="om-icon">&#128172;</span>
+                  <div>
+                    <strong>WhatsApp First</strong>
+                    <span>Made ordering as easy as chatting — customers could browse, ask, and buy from their phones.</span>
+                  </div>
+                </div>
+                <div class="origin-milestone">
+                  <span class="om-icon">&#127758;</span>
+                  <div>
+                    <strong>Luapula Reach</strong>
+                    <span>Grown to serve customers in Mansa, Samfya, Chembe, Mwansabombwe, and beyond.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Our Story -->
+          <section class="about-section reveal">
+            <h2>&#127978; Our Story</h2>
+            <p>Rapid Stores started with a simple idea: Mansa families deserve access to quality bedroom and living-room furniture without having to travel or wait for weeks. We set up shop in the heart of town to make that happen.</p>
+            <p>We are a locally-run store focused on the products that matter most in a Zambian home — a good mattress to sleep on, a reliable TV for family evenings, and practical storage that keeps the house organised. Every item we stock is chosen deliberately, not just to fill a catalogue.</p>
+            <p>From Hebron Plaza to Mansa Market and Trade Centre, we have made it easy to collect in person or arrange delivery across Mansa and nearby districts. We are a WhatsApp-first store — meaning you can browse, ask questions, and confirm an order all in one chat.</p>
+          </section>
+
+          <!-- Timeline -->
+          <section class="about-section reveal">
+            <h2>📅 How We Got Here</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="tl-dot">🌱</div>
+                <div class="tl-body">
+                  <p class="tl-year">The Beginning</p>
+                  <p class="tl-title">Rapid Stores opens in Mansa</p>
+                  <p class="tl-desc">We started as a small operation focused on bedroom essentials — mattresses and basic storage — serving walk-in customers at our first Mansa location.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="tl-dot">📺</div>
+                <div class="tl-body">
+                  <p class="tl-year">Expansion</p>
+                  <p class="tl-title">Electronics and lounge furniture added</p>
+                  <p class="tl-desc">Responding to customer demand, we brought in smart TVs and media-room pieces. Mansa families needed quality screens for home entertainment — and we delivered.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="tl-dot">📍</div>
+                <div class="tl-body">
+                  <p class="tl-year">Three Locations</p>
+                  <p class="tl-title">Hebron Plaza, Mansa Market, Trade Centre</p>
+                  <p class="tl-desc">We expanded to three convenient pickup points across town so customers could collect wherever was closest to them — no long trips, no waiting for a courier.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="tl-dot">💬</div>
+                <div class="tl-body">
+                  <p class="tl-year">Digital Store</p>
+                  <p class="tl-title">Online catalogue and WhatsApp ordering</p>
+                  <p class="tl-desc">We launched our digital storefront so customers could browse, compare prices, and place orders on WhatsApp from anywhere in Mansa or across Luapula Province.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="tl-dot">🚀</div>
+                <div class="tl-body">
+                  <p class="tl-year">Today — 2026</p>
+                  <p class="tl-title">Growing, improving, staying local</p>
+                  <p class="tl-desc">We continue adding new products, improving delivery coverage, and building on the trust of every customer who has chosen Rapid Stores to furnish their home.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- What we sell -->
+          <section class="about-section reveal">
+            <h2>🛋️ What We Sell</h2>
+            <p>Focused rather than sprawling — we carry what Mansa homes actually need and use every day.</p>
+            <div class="product-cat-grid">
+              <div class="product-cat-card">
+                <div class="product-cat-visual" style="background:linear-gradient(135deg,#0a2e4a,#1a5a8a);">🛏️</div>
+                <div class="product-cat-body">
+                  <h3>Mattresses</h3>
+                  <p>Queen &amp; King sizes. Orthopaedic and memory foam options for every budget.</p>
+                </div>
+              </div>
+              <div class="product-cat-card">
+                <div class="product-cat-visual" style="background:linear-gradient(135deg,#06182a,#1a4f88);">📺</div>
+                <div class="product-cat-body">
+                  <h3>Smart TVs</h3>
+                  <p>55″ &amp; 65″ Android TV with 4K resolution for cinematic home entertainment.</p>
+                </div>
+              </div>
+              <div class="product-cat-card">
+                <div class="product-cat-visual" style="background:linear-gradient(135deg,#0d2240,#2a6aa0);">🗄️</div>
+                <div class="product-cat-body">
+                  <h3>Dressers</h3>
+                  <p>6-drawer solid dressers with smooth gliding drawers and a versatile finish.</p>
+                </div>
+              </div>
+              <div class="product-cat-card">
+                <div class="product-cat-visual" style="background:linear-gradient(135deg,#0a2240,#1a3f70);">🚪</div>
+                <div class="product-cat-body">
+                  <h3>Wardrobes</h3>
+                  <p>Full-height 3-door wardrobes with shelving, rails, and mirror panels.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Why choose us -->
+          <section class="about-section reveal">
+            <h2>✅ Why Choose Rapid Stores</h2>
+            <div class="pillars-grid">
+              <div class="pillar-card">
+                <span class="pillar-icon">💰</span>
+                <h3>Honest Prices</h3>
+                <p>No hidden charges. The price you see is what you pay — MoMo, Airtel Money, or cash.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-icon">📍</span>
+                <h3>Local Pickup</h3>
+                <p>Collect free from three town-centre locations. No courier fees for walk-in customers.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-icon">🚚</span>
+                <h3>Delivery Available</h3>
+                <p>We deliver within Mansa from K45 and to Samfya, Chembe, and Mwansabombwe on request.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-icon">💬</span>
+                <h3>WhatsApp Support</h3>
+                <p>Real responses from real people — before, during, and after your purchase. No bots.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-icon">🔁</span>
+                <h3>7-Day After-Care</h3>
+                <p>Something wrong? Send us a photo on WhatsApp and we will sort it — no bureaucracy.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-icon">🏘️</span>
+                <h3>Community First</h3>
+                <p>We employ locally, know our customers, and reinvest in the community we serve.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Testimonials -->
+          <section class="about-section reveal">
+            <h2>&#11088; What Customers Say</h2>
+            <p>Real feedback from Mansa families who've shopped with us.</p>
+            <div class="testimonials-grid">
+              <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"Ordered a mattress on WhatsApp and it was ready for pickup the same day at Hebron Plaza. The quality is exactly as described — my family sleeps so much better now."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">&#128104;</div>
+                  <div>
+                    <div class="testimonial-author-name">Mwansa C.</div>
+                    <div class="testimonial-author-loc">Mansa Town</div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"Got the 65-inch TV for my lounge. The price was the best in Mansa and the team helped me compare models without any pressure. Very honest people."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">&#128105;</div>
+                  <div>
+                    <div class="testimonial-author-name">Bwalya N.</div>
+                    <div class="testimonial-author-loc">Chembe Road area</div>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card">
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text">"I furnished my whole bedroom here — mattress, dresser, and wardrobe. They delivered everything together on one day. Couldn't ask for better service in Mansa."</p>
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar">&#128104;</div>
+                  <div>
+                    <div class="testimonial-author-name">Chilufya M.</div>
+                    <div class="testimonial-author-loc">Mansa Market area</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Team -->
+          <section class="about-section reveal">
+            <h2>👥 The Team</h2>
+            <p>A small, dedicated group from Mansa who care about getting every order right.</p>
+            <div class="team-grid">
+              <div class="team-card">
+                <div class="team-avatar">👨‍💼</div>
+                <p class="team-name">Store Manager</p>
+                <p class="team-role">Operations &amp; Orders</p>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar">📦</div>
+                <p class="team-name">Logistics Team</p>
+                <p class="team-role">Delivery &amp; Pickup</p>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar">💬</div>
+                <p class="team-name">Customer Support</p>
+                <p class="team-role">WhatsApp &amp; After-Care</p>
+              </div>
+              <div class="team-card">
+                <div class="team-avatar">🛍️</div>
+                <p class="team-name">Sales Advisor</p>
+                <p class="team-role">Product Guidance</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right sidebar -->
+        <aside>
+
+          <div class="location-sidebar-card reveal">
+            <div class="location-sidebar-header">
+              <h3>📍 Find Us</h3>
+              <p>Three pickup points in Mansa</p>
+            </div>
+            <div class="location-sidebar-body">
+              <div class="loc-item">
+                <span class="li-icon">🏪</span>
+                <div><strong>Hebron Plaza</strong><span>Main showroom — Mansa Town</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">🏬</span>
+                <div><strong>Mansa Market</strong><span>Walk-in and collect, town centre</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">🏢</span>
+                <div><strong>Trade Centre</strong><span>Larger items and delivery staging</span></div>
+              </div>
+              <div class="loc-item" style="border-top:1px solid var(--border);padding-top:0.65rem;margin-top:0.1rem;">
+                <span class="li-icon">🕐</span>
+                <div><strong>Open Mon – Sat</strong><span>8:00 AM – 6:00 PM (Sat until 2 PM)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-sidebar-card reveal reveal-delay-1">
+            <div class="location-sidebar-header">
+              <h3>💳 We Accept</h3>
+              <p>Flexible payment options</p>
+            </div>
+            <div class="location-sidebar-body">
+              <div class="loc-item">
+                <span class="li-icon">📱</span>
+                <div><strong>MTN MoMo</strong><span>Instant mobile money payment</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">📱</span>
+                <div><strong>Airtel Money</strong><span>Available on all orders</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">💵</span>
+                <div><strong>Cash on Delivery</strong><span>Selected Mansa routes only</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="location-sidebar-card reveal reveal-delay-2">
+            <div class="location-sidebar-header">
+              <h3>📞 Contact Us</h3>
+              <p>WhatsApp is fastest</p>
+            </div>
+            <div class="location-sidebar-body">
+              <div class="loc-item">
+                <span class="li-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#1fad52" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                </span>
+                <div><strong>0977 891 850</strong><span>Primary — WhatsApp &amp; calls</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">📞</span>
+                <div><strong>+260 775 902 325</strong><span>Secondary line</span></div>
+              </div>
+              <div class="loc-item">
+                <span class="li-icon">✉️</span>
+                <div><strong>Email</strong><span><a href="mailto:rapidstoresandtrucking@gmail.com" style="color:var(--brand-secondary);font-size:0.78rem;">rapidstoresandtrucking@gmail.com</a></span></div>
+              </div>
+              <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%20saw%20your%20About%20page%20and%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="whatsapp-btn wa-pulse" style="display:flex;align-items:center;gap:0.4rem;margin-top:0.5rem;font-size:0.85rem;padding:0.65rem 0.9rem;text-decoration:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- CTA strip -->
+      <div class="cta-strip reveal">
+        <p>Ready to furnish your home? Browse our catalogue or order right now on WhatsApp.</p>
+        <a href="index.html" class="btn">Browse All Offers</a>
+        <a href="page1.html" class="btn btn--outline">Top Sellers</a>
+        <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%27d%20like%20to%20place%20an%20order." target="_blank" rel="noopener noreferrer" class="whatsapp-btn wa-pulse" style="display:inline-flex;align-items:center;gap:0.4rem;text-decoration:none;padding:0.65rem 1.2rem;font-size:0.88rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a13 13 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+          Order on WhatsApp
+        </a>
+        <a href="page3.html" class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.3);">Contact Us</a>
+      </div>
+
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Rapid Stores</h3>
+          <p>Mansa's trusted furniture gallery for bedroom, lounge, and storage pieces.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="page1.html">Top Sellers</a></li>
+            <li><a href="page2.html">Checkout</a></li>
+            <li><a href="page3.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/260977891850" target="_blank" rel="noopener noreferrer" class="wa-inline-link">WhatsApp: 0977 891 850</a></li>
+            <li><a href="https://instagram.com/rapidstoresandtrucking" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="mailto:rapidstoresandtrucking@gmail.com">rapidstoresandtrucking@gmail.com</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Find Us</h4>
+          <ul>
+            <li>Hebron Plaza, Mansa</li>
+            <li>Mansa Market</li>
+            <li>Mon–Sat: 8 AM – 6 PM (Sat until 2 PM)</li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; 2026 Rapid Stores &middot; Mansa, Luapula &middot; All rights reserved.</p>
+    </footer>
+  </div>
+
+  <button class="back-to-top" id="ab-btt" aria-label="Back to top" title="Back to top">&#8593;</button>
+  <a href="https://wa.me/260977891850?text=Hi%20Rapid%20Stores%2C%20I%20saw%20your%20About%20page%20and%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="wa-float" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.52 5.845L.057 23.57a.5.5 0 0 0 .61.611l5.788-1.51A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.884 0-3.65-.49-5.18-1.348l-.37-.213-3.835 1.003 1.018-3.72-.23-.383A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <span class="wa-float-label">WhatsApp</span>
+  </a>
+
+  <script>
+    // ── Preloader ──────────────────────────────────
+    window.addEventListener('load', () => {
+      const pl = document.getElementById('ab-preloader');
+      if (pl) { pl.classList.add('done'); setTimeout(() => pl.remove(), 500); }
+    });
+
+    // ── Scroll progress bar ────────────────────────
+    const progressBar = document.getElementById('ab-progress');
+    window.addEventListener('scroll', () => {
+      if (!progressBar) return;
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+    }, { passive: true });
+
+    // ── Back-to-top ────────────────────────────────
+    const bttBtn = document.getElementById('ab-btt');
+    if (bttBtn) {
+      window.addEventListener('scroll', () => bttBtn.classList.toggle('visible', window.scrollY > 280), { passive: true });
+      bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    // ── Hero cursor glow ───────────────────────────
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.addEventListener('mousemove', e => {
+        const r = hero.getBoundingClientRect();
+        hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+      // Floating particles
+      for (let i = 0; i < 6; i++) {
+        const p = document.createElement('div');
+        p.className = 'hero-particle';
+        const s = Math.random() * 8 + 5;
+        p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*90+5}%;top:${Math.random()*70+10}%;animation-duration:${Math.random()*4+4}s;animation-delay:-${Math.random()*4}s;`;
+        hero.appendChild(p);
+      }
+    }
+
+    // ── Page exit fade ─────────────────────────────
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('https://wa') || link.target === '_blank') return;
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.body.classList.add('page-exit');
+        setTimeout(() => { window.location.href = href; }, 290);
+      });
+    });
+
+    // ── Page navigator ─────────────────────────────
+    const pageSelect = document.getElementById('page-select');
+    const goPageBtn = document.getElementById('go-page');
+    if (goPageBtn) {
+      goPageBtn.addEventListener('click', () => { if (pageSelect.value) window.location.href = pageSelect.value; });
+      pageSelect.addEventListener('keyup', e => { if (e.key === 'Enter') goPageBtn.click(); });
+    }
+
+    // ── Dark mode toggle ───────────────────────────
+    const themeBtn = document.getElementById('ab-theme-btn');
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeBtn) themeBtn.textContent = '☀ Light mode';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (themeBtn) themeBtn.textContent = '☾ Dark mode';
+      }
+    }
+    try {
+      const saved = localStorage.getItem('rapidStoresTheme') || localStorage.getItem('rs-theme');
+      applyTheme(saved || 'light');
+    } catch (e) { applyTheme('light'); }
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const next = isDark ? 'light' : 'dark';
+        applyTheme(next);
+        try { localStorage.setItem('rapidStoresTheme', next); localStorage.setItem('rs-theme', next); } catch (e) {}
+      });
+    }
+
+    // ── Store open/closed badge ────────────────────
+    (function() {
+      const badge = document.getElementById('store-status-badge');
+      const text = document.getElementById('store-status-text');
+      if (!badge || !text) return;
+      const now = new Date();
+      const day = now.getDay();
+      const mins = now.getHours() * 60 + now.getMinutes();
+      let open = false;
+      if (day >= 1 && day <= 5) open = mins >= 480 && mins < 1080;
+      else if (day === 6) open = mins >= 540 && mins < 840;
+      badge.className = 'store-status-badge ' + (open ? 'open' : 'closed');
+      text.textContent = open ? 'Store open now — come visit' : (day === 0 ? 'Closed — Sunday' : 'Closed now — opens 8 AM');
+    })();
+
+    // ── Scroll reveal ──────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Animated counters ──────────────────────────
+    function animateCount(el, target, duration) {
+      const start = performance.now();
+      const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
+      const update = now => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + (progress >= 1 ? suffix : '');
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          if (!isNaN(target)) animateCount(el, target, 900);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+  </script>
+  <script src="advanced-shared.js"></script>
+</body>
+</html>

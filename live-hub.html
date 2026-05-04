@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rapid Stores — Live Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Base resets ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Manrope', sans-serif; }
+
+    /* ── Hub header ──────────────────────────────────── */
+    .hub-header {
+      background: linear-gradient(135deg, #071e30 0%, #0c2d4a 55%, #143d60 100%);
+      padding: 2rem 1.5rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hub-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(74,168,232,0.07) 1px, transparent 1px);
+      background-size: 26px 26px;
+      pointer-events: none;
+    }
+    .hub-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+    }
+    .hub-title-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .hub-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(31,173,82,0.15);
+      border: 1px solid rgba(31,173,82,0.4);
+      border-radius: 999px;
+      padding: 0.22rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #3dda84;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .hub-live-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #3dda84;
+      animation: livePulse 1.4s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(61,218,132,0.5); }
+      50% { opacity: 0.7; transform: scale(1.25); box-shadow: 0 0 0 5px rgba(61,218,132,0); }
+    }
+    .hub-header h1 {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .hub-header h1 span { color: #4aa8e8; }
+    .hub-header-sub {
+      margin: 0;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.88rem;
+    }
+    .hub-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+    .hub-last-updated {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Inter', monospace;
+    }
+    .hub-last-updated strong { color: rgba(255,255,255,0.7); }
+    .hub-header-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .hub-header-nav a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.2s;
+    }
+    .hub-header-nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .hub-header-nav a.active { background: rgba(74,168,232,0.2); color: #4aa8e8; border-color: rgba(74,168,232,0.4); }
+
+    /* ── Page control ────────────────────────────────── */
+    .hub-page-control {
+      background: #0c2d4a;
+      border-bottom: 1px solid rgba(74,168,232,0.15);
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hub-page-control label { color: rgba(255,255,255,0.45); font-size: 0.78rem; }
+    .hub-page-control select {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(74,168,232,0.25);
+      border-radius: 0.4rem;
+      padding: 0.28rem 0.55rem;
+      font-size: 0.82rem;
+    }
+    .hub-page-control .btn {
+      padding: 0.28rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    /* ── Main layout ─────────────────────────────────── */
+    .hub-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.4rem 1.2rem 2.5rem;
+    }
+
+    /* ── Metric cards ────────────────────────────────── */
+    .hub-metrics-v2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1.4rem;
+    }
+    .hm-card {
+      border-radius: 0.85rem;
+      padding: 1rem 1.1rem 0.9rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hm-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .hm-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 0 0 0.85rem 0.85rem;
+    }
+    .hm-card.blue   { background: linear-gradient(135deg,#edf5ff,#f5f9ff); border-color: #c2d9f0; }
+    .hm-card.blue::after { background: linear-gradient(90deg,#3a8bd6,#4aa8e8); }
+    .hm-card.amber  { background: linear-gradient(135deg,#fffbf0,#fffef8); border-color: #f0d89a; }
+    .hm-card.amber::after { background: linear-gradient(90deg,#d4930a,#f5b92e); }
+    .hm-card.red    { background: linear-gradient(135deg,#fff5f5,#fffafa); border-color: #f0c0c0; }
+    .hm-card.red::after { background: linear-gradient(90deg,#c23535,#e05555); }
+    .hm-card.green  { background: linear-gradient(135deg,#f2fbf5,#f8fefb); border-color: #b6e8c8; }
+    .hm-card.green::after { background: linear-gradient(90deg,#1a9f52,#26cc68); }
+    .hm-card.purple { background: linear-gradient(135deg,#f6f3ff,#faf8ff); border-color: #cec0f0; }
+    .hm-card.purple::after { background: linear-gradient(90deg,#6b4fc8,#8b6ddf); }
+    .hm-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      margin-bottom: 0.45rem;
+      display: block;
+    }
+    .hm-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+      color: #7a92a8;
+      margin: 0 0 0.2rem;
+    }
+    .hm-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+      color: #0c2d4a;
+      line-height: 1;
+      margin: 0;
+    }
+    .hm-trend {
+      font-size: 0.7rem;
+      margin: 0.3rem 0 0;
+      color: #7a92a8;
+    }
+    .hm-trend.up   { color: #1a9f52; }
+    .hm-trend.down { color: #c23535; }
+
+    /* ── Category bar ────────────────────────────────── */
+    .cat-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+    }
+    .cat-bar-item {
+      background: #fff;
+      border: 1px solid #dae8f2;
+      border-radius: 0.7rem;
+      padding: 0.65rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      cursor: pointer;
+      transition: all 0.18s;
+      border-top: 3px solid;
+    }
+    .cat-bar-item:hover { background: #f5f9ff; transform: translateY(-1px); }
+    .cat-bar-item.active { background: #e8f3ff; border-bottom-color: #1a5a8a; box-shadow: 0 3px 10px rgba(26,90,138,0.12); }
+    .cat-bar-item[data-cat="all"]       { border-top-color: #4aa8e8; }
+    .cat-bar-item[data-cat="mattresses"]{ border-top-color: #8b6ddf; }
+    .cat-bar-item[data-cat="tvs"]       { border-top-color: #1a9f52; }
+    .cat-bar-item[data-cat="dressers"]  { border-top-color: #d4930a; }
+    .cat-bar-item[data-cat="wardrobes"] { border-top-color: #c23535; }
+    .cat-bar-icon { font-size: 1.3rem; }
+    .cat-bar-label { font-size: 0.78rem; font-weight: 700; color: #1a3d5c; }
+    .cat-bar-count { font-size: 0.7rem; color: #7a92a8; margin-top: 0.08rem; }
+
+    /* ── Dashboard grid ──────────────────────────────── */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) { .hub-grid { grid-template-columns: 1fr; } }
+
+    /* ── Panel cards ─────────────────────────────────── */
+    .hub-panel {
+      background: #fff;
+      border: 1px solid #d5e5f5;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(10,40,70,0.06);
+    }
+    .hub-panel-head {
+      background: linear-gradient(90deg,#0c2d4a,#163e5e);
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .hub-panel-head h2 {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .hub-panel-body { padding: 0.9rem 1rem 1rem; }
+
+    /* ── Filter toolbar ──────────────────────────────── */
+    .hub-filter-row {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hub-filter-row input[type="search"] {
+      border: 1px solid #d5e5f5;
+      border-radius: 0.5rem;
+      padding: 0.33rem 0.65rem;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.85);
+      outline: none;
+      flex: 1;
+      min-width: 110px;
+    }
+    .hub-filter-row input[type="search"]::placeholder { color: rgba(255,255,255,0.35); }
+    .hub-filter-row select {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 0.5rem;
+      padding: 0.33rem 0.55rem;
+      font-size: 0.78rem;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      outline: none;
+    }
+    .hub-filter-row .btn {
+      padding: 0.33rem 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    /* ── Stock table ─────────────────────────────────── */
+    .stock-table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+    .stock-table-v2 {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      font-size: 0.83rem;
+    }
+    .stock-table-v2 thead th {
+      background: #f0f7ff;
+      color: #1a3d5c;
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      border-bottom: 2px solid #c8dff0;
+      white-space: nowrap;
+    }
+    .stock-table-v2 tbody tr {
+      border-bottom: 1px solid #eaf2fa;
+      transition: background 0.15s;
+    }
+    .stock-table-v2 tbody tr:hover { background: #f5f9ff; }
+    .stock-table-v2 tbody tr.row-critical { background: #fff6f6; }
+    .stock-table-v2 tbody tr.row-critical:hover { background: #ffeded; }
+    .stock-table-v2 td { padding: 0.52rem 0.65rem; color: #2a4560; vertical-align: middle; }
+    .stock-table-v2 td.td-name { font-weight: 600; color: #0c2d4a; }
+    .stock-table-v2 td.td-sku  { font-family: 'Inter', monospace; font-size: 0.74rem; color: #7a92a8; }
+    .stock-table-v2 td.td-price { font-weight: 700; color: #1a5a8a; }
+    .stock-bar-wrap { display: flex; align-items: center; gap: 0.45rem; }
+    .stock-bar {
+      flex: 1; height: 5px; background: #e5eef7;
+      border-radius: 999px; overflow: hidden; min-width: 36px;
+    }
+    .stock-bar-fill { height: 100%; border-radius: 999px; transition: width 0.5s ease; }
+    .stock-bar-fill.in-stock  { background: linear-gradient(90deg,#1a9f52,#26cc68); }
+    .stock-bar-fill.mid-stock { background: linear-gradient(90deg,#d4930a,#f5b92e); }
+    .stock-bar-fill.low-stock { background: linear-gradient(90deg,#c23535,#e05555); }
+    .stock-pill-v2 {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.22rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .stock-pill-v2.in-stock  { background: #e0f7ec; color: #0e7a3a; }
+    .stock-pill-v2.mid-stock { background: #fff6e0; color: #9a6800; }
+    .stock-pill-v2.low-stock { background: #ffebeb; color: #a82020; }
+    .stock-pill-v2 .pill-dot {
+      width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+    }
+    .stock-pill-v2.in-stock  .pill-dot { background: #1a9f52; }
+    .stock-pill-v2.mid-stock .pill-dot { background: #d4930a; }
+    .stock-pill-v2.low-stock .pill-dot { background: #c23535; animation: livePulse 1s ease-in-out infinite; }
+    .stock-updated { font-size: 0.72rem; color: #aac0d4; font-family: 'Inter', monospace; }
+
+    /* ── Feed panel ──────────────────────────────────── */
+    .feed-list-v2 {
+      list-style: none;
+      margin: 0.5rem 0 0;
+      padding: 0;
+      max-height: 480px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .feed-list-v2::-webkit-scrollbar { width: 5px; }
+    .feed-list-v2::-webkit-scrollbar-track { background: #f0f7ff; border-radius: 4px; }
+    .feed-list-v2::-webkit-scrollbar-thumb { background: #c0d8ee; border-radius: 4px; }
+    .feed-item-v2 {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.6rem;
+      border-left: 3px solid;
+      background: #f8fbfe;
+      border-color: #c8dff0;
+      animation: feedSlideIn 0.28s ease both;
+    }
+    @keyframes feedSlideIn {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .feed-item-v2.type-stock       { background: #f3f9ff; border-color: #4aa8e8; }
+    .feed-item-v2.type-order       { background: #f8f5ff; border-color: #8b6ddf; }
+    .feed-item-v2.type-dispatch    { background: #f3fff8; border-color: #1a9f52; }
+    .feed-item-v2.type-support     { background: #fffaf3; border-color: #d4930a; }
+    .feed-item-v2.type-verification{ background: #f5fff8; border-color: #26cc68; }
+    .feed-item-v2.type-alert       { background: #fff5f5; border-color: #c23535; }
+    .feed-item-v2.priority-critical{ background: #fff0f0; border-color: #e03535; }
+    .feed-icon {
+      font-size: 1.1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .feed-body { flex: 1; min-width: 0; }
+    .feed-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-bottom: 0.18rem;
+    }
+    .feed-type-tag {
+      display: inline-block;
+      padding: 0.1rem 0.42rem;
+      border-radius: 999px;
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .feed-type-tag.stock       { background: #d8eeff; color: #1a5a8a; }
+    .feed-type-tag.order       { background: #ede8ff; color: #5a3aae; }
+    .feed-type-tag.dispatch    { background: #d8f5e7; color: #0e6b36; }
+    .feed-type-tag.support     { background: #fff0d0; color: #8a5200; }
+    .feed-type-tag.verification{ background: #d5fae5; color: #0e6b36; }
+    .feed-type-tag.alert       { background: #ffe0e0; color: #8a1a1a; }
+    .feed-time { font-size: 0.68rem; color: #aac0d4; font-family: 'Inter', monospace; white-space: nowrap; }
+    .feed-msg { font-size: 0.82rem; color: #2a4560; margin: 0; line-height: 1.4; }
+
+    /* ── Toast notifications ─────────────────────────── */
+    #toast-container {
+      position: fixed;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast {
+      background: #0c2d4a;
+      color: #fff;
+      border-left: 4px solid #4aa8e8;
+      border-radius: 0.6rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      max-width: 300px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      animation: toastIn 0.3s ease both;
+      pointer-events: auto;
+    }
+    .toast.toast-critical { border-color: #e03535; background: #2a0a0a; }
+    .toast.toast-success  { border-color: #26cc68; background: #0a2a16; }
+    @keyframes toastIn  { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes toastOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(20px); } }
+    .toast-title { font-weight: 700; font-size: 0.78rem; margin-bottom: 0.18rem; }
+    .toast-body  { color: rgba(255,255,255,0.7); }
+
+    /* ── Action buttons in feed header ──────────────── */
+    .feed-ctrl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 0.4rem;
+      font-size: 0.76rem;
+      font-weight: 600;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .feed-ctrl-btn.pause   { background: rgba(212,147,10,0.15); color: #f5b92e; border-color: rgba(212,147,10,0.3); }
+    .feed-ctrl-btn.resume  { background: rgba(26,159,82,0.15); color: #26cc68; border-color: rgba(26,159,82,0.3); }
+    .feed-ctrl-btn.trigger { background: rgba(74,168,232,0.15); color: #4aa8e8; border-color: rgba(74,168,232,0.3); }
+    .feed-ctrl-btn:hover { filter: brightness(1.2); }
+    #pause-live-feed[disabled],
+    #resume-live-feed[disabled] { opacity: 0.35; cursor: not-allowed; filter: none; }
+
+    /* ── Paused banner ───────────────────────────────── */
+    .feed-paused-banner {
+      display: none;
+      background: rgba(212,147,10,0.12);
+      border: 1px solid rgba(212,147,10,0.3);
+      border-radius: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.78rem;
+      color: #d4930a;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 0.4rem;
+    }
+    .feed-paused-banner.visible { display: block; }
+
+    /* ── Status bar ──────────────────────────────────── */
+    .hub-statusbar {
+      background: #071e30;
+      border-top: 1px solid rgba(74,168,232,0.12);
+      padding: 0.4rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      flex-wrap: wrap;
+    }
+    .statusbar-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #3dda84; display: inline-block;
+      animation: livePulse 1.4s ease-in-out infinite;
+    }
+    .statusbar-item { display: flex; align-items: center; gap: 0.35rem; }
+    .statusbar-item strong { color: rgba(255,255,255,0.65); }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .hub-footer {
+      background: #071e30;
+      border-top: 1px solid rgba(74,168,232,0.1);
+      text-align: center;
+      padding: 1.2rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.78rem;
+    }
+    .hub-footer a { color: rgba(74,168,232,0.7); text-decoration: none; }
+    .hub-footer a:hover { color: #4aa8e8; }
+
+    /* ── Dark theme ──────────────────────────────────── */
+    [data-theme="dark"] .hub-body { background: #0c1e2e; }
+    [data-theme="dark"] .hub-panel { background: #112232; border-color: #1e3a55; }
+    [data-theme="dark"] .hub-panel-body { background: #112232; }
+    [data-theme="dark"] .hm-card.blue   { background: linear-gradient(135deg,#112232,#162e45); border-color: #1e3a55; }
+    [data-theme="dark"] .hm-card.amber  { background: linear-gradient(135deg,#1e1800,#2a2210); border-color: #4a3800; }
+    [data-theme="dark"] .hm-card.red    { background: linear-gradient(135deg,#1e0808,#2a1010); border-color: #4a1010; }
+    [data-theme="dark"] .hm-card.green  { background: linear-gradient(135deg,#081e10,#0e2a18); border-color: #0e3a1a; }
+    [data-theme="dark"] .hm-card.purple { background: linear-gradient(135deg,#140e28,#1e1535); border-color: #2e2050; }
+    [data-theme="dark"] .hm-value { color: #c8e0f5; }
+    [data-theme="dark"] .hm-label { color: #5a7a92; }
+    [data-theme="dark"] .stock-table-v2 thead th { background: #162e45; color: #8ab0cc; border-color: #1e3a55; }
+    [data-theme="dark"] .stock-table-v2 tbody tr { border-color: #1a3050; }
+    [data-theme="dark"] .stock-table-v2 tbody tr:hover { background: #162e45; }
+    [data-theme="dark"] .stock-table-v2 td { color: #c8dff0; }
+    [data-theme="dark"] .stock-table-v2 td.td-name { color: #e0f0ff; }
+    [data-theme="dark"] .stock-table-v2 td.td-price { color: #4aa8e8; }
+    [data-theme="dark"] .feed-item-v2 { background: #0e2030; }
+    [data-theme="dark"] .feed-msg { color: #a8c8e0; }
+    [data-theme="dark"] .cat-bar-item { background: #112232; border-color: #1e3a55; }
+    [data-theme="dark"] .cat-bar-label { color: #c8e0f5; }
+  </style>
+</head>
+<body>
+
+  <div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Top status / page control bar -->
+  <div class="hub-page-control">
+    <label for="page-select">Navigate:</label>
+    <select id="page-select">
+      <option value="index.html">Home</option>
+      <option value="about.html">About</option>
+      <option value="page1.html">Top Sellers</option>
+      <option value="page2.html">Checkout</option>
+      <option value="page3.html">Contact</option>
+      <option value="live-hub.html" selected>Live Hub</option>
+    </select>
+    <button id="go-page" class="btn" type="button">Go</button>
+  </div>
+
+  <!-- Hub header -->
+  <header class="hub-header" role="banner">
+    <div class="hub-header-inner">
+      <div class="hub-title-group">
+        <span class="hub-live-badge"><span class="hub-live-dot"></span>Live</span>
+        <h1>Rapid Stores — <span>Live Hub</span></h1>
+        <p class="hub-header-sub">Real-time stock movement, order activity &amp; store operations for Mansa.</p>
+      </div>
+      <div class="hub-header-right">
+        <span class="hub-last-updated">Last updated: <strong id="last-updated-time">—</strong></span>
+        <nav class="hub-header-nav" aria-label="Site navigation">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="page1.html">Top Sellers</a>
+          <a href="page2.html">Checkout</a>
+          <a href="page3.html">Contact</a>
+          <a href="live-hub.html" class="active">Live Hub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live status bar -->
+  <div class="hub-statusbar">
+    <span class="statusbar-item"><span class="statusbar-dot"></span> Feed active</span>
+    <span class="statusbar-item">Updates: <strong id="sb-update-count">0</strong></span>
+    <span class="statusbar-item">Total units: <strong id="sb-total-units">—</strong></span>
+    <span class="statusbar-item">Critical: <strong id="sb-critical">—</strong></span>
+    <span class="statusbar-item" id="sb-paused-label" style="display:none;color:#f5b92e;">⏸ Feed paused</span>
+  </div>
+
+  <div class="hub-body">
+
+    <!-- Metric cards -->
+    <div class="hub-metrics-v2">
+      <div class="hm-card blue">
+        <span class="hm-icon">📦</span>
+        <p class="hm-label">Total stock units</p>
+        <p class="hm-value" id="metric-total-stock">—</p>
+        <p class="hm-trend" id="metric-stock-trend"></p>
+      </div>
+      <div class="hm-card red">
+        <span class="hm-icon">⚠️</span>
+        <p class="hm-label">Critical items</p>
+        <p class="hm-value" id="metric-low-stock">—</p>
+        <p class="hm-trend down" id="metric-low-trend"></p>
+      </div>
+      <div class="hm-card green">
+        <span class="hm-icon">✅</span>
+        <p class="hm-label">In-stock items</p>
+        <p class="hm-value" id="metric-instock">—</p>
+        <p class="hm-trend up"></p>
+      </div>
+      <div class="hm-card amber">
+        <span class="hm-icon">🔄</span>
+        <p class="hm-label">Feed events</p>
+        <p class="hm-value" id="metric-feed-count">0</p>
+        <p class="hm-trend" id="metric-feed-trend"></p>
+      </div>
+      <div class="hm-card purple">
+        <span class="hm-icon">💰</span>
+        <p class="hm-label">Est. stock value</p>
+        <p class="hm-value" id="metric-value">—</p>
+        <p class="hm-trend"></p>
+      </div>
+    </div>
+
+    <!-- Category quick-filter bar -->
+    <div class="cat-bar" role="navigation" aria-label="Filter by category">
+      <div class="cat-bar-item active" data-cat="all" tabindex="0" role="button" aria-pressed="true">
+        <span class="cat-bar-icon">🏪</span>
+        <div><div class="cat-bar-label">All</div><div class="cat-bar-count" id="cat-count-all">— items</div></div>
+      </div>
+      <div class="cat-bar-item" data-cat="mattresses" tabindex="0" role="button" aria-pressed="false">
+        <span class="cat-bar-icon">🛏️</span>
+        <div><div class="cat-bar-label">Mattresses</div><div class="cat-bar-count" id="cat-count-mattresses">—</div></div>
+      </div>
+      <div class="cat-bar-item" data-cat="tvs" tabindex="0" role="button" aria-pressed="false">
+        <span class="cat-bar-icon">📺</span>
+        <div><div class="cat-bar-label">TVs</div><div class="cat-bar-count" id="cat-count-tvs">—</div></div>
+      </div>
+      <div class="cat-bar-item" data-cat="dressers" tabindex="0" role="button" aria-pressed="false">
+        <span class="cat-bar-icon">🗄️</span>
+        <div><div class="cat-bar-label">Dressers</div><div class="cat-bar-count" id="cat-count-dressers">—</div></div>
+      </div>
+      <div class="cat-bar-item" data-cat="wardrobes" tabindex="0" role="button" aria-pressed="false">
+        <span class="cat-bar-icon">🚪</span>
+        <div><div class="cat-bar-label">Wardrobes</div><div class="cat-bar-count" id="cat-count-wardrobes">—</div></div>
+      </div>
+    </div>
+
+    <!-- Main grid -->
+    <div class="hub-grid">
+
+      <!-- Stock monitor -->
+      <div class="hub-panel">
+        <div class="hub-panel-head">
+          <h2>📊 Stock Monitor</h2>
+          <div class="hub-filter-row">
+            <input id="stock-search" type="search" placeholder="Search product or SKU…" aria-label="Search stock" />
+          </div>
+        </div>
+        <div class="hub-panel-body">
+          <div class="stock-table-wrap">
+            <table class="stock-table-v2" aria-label="Live stock table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Price</th>
+                  <th>Units</th>
+                  <th>Level</th>
+                  <th>Status</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody id="stock-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feed panel -->
+      <div class="hub-panel">
+        <div class="hub-panel-head">
+          <h2>📡 Live Feed</h2>
+          <div class="hub-filter-row">
+            <select id="feed-type-filter" aria-label="Filter by event type">
+              <option value="all">All events</option>
+              <option value="stock">Stock</option>
+              <option value="order">Orders</option>
+              <option value="dispatch">Dispatch</option>
+              <option value="support">Support</option>
+              <option value="verification">Verified</option>
+              <option value="alert">Alerts</option>
+            </select>
+            <input id="feed-search" type="search" placeholder="Search…" aria-label="Search feed" />
+          </div>
+          <div class="hub-filter-row" style="margin-top:0.35rem;">
+            <button id="trigger-live-update" type="button" class="feed-ctrl-btn trigger">⚡ Trigger</button>
+            <button id="pause-live-feed"    type="button" class="feed-ctrl-btn pause">⏸ Pause</button>
+            <button id="resume-live-feed"   type="button" class="feed-ctrl-btn resume" disabled>▶ Unpause</button>
+          </div>
+        </div>
+        <div class="hub-panel-body" style="padding-top:0.5rem;">
+          <div class="feed-paused-banner" id="feed-paused-banner">⏸ Feed paused — tap Resume to continue</div>
+          <ul id="hub-feed-list" class="feed-list-v2" aria-live="polite" aria-label="Live activity feed"></ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="hub-footer">
+    &copy; 2026 Rapid Stores, Mansa &mdash;
+    <a href="index.html">Store</a> &middot;
+    <a href="about.html">About</a> &middot;
+    <a href="page3.html">Contact</a>
+  </footer>
+
+  <script>
+    /* ── Page navigation ─────────────────────────── */
+    const pageSelect = document.getElementById('page-select');
+    const goPageBtn  = document.getElementById('go-page');
+    goPageBtn.addEventListener('click', () => { if (pageSelect.value) window.location.href = pageSelect.value; });
+    pageSelect.addEventListener('keyup', e => { if (e.key === 'Enter') goPageBtn.click(); });
+
+    /* ── Theme persistence ───────────────────────── */
+    try {
+      if (localStorage.getItem('rs-theme') === 'dark')
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } catch(e) {}
+
+    /* ── Data ────────────────────────────────────── */
+    const stockItems = [
+      { name:'CloudRest Queen Mattress',   sku:'RS-MAT-CRQ28', category:'mattresses', price:2800, units:12, updatedAt:Date.now() },
+      { name:'OrthoLux King Mattress',     sku:'RS-MAT-OLK49', category:'mattresses', price:4900, units:8,  updatedAt:Date.now() },
+      { name:'RestNest Double Mattress',   sku:'RS-MAT-RND24', category:'mattresses', price:2400, units:15, updatedAt:Date.now() },
+      { name:'VistaView 55" Smart TV',     sku:'RS-TV-VV5562',  category:'tvs',        price:6200, units:10, updatedAt:Date.now() },
+      { name:'CinemaEdge 65" 4K TV',       sku:'RS-TV-CE6598',  category:'tvs',        price:9800, units:6,  updatedAt:Date.now() },
+      { name:'LumaScreen 43" Smart TV',    sku:'RS-TV-LS4342',  category:'tvs',        price:4200, units:14, updatedAt:Date.now() },
+      { name:'Heritage 6-Drawer Dresser',  sku:'RS-DRS-HD636',  category:'dressers',   price:3600, units:9,  updatedAt:Date.now() },
+      { name:'Studio 4-Drawer Dresser',    sku:'RS-DRS-SD429',  category:'dressers',   price:2950, units:13, updatedAt:Date.now() },
+      { name:'OakLine Tall Dresser',       sku:'RS-DRS-OLT33',  category:'dressers',   price:3300, units:7,  updatedAt:Date.now() },
+      { name:'GrandLine 3-Door Wardrobe',  sku:'RS-WRD-GL375',  category:'wardrobes',  price:7500, units:5,  updatedAt:Date.now() },
+      { name:'SlimLine 2-Door Wardrobe',  sku:'RS-WRD-SL242',  category:'wardrobes',  price:4200, units:11, updatedAt:Date.now() },
+      { name:'ClassicFrame Wardrobe',      sku:'RS-WRD-CF468',  category:'wardrobes',  price:6800, units:4,  updatedAt:Date.now() }
+    ];
+
+    const FEED_POOL = [
+      { type:'dispatch',     message:'Dispatch team confirmed Mansa town-centre delivery route — 3 orders en route.', priority:'normal' },
+      { type:'dispatch',     message:'Hebron Plaza collection confirmed for order #RS-4821. Customer notified via WhatsApp.', priority:'normal' },
+      { type:'support',      message:'Customer query on mattress size resolved — Queen upgrade confirmed by support.', priority:'normal' },
+      { type:'support',      message:'Checkout assistance provided for mobile payment issue — session completed.', priority:'normal' },
+      { type:'order',        message:'2 new orders moved from review to packed status at Trade Centre.', priority:'normal' },
+      { type:'order',        message:'Repeat customer placed order for 65" TV + Heritage Dresser bundle — payment verified.', priority:'success' },
+      { type:'order',        message:'Order #RS-4819 confirmed — CinemaEdge 65" TV, delivery to Samfya scheduled.', priority:'normal' },
+      { type:'verification', message:'Mobile money verification checks completed for 4 recent orders.', priority:'success' },
+      { type:'verification', message:'MoMo payment retry succeeded on pending session — order #RS-4802 cleared.', priority:'success' },
+      { type:'stock',        message:'Live catalog sync completed — all 12 product SKUs verified and up to date.', priority:'normal' },
+      { type:'stock',        message:'Warehouse count reconciled with catalog — no discrepancies found.', priority:'success' },
+      { type:'dispatch',     message:'Chembe district delivery scheduled for tomorrow morning — 2 wardrobes, 1 mattress.', priority:'normal' },
+      { type:'support',      message:'After-sale photo check completed — item condition confirmed, no issues raised.', priority:'success' },
+      { type:'order',        message:'Airtel Money payment confirmed for 3-door wardrobe order — packing in progress.', priority:'normal' },
+      { type:'support',      message:'Product enquiry for OrthoLux King Mattress received via WhatsApp — responded.', priority:'normal' },
+    ];
+
+    const TYPE_ICONS = {
+      stock:'📦', order:'🛒', dispatch:'🚚', support:'💬', verification:'✅', alert:'🚨'
+    };
+
+    const feedEvents = [];
+    let feedPaused  = false;
+    let updateCount = 0;
+
+    /* ── Helpers ─────────────────────────────────── */
+    function formatTime(ts) {
+      return new Date(ts).toLocaleTimeString('en-ZM', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    }
+    function formatPrice(v) {
+      return `K${Number(v).toLocaleString('en-ZM')}`;
+    }
+    function getStockStatus(units) {
+      if (units <= 3)  return { label:'Critical', cls:'low-stock' };
+      if (units <= 10) return { label:'Limited',  cls:'mid-stock' };
+      return { label:'In stock', cls:'in-stock' };
+    }
+    function calcStockBarWidth(units) {
+      return Math.min(100, Math.round((units / 20) * 100));
+    }
+
+    /* ── Toast system ────────────────────────────── */
+    const toastContainer = document.getElementById('toast-container');
+    function showToast(title, body, type = '') {
+      const t = document.createElement('div');
+      t.className = `toast${type ? ' toast-' + type : ''}`;
+      t.innerHTML = `<div class="toast-title">${title}</div><div class="toast-body">${body}</div>`;
+      toastContainer.appendChild(t);
+      setTimeout(() => {
+        t.style.animation = 'toastOut 0.3s ease both';
+        setTimeout(() => t.remove(), 320);
+      }, 3800);
+    }
+
+    /* ── Metric refresh ──────────────────────────── */
+    function refreshMetrics() {
+      const total      = stockItems.reduce((s, i) => s + i.units, 0);
+      const critical   = stockItems.filter(i => i.units <= 3).length;
+      const inStock    = stockItems.filter(i => i.units > 10).length;
+      const estValue   = stockItems.reduce((s, i) => s + i.price * i.units, 0);
+
+      document.getElementById('metric-total-stock').textContent = total;
+      document.getElementById('metric-low-stock').textContent   = critical;
+      document.getElementById('metric-instock').textContent     = inStock;
+      document.getElementById('metric-feed-count').textContent  = feedEvents.length;
+      document.getElementById('metric-value').textContent       = 'K' + Math.round(estValue / 1000) + 'k';
+      document.getElementById('sb-total-units').textContent     = total;
+      document.getElementById('sb-critical').textContent        = critical;
+      document.getElementById('sb-update-count').textContent    = updateCount;
+      document.getElementById('last-updated-time').textContent  = formatTime(Date.now());
+
+      // category bar counts
+      const cats = ['mattresses','tvs','dressers','wardrobes'];
+      document.getElementById('cat-count-all').textContent = `${stockItems.length} items`;
+      cats.forEach(cat => {
+        const items = stockItems.filter(i => i.category === cat);
+        const units = items.reduce((s, i) => s + i.units, 0);
+        const el = document.getElementById(`cat-count-${cat}`);
+        if (el) el.textContent = `${items.length} items · ${units} units`;
+      });
+    }
+
+    /* ── Stock table ─────────────────────────────── */
+    let activeCategory = 'all';
+    const stockTableBody = document.getElementById('stock-table-body');
+    const stockSearch    = document.getElementById('stock-search');
+
+    function renderStockTable() {
+      const query = stockSearch.value.trim().toLowerCase();
+      const filtered = stockItems.filter(item => {
+        const catOk  = activeCategory === 'all' || item.category === activeCategory;
+        const qOk    = !query || item.name.toLowerCase().includes(query) || item.sku.toLowerCase().includes(query);
+        return catOk && qOk;
+      });
+
+      if (!filtered.length) {
+        stockTableBody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:1.5rem;color:#aac0d4;">No matching products.</td></tr>`;
+        return;
+      }
+
+      stockTableBody.innerHTML = filtered.map(item => {
+        const st     = getStockStatus(item.units);
+        const barW   = calcStockBarWidth(item.units);
+        const rowCls = st.cls === 'low-stock' ? ' class="row-critical"' : '';
+        return `<tr${rowCls}>
+          <td class="td-name">${item.name}</td>
+          <td class="td-sku">${item.sku}</td>
+          <td class="td-price">${formatPrice(item.price)}</td>
+          <td>${item.units}</td>
+          <td>
+            <div class="stock-bar-wrap">
+              <div class="stock-bar"><div class="stock-bar-fill ${st.cls}" style="width:${barW}%"></div></div>
+              <span style="font-size:0.72rem;color:#aac0d4;min-width:24px;">${item.units}</span>
+            </div>
+          </td>
+          <td><span class="stock-pill-v2 ${st.cls}"><span class="pill-dot"></span>${st.label}</span></td>
+          <td class="stock-updated">${formatTime(item.updatedAt)}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    /* ── Feed list ───────────────────────────────── */
+    const feedList       = document.getElementById('hub-feed-list');
+    const feedTypeFilter = document.getElementById('feed-type-filter');
+    const feedSearch     = document.getElementById('feed-search');
+
+    function renderFeedList() {
+      const type  = feedTypeFilter.value;
+      const query = feedSearch.value.trim().toLowerCase();
+      const filtered = feedEvents.filter(ev => {
+        const tOk = type === 'all' || ev.type === type;
+        const qOk = !query || ev.message.toLowerCase().includes(query) || ev.type.includes(query);
+        return tOk && qOk;
+      });
+
+      feedList.innerHTML = filtered.slice(0, 20).map(ev => `
+        <li class="feed-item-v2 type-${ev.type} priority-${ev.priority}">
+          <span class="feed-icon">${TYPE_ICONS[ev.type] || '📌'}</span>
+          <div class="feed-body">
+            <div class="feed-meta">
+              <span class="feed-type-tag ${ev.type}">${ev.type}</span>
+              <time class="feed-time">${ev.time}</time>
+            </div>
+            <p class="feed-msg">${ev.message}</p>
+          </div>
+        </li>`).join('');
+
+      document.getElementById('metric-feed-count').textContent = feedEvents.length;
+    }
+
+    /* ── Push event ──────────────────────────────── */
+    function pushFeedEvent(message, type = 'stock', priority = 'normal') {
+      feedEvents.unshift({ message, type, priority, time: formatTime(Date.now()) });
+      if (feedEvents.length > 80) feedEvents.length = 80;
+      updateCount++;
+      renderFeedList();
+      refreshMetrics();
+    }
+
+    /* ── Auto stock update ───────────────────────── */
+    function randomStockUpdate(force = false) {
+      if (feedPaused && !force) return;
+      const item   = stockItems[Math.floor(Math.random() * stockItems.length)];
+      const delta  = Math.random() > 0.6 ? -(1 + Math.floor(Math.random() * 2)) : 1 + Math.floor(Math.random() * 3);
+      const next   = Math.max(0, item.units + delta);
+      if (next === item.units) return;
+      item.units    = next;
+      item.updatedAt = Date.now();
+
+      const dir    = delta > 0 ? 'restocked' : 'sold';
+      const st     = getStockStatus(item.units);
+      const prio   = st.cls === 'low-stock' ? 'critical' : 'normal';
+      pushFeedEvent(`${item.name} — ${dir}: ${item.units} units remaining (${st.label}).`, 'stock', prio);
+
+      if (st.cls === 'low-stock') {
+        showToast('⚠️ Critical stock', `${item.name} is down to ${item.units} unit${item.units !== 1 ? 's' : ''}.`, 'critical');
+      }
+      renderStockTable();
+    }
+
+    function randomOperationalFeed(force = false) {
+      if (feedPaused && !force) return;
+      const pick = FEED_POOL[Math.floor(Math.random() * FEED_POOL.length)];
+      pushFeedEvent(pick.message, pick.type, pick.priority);
+    }
+
+    function triggerLiveUpdate() {
+      randomStockUpdate(true);
+      randomOperationalFeed(true);
+      pushFeedEvent('Manual update triggered — stock and feed refreshed.', 'verification', 'success');
+      showToast('⚡ Update triggered', 'Stock and feed refreshed manually.', 'success');
+    }
+
+    /* ── Category filter bar ─────────────────────── */
+    document.querySelectorAll('.cat-bar-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-bar-item').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        activeCategory = btn.dataset.cat;
+        renderStockTable();
+      });
+      btn.addEventListener('keyup', e => { if (e.key === 'Enter' || e.key === ' ') btn.click(); });
+    });
+
+    /* ── Controls ────────────────────────────────── */
+    stockSearch.addEventListener('input', renderStockTable);
+    feedTypeFilter.addEventListener('change', renderFeedList);
+    feedSearch.addEventListener('input', renderFeedList);
+
+    document.getElementById('pause-live-feed').addEventListener('click', () => {
+      feedPaused = true;
+      document.getElementById('pause-live-feed').disabled  = true;
+      document.getElementById('resume-live-feed').disabled = false;
+      document.getElementById('feed-paused-banner').classList.add('visible');
+      document.getElementById('sb-paused-label').style.display  = '';
+      pushFeedEvent('Live feed paused by operator.', 'support', 'normal');
+    });
+
+    document.getElementById('resume-live-feed').addEventListener('click', () => {
+      feedPaused = false;
+      document.getElementById('pause-live-feed').disabled  = false;
+      document.getElementById('resume-live-feed').disabled = true;
+      document.getElementById('feed-paused-banner').classList.remove('visible');
+      document.getElementById('sb-paused-label').style.display  = 'none';
+      pushFeedEvent('Live feed resumed.', 'verification', 'success');
+      showToast('▶ Feed resumed', 'Real-time updates are active again.', 'success');
+    });
+
+    document.getElementById('trigger-live-update').addEventListener('click', triggerLiveUpdate);
+
+    /* ── Init ────────────────────────────────────── */
+    renderStockTable();
+    refreshMetrics();
+    pushFeedEvent('Live Hub started — all systems operational.', 'verification', 'success');
+    pushFeedEvent('Initial stock audit loaded across all 4 categories.', 'stock', 'normal');
+    pushFeedEvent('WhatsApp order channel is active — 0977 891 850.', 'support', 'normal');
+
+    setInterval(randomStockUpdate,     3200);
+    setInterval(randomOperationalFeed, 5100);
+  </script>
+</body>
+</html>
