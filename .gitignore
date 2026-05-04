@@ -1,10 +1,51 @@
-node_modules
-.env
-npm-debug.log
-.DS_Store
+```
+# Dependencies
+node_modules/
 
-# wrangler files
-.wrangler
-.dev.vars*
-!.dev.vars.example
-!.env.example
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Build outputs
+dist/
+build/
+target/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Package managers
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.mypy_cache/
+.pytest_cache/
+.jest/
+```
