@@ -1,397 +1,446 @@
-# Rapid Stores and General Dealers Ltd - Platform Architecture
+# Rapid Stores Digital Platform
 
-## 🏢 Business Overview
-- **Location**: Mansa, Zambia
-- **Founded**: 2018
-- **Sectors**: Retail, Manufacturing (mattresses/foam), Supply & Logistics
+## 🏪 Business Overview
 
-## 🎯 System Goals
-1. Mobile-first design for Zambian users
-2. WhatsApp-first experience
-3. Low bandwidth optimization
-4. Mobile money integration (MTN, Airtel, Zamtel)
-5. Simple, scalable architecture
+**Rapid Stores and General Dealers Ltd** is a multi-sector business in Mansa, Zambia, operating since 2018 in:
+- General Retail (household goods, essentials)
+- Manufacturing (foam mattresses, spring mattresses, divan bases)
+- Supply & Logistics (transportation, bulk supply)
 
 ---
 
-## 🧱 Tech Stack
+## 🚀 Architecture Overview
 
-### Frontend
-- **React** with Vite (fast builds, small bundle)
-- **TailwindCSS** for styling (utility-first, small CSS footprint)
-- **React Router** for navigation
-- **Axios** for API calls
-- **Context API** for state management (lightweight)
+### Serverless Stack on Cloudflare + Supabase
 
-### Backend
-- **Node.js + Express** (familiar, easy to deploy)
-- **SQLite** for development, **PostgreSQL** for production
-- **JWT** for authentication
-- **Multer** for file uploads
-
-### Database Schema
-
-#### Users Table
-```sql
-id (UUID, PK)
-phone (VARCHAR, UNIQUE, INDEX)
-name (VARCHAR)
-email (VARCHAR, NULLABLE)
-password_hash (VARCHAR, NULLABLE)
-role (ENUM: 'customer', 'admin')
-created_at (TIMESTAMP)
-updated_at (TIMESTAMP)
 ```
-
-#### Products Table
-```sql
-id (UUID, PK)
-name (VARCHAR)
-description (TEXT)
-price (DECIMAL)
-stock_quantity (INTEGER)
-category (ENUM: 'groceries', 'electronics', 'furniture', 'mattresses', 'foam_products')
-image_url (VARCHAR)
-is_manufactured (BOOLEAN)
-production_status (ENUM: 'not_applicable', 'pending', 'in_production', 'ready')
-custom_options (JSON) -- for mattress sizes, etc.
-created_at (TIMESTAMP)
-updated_at (TIMESTAMP)
-```
-
-#### Orders Table
-```sql
-id (UUID, PK)
-user_id (UUID, FK -> Users.id)
-status (ENUM: 'pending', 'paid', 'processing', 'ready', 'delivered')
-total_amount (DECIMAL)
-payment_method (ENUM: 'mtn', 'airtel', 'zamtel', 'lenco', 'cash')
-payment_status (ENUM: 'pending', 'completed', 'failed')
-delivery_method (ENUM: 'pickup', 'delivery')
-delivery_address (TEXT, NULLABLE)
-phone_number (VARCHAR)
-whatsapp_order (BOOLEAN)
-created_at (TIMESTAMP)
-updated_at (TIMESTAMP)
-```
-
-#### OrderItems Table
-```sql
-id (UUID, PK)
-order_id (UUID, FK -> Orders.id)
-product_id (UUID, FK -> Products.id)
-quantity (INTEGER)
-price_at_purchase (DECIMAL)
-```
-
-#### Vouchers Table
-```sql
-id (UUID, PK)
-code (VARCHAR, UNIQUE, INDEX)
-discount_type (ENUM: 'percentage', 'fixed')
-discount_value (DECIMAL)
-min_order_amount (DECIMAL)
-max_uses (INTEGER)
-current_uses (INTEGER)
-is_active (BOOLEAN)
-expires_at (TIMESTAMP, NULLABLE)
-created_at (TIMESTAMP)
-```
-
-#### InventoryAlerts Table
-```sql
-id (UUID, PK)
-product_id (UUID, FK -> Products.id)
-threshold (INTEGER)
-is_triggered (BOOLEAN)
-created_at (TIMESTAMP)
+┌─────────────────────────────────────────────────────────────┐
+│                    CLOUDFLARE PAGES                         │
+│                  Frontend Hosting                           │
+│              (React + Vite + TailwindCSS)                   │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   CLOUDFLARE WORKERS                        │
+│                  Backend API (Hono)                         │
+│            ┌──────────────┬──────────────┐                 │
+│            │  Workers AI  │   R2 Bucket  │                 │
+│            │  (LLAMA 3)   │   (Images)   │                 │
+│            └──────────────┴──────────────┘                 │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      SUPABASE                               │
+│          ┌─────────────────────────────────┐                │
+│          │  PostgreSQL Database            │                │
+│          │  - Auth (Email/Phone)           │                │
+│          │  - Real-time subscriptions      │                │
+│          │  - Row Level Security           │                │
+│          └─────────────────────────────────┘                │
+│          ┌─────────────────────────────────┐                │
+│          │  Storage (Product Images)       │                │
+│          └─────────────────────────────────┘                │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🔌 API Structure
+## 📁 Project Structure
+
+```
+rapid-stores/
+├── backend/                    # Cloudflare Worker (Hono API)
+│   ├── src/
+│   │   ├── index.ts           # Main entry point & routes
+│   │   ├── types/             # TypeScript types
+│   │   ├── utils/             # Supabase client, helpers
+│   │   ├── ai/                # AI agents (chat, recommendations)
+│   │   └── middleware/        # Auth middleware
+│   ├── package.json
+│   └── wrangler.toml          # Cloudflare config
+│
+├── frontend/                   # React SPA (Cloudflare Pages)
+│   ├── src/
+│   │   ├── components/        # Reusable UI components
+│   │   ├── pages/             # Page components
+│   │   ├── context/           # React Context (Auth, Cart)
+│   │   ├── utils/             # API client
+│   │   └── App.jsx            # Main app component
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   └── postcss.config.js
+│
+└── docs/
+    └── supabase-schema.sql    # Database schema
+```
+
+---
+
+## 🗄️ Database Schema (Supabase)
+
+### Core Tables
+
+1. **profiles** - User profiles with roles
+2. **products** - Product catalog with manufacturing flag
+3. **carts** & **cart_items** - Shopping cart system
+4. **orders** & **order_items** - Order management
+5. **vouchers** - Discount code system
+6. **manufacturing_orders** - Custom manufacturing tracking
+
+### Key Features
+- Row Level Security (RLS) for data protection
+- Automatic profile creation on signup
+- Triggers for updated_at timestamps
+- Indexes for performance optimization
+
+---
+
+## 🔌 API Endpoints
 
 ### Public Routes
-```
-GET  /api/products              - List all products (with filters)
-GET  /api/products/:id          - Get single product
-GET  /api/categories            - List categories
-POST /api/auth/register         - Register user (phone-based)
-POST /api/auth/login            - Login
-POST /api/orders/whatsapp       - Generate WhatsApp order link
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/products` | List products (with filters) |
+| GET | `/api/products/:id` | Get single product |
+| GET | `/api/products/categories` | Get all categories |
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login user |
+| POST | `/api/orders/whatsapp` | Generate WhatsApp order |
 
 ### Protected Routes (Customer)
-```
-GET  /api/cart                  - Get user cart
-POST /api/cart/items            - Add to cart
-PUT  /api/cart/items/:id        - Update cart item
-DELETE /api/cart/items/:id      - Remove from cart
-POST /api/orders                - Create order
-GET  /api/orders                - Get user orders
-GET  /api/orders/:id            - Get single order
-POST /api/vouchers/validate     - Validate voucher code
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/cart` | Get user's cart |
+| POST | `/api/cart/items` | Add item to cart |
+| PUT | `/api/cart/items/:id` | Update cart item |
+| DELETE | `/api/cart/items/:id` | Remove from cart |
+| POST | `/api/orders` | Create order |
+| GET | `/api/orders` | Get user's orders |
+| POST | `/api/vouchers/validate` | Validate voucher code |
 
 ### Admin Routes
-```
-GET    /api/admin/products             - List all products
-POST   /api/admin/products             - Create product
-PUT    /api/admin/products/:id         - Update product
-DELETE /api/admin/products/:id         - Delete product
-GET    /api/admin/orders               - List all orders
-PUT    /api/admin/orders/:id           - Update order status
-GET    /api/admin/analytics/sales      - Sales analytics
-GET    /api/admin/analytics/products   - Best-selling products
-POST   /api/admin/vouchers             - Create voucher
-GET    /api/admin/vouchers             - List vouchers
-PUT    /api/admin/vouchers/:id         - Toggle voucher status
-GET    /api/admin/inventory/alerts     - Low stock alerts
-POST   /api/admin/manufacturing/update - Update production status
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/admin/orders` | Get all orders |
+| PUT | `/api/orders/:id/status` | Update order status |
+| POST | `/api/admin/products` | Create product |
+| PUT | `/api/admin/products/:id` | Update product |
+| DELETE | `/api/admin/products/:id` | Delete product |
+| GET | `/api/admin/stats` | Dashboard statistics |
+| GET | `/api/admin/analytics/sales` | Sales analytics |
+| POST | `/api/admin/vouchers` | Create voucher |
+| GET | `/api/admin/vouchers` | List vouchers |
 
 ### AI Routes
-```
-POST /api/ai/chat          - Customer assistant chat
-POST /api/ai/recommend     - Product recommendations
-POST /api/ai/inventory     - Inventory analysis
-POST /api/ai/marketing     - Generate marketing content
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/ai/chat` | Customer support chat |
+| POST | `/api/ai/recommendations` | Product recommendations |
+| GET | `/api/ai/inventory-alerts` | Low stock alerts |
+| POST | `/api/ai/marketing-content` | Generate marketing copy |
 
 ---
 
-## 📱 Frontend Pages
-
-### Public Pages
-- `/` - Home (featured products, categories)
-- `/products` - Product catalog with filters
-- `/products/:id` - Product detail page
-- `/cart` - Shopping cart
-- `/checkout` - Checkout flow
-- `/login` - Login/Register
-- `/order-via-whatsapp` - WhatsApp order generator
-
-### Customer Pages (Protected)
-- `/profile` - User profile
-- `/orders` - Order history
-- `/orders/:id` - Order details
-
-### Admin Pages (Protected)
-- `/admin/dashboard` - Overview, analytics
-- `/admin/products` - Product management
-- `/admin/orders` - Order management
-- `/admin/inventory` - Inventory tracking
-- `/admin/vouchers` - Voucher management
-- `/admin/manufacturing` - Production tracking
-- `/admin/customers` - Customer list
-
----
-
-## 🤖 AI Agent Modules
+## 🤖 AI Features
 
 ### 1. Customer Assistant
-- **Purpose**: Answer product questions, check availability
-- **Implementation**: Simple rule-based + keyword matching (Phase 1)
-- **Future**: LLM integration for natural language
+- Powered by Llama-3-8B via Workers AI
+- Answers product questions
+- Provides order status info
+- Zambian context-aware responses
 
 ### 2. Sales Agent
-- **Purpose**: Suggest bundles, upsell items
-- **Logic**: 
-  - If cart has mattress → suggest pillows, bed sheets
-  - If cart has groceries over ZMW 500 → suggest bulk discount
+- Analyzes cart contents
+- Suggests complementary products
+- Creates bundle recommendations
 
 ### 3. Inventory Assistant
-- **Purpose**: Alert low stock, suggest restocking
-- **Logic**: 
-  - Check stock_quantity < threshold
-  - Send notification to admin dashboard
+- Monitors stock levels
+- Generates priority alerts
+- Suggests restocking actions
 
 ### 4. Marketing Agent
-- **Purpose**: Generate WhatsApp statuses, promotional messages
-- **Templates**:
-  - Daily deals
-  - New product announcements
-  - Low stock clearance
+- Creates WhatsApp status updates
+- Generates promotional messages
+- Writes product highlights
 
 ---
 
-## 💳 Payment Flow
+## 💳 Payment Integration
 
-### Mobile Money Integration
-1. User selects payment method (MTN/Airtel/Zamtel)
-2. System generates payment request via Lenco Pay API
-3. User receives USSD prompt on phone
-4. User enters PIN to confirm
-5. Webhook confirms payment to backend
-6. Order status updated to "paid"
+### Supported Methods
+1. **Mobile Money** (MTN, Airtel, Zamtel)
+2. **Voucher Codes**
+3. **Cash on Delivery/Pickup**
 
-### Lenco Pay API Endpoints
+### Integration Flow
 ```
-POST https://api.lencopay.co.zm/v1/payment/initiate
-POST https://api.lencopay.co.zm/v1/payment/verify
-GET  https://api.lencopay.co.zm/v1/payment/status/:transactionId
-```
-
----
-
-## 📲 WhatsApp Integration
-
-### Order via WhatsApp Button
-- Generates pre-filled message with:
-  - Product names
-  - Quantities
-  - Total price
-  - Customer phone number
-- Opens WhatsApp with message ready to send
-
-### Message Format
-```
-🛒 *New Order from Rapid Stores*
-
-👤 Name: John Doe
-📱 Phone: +26097XXXXXXX
-
-📦 Items:
-1. Foam Mattress (Single) x 2 - ZMW 1,200
-2. Bed Sheets x 1 - ZMW 150
-
-💰 Total: ZMW 1,350
-
-📍 Delivery: Pickup at Mansa branch
+1. User places order → Status: "pending"
+2. Select payment method
+3. For mobile money:
+   - Initiate payment via provider API
+   - Webhook confirms payment
+   - Order status → "paid"
+4. For vouchers:
+   - Validate code
+   - Apply discount
+   - Mark as paid
 ```
 
-### WhatsApp Number: `https://wa.me/260XXXXXXXXX?text=encoded_message`
-
 ---
 
-## 🚀 Deployment Plan
+## 📱 WhatsApp Integration
 
-### Phase 1: MVP (Week 1-2)
-- [ ] Basic product catalog
-- [ ] Cart + checkout
-- [ ] User registration (phone-based)
-- [ ] Admin panel (basic CRUD)
-- [ ] WhatsApp order button
-- [ ] Deploy to Render/Railway
-
-### Phase 2: Payments (Week 3-4)
-- [ ] Lenco Pay integration
-- [ ] Mobile money USSD flow
-- [ ] Payment webhooks
-- [ ] Order status updates
-
-### Phase 3: AI Features (Week 5-6)
-- [ ] Customer assistant chatbot
-- [ ] Product recommendations
-- [ ] Inventory alerts
-- [ ] Marketing message generator
-
-### Phase 4: Advanced Features (Week 7-8)
-- [ ] Manufacturing module
-- [ ] Voucher system
-- [ ] Analytics dashboard
-- [ ] Delivery tracking
-
----
-
-## 🔐 Security Measures
-
-1. **Authentication**: JWT tokens with 7-day expiry
-2. **Password Hashing**: bcrypt with salt rounds = 10
-3. **Input Validation**: Joi schema validation
-4. **Rate Limiting**: 100 requests per minute per IP
-5. **CORS**: Restrict to frontend domain
-6. **Environment Variables**: All secrets in .env
-7. **SQL Injection Prevention**: Parameterized queries
-
----
-
-## 📊 Analytics Dashboard
-
-### Key Metrics
-- Daily sales (ZMW)
-- Orders count
-- Average order value
-- Best-selling products
-- Customer retention rate
-- Stock turnover rate
-
-### Visualizations
-- Line chart: Sales over time
-- Bar chart: Products by category
-- Pie chart: Payment method distribution
-- Table: Recent orders
-
----
-
-## 🌍 Local Optimization Strategies
-
-1. **Image Optimization**: WebP format, lazy loading
-2. **Code Splitting**: Load only necessary components
-3. **Service Workers**: Cache products for offline viewing
-4. **Minimal Dependencies**: Keep bundle size < 200KB
-5. **CDN**: Use Cloudflare for static assets
-6. **Database Indexing**: Optimize queries for phone lookups
-
----
-
-## 📈 Future Expansion Roadmap
-
-### Phase 5: Mobile App
-- React Native app for Android/iOS
-- Push notifications
-- Offline mode
-
-### Phase 6: Multi-vendor Marketplace
-- Allow other sellers to list products
-- Commission-based model
-- Vendor dashboard
-
-### Phase 7: Subscription Service
-- Weekly/monthly grocery boxes
-- Auto-renewal
-- Customizable subscriptions
-
-### Phase 8: External Integrations
-- Accounting software (QuickBooks)
-- SMS notifications
-- Email marketing
+### Order via WhatsApp Flow
+1. User adds items to cart (or uses local cart without login)
+2. Clicks "Order via WhatsApp" button
+3. System generates pre-filled message:
+   ```
+   🛒 New Order #abc123
+   
+   - Single Foam Mattress x1 = ZMW 450.00
+   - Foam Pillow x2 = ZMW 170.00
+   
+   Total: ZMW 620.00
+   
+   📞 Phone: +260970000000
+   📍 Address: Mansa
+   💳 Payment: Mobile Money
+   
+   Please confirm my order! Thank you.
+   ```
+4. Opens WhatsApp with message ready to send
 
 ---
 
 ## 🎨 Design System
 
 ### Colors
-- Primary: #16A34A (Green - growth, trust)
-- Secondary: #F59E0B (Amber - energy, warmth)
-- Background: #FFFFFF (White)
-- Text: #1F2937 (Dark gray)
-- Accent: #DC2626 (Red - urgency, sales)
+- **Primary**: `#16A34A` (Green) - Trust, growth
+- **Secondary**: `#F59E0B` (Amber) - Energy, warmth
+- **Accent**: `#DC2626` (Red) - Urgency, alerts
 
 ### Typography
-- Headings: Inter Bold
-- Body: Inter Regular
-- Monospace: JetBrains Mono (for codes)
+- Font: Inter (clean, modern, readable on mobile)
+- Base size: 14px on mobile, 16px on desktop
 
-### Components
-- Buttons: Rounded corners, bold colors
-- Cards: Shadow, hover effects
-- Forms: Large inputs, clear labels
-- Navigation: Bottom nav for mobile, top nav for desktop
-
----
-
-## ✅ Success Metrics
-
-1. **User Adoption**: 500+ registered users in first month
-2. **Order Volume**: 50+ orders per week
-3. **Revenue**: ZMW 50,000+ monthly online sales
-4. **Customer Satisfaction**: 4.5+ star rating
-5. **System Uptime**: 99.5% availability
-6. **Page Load Time**: < 3 seconds on 3G networks
+### Mobile-First Optimizations
+- Touch-friendly buttons (min 44px height)
+- Responsive grid layouts
+- Lazy loading images
+- Minimal JavaScript bundle
+- Offline-capable (future PWA)
 
 ---
 
-*Document Version: 1.0*
-*Last Updated: 2025*
-*Author: AI Systems Architect*
+## 🔐 Security
+
+### Authentication
+- Supabase Auth (JWT tokens)
+- Email or phone-based login
+- Password hashing (bcrypt)
+
+### Authorization
+- Role-based access control (customer/admin)
+- Row Level Security (RLS) on all tables
+- Protected API routes
+
+### Data Protection
+- HTTPS everywhere
+- CORS restrictions
+- Input validation (Zod schemas)
+- SQL injection prevention (parameterized queries)
+
+---
+
+## 🚀 Deployment Guide
+
+### Prerequisites
+1. Cloudflare account (free tier works)
+2. Supabase account (free tier works)
+3. Node.js 18+
+
+### Step 1: Setup Supabase
+
+1. Create new project at [supabase.com](https://supabase.com)
+2. Run SQL schema from `docs/supabase-schema.sql`
+3. Note your:
+   - Project URL: `https://xxx.supabase.co`
+   - Anon Key: `eyJhbG...`
+   - Service Role Key: `eyJhbG...` (keep secret!)
+
+4. Create admin user:
+   ```sql
+   -- Via Supabase Auth UI or SQL
+   UPDATE profiles SET role = 'admin' WHERE email = 'admin@rapidstores.co.zm';
+   ```
+
+### Step 2: Deploy Backend (Cloudflare Worker)
+
+```bash
+cd backend
+
+# Install dependencies
+npm install
+
+# Login to Cloudflare
+npx wrangler login
+
+# Set secrets
+npx wrangler secret put SUPABASE_URL
+# Enter: https://your-project.supabase.co
+
+npx wrangler secret put SUPABASE_KEY
+# Enter: your-service-role-key
+
+# Deploy
+npm run deploy
+```
+
+Note the deployed URL: `https://rapid-stores-api.your-subdomain.workers.dev`
+
+### Step 3: Deploy Frontend (Cloudflare Pages)
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Create .env.local (for development)
+echo "VITE_API_URL=https://your-worker.workers.dev" > .env.local
+
+# Build
+npm run build
+
+# Deploy to Pages
+npx wrangler pages deploy dist --project-name=rapid-stores
+```
+
+Or connect GitHub repo for automatic deployments.
+
+### Step 4: Configure Environment
+
+Update `backend/wrangler.toml`:
+```toml
+[vars]
+WHATSAPP_NUMBER = "260970000000"
+CURRENCY = "ZMW"
+```
+
+Update frontend `.env`:
+```
+VITE_API_URL=https://your-worker.workers.dev
+```
+
+---
+
+## 📊 Monitoring & Analytics
+
+### Built-in Analytics
+- Order statistics dashboard
+- Sales trends (daily/weekly/monthly)
+- Low stock alerts
+- Best-selling products
+
+### External Tools (Optional)
+- Cloudflare Analytics
+- Supabase Dashboard
+- Google Analytics (frontend)
+
+---
+
+## 🔄 Development Workflow
+
+### Local Development
+
+**Backend:**
+```bash
+cd backend
+npm run dev
+# Runs on http://localhost:8787
+```
+
+**Frontend:**
+```bash
+cd frontend
+npm run dev
+# Runs on http://localhost:5173
+```
+
+### Database Migrations
+```bash
+# Generate new migration
+npx wrangler d1 migrations generate rapid-db migration_name
+
+# Apply locally
+npx wrangler d1 migrations apply rapid-db --local
+
+# Apply to production
+npx wrangler d1 migrations apply rapid-db --remote
+```
+
+---
+
+## 📈 Future Enhancements
+
+### Phase 2
+- [ ] Full delivery tracking system
+- [ ] SMS notifications (via Twilio/Africa's Talking)
+- [ ] Email marketing integration
+- [ ] Multi-vendor marketplace
+- [ ] Subscription grocery boxes
+
+### Phase 3
+- [ ] Mobile app (React Native)
+- [ ] Advanced AI chatbot with memory
+- [ ] Integration with external vendors
+- [ ] Loyalty points system
+- [ ] Advanced analytics dashboard
+
+---
+
+## 🆘 Troubleshooting
+
+### Common Issues
+
+**1. CORS Errors**
+- Ensure backend CORS allows your frontend domain
+- Check `wrangler.toml` and `index.ts` CORS settings
+
+**2. Authentication Failures**
+- Verify Supabase URL and keys are correct
+- Check RLS policies in Supabase dashboard
+
+**3. AI Not Working**
+- Ensure Workers AI is enabled on your Cloudflare plan
+- Check AI binding in `wrangler.toml`
+
+**4. Database Connection Issues**
+- Verify Supabase project is active
+- Check network connectivity
+
+---
+
+## 📞 Support
+
+**Rapid Stores and General Dealers Ltd**
+- 📍 Location: Mansa, Zambia
+- 📞 Phone: +260 970 000 000
+- 📧 Email: admin@rapidstores.co.zm
+
+**Technical Support**
+- GitHub Issues
+- Email: tech@rapidstores.co.zm
+
+---
+
+## 📄 License
+
+© 2025 Rapid Stores and General Dealers Ltd. All rights reserved.
+
+Built with ❤️ for Zambia 🇿🇲

@@ -11,6 +11,9 @@ export default {
         secondary: '#F59E0B',
         accent: '#DC2626',
       },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],

@@ -1,25 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { productsAPI } from '../utils/api';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { getProducts, getCategories, createWhatsAppOrder } from '../utils/api';
 import ProductCard from '../components/ProductCard';
+import { useCart } from '../context/CartContext';
 
-const Home = () => {
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+export default function Home() {
+  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const { addToCart } = useCart();
+  const navigate = useNavigate();
 
-  useEffect(() => {
+  useState(() => {
     loadData();
-  }, []);
+  });
 
   const loadData = async () => {
     try {
-      const [productsRes, categoriesRes] = await Promise.all([
-        productsAPI.getAll({ in_stock: true }),
-        productsAPI.getCategories()
+      const [productsData, categoriesData] = await Promise.all([
+        getProducts(),
+        getCategories()
       ]);
-      setFeaturedProducts(productsRes.data.slice(0, 8));
-      setCategories(categoriesRes.data);
+      setProducts(productsData.products || []);
+      setCategories(categoriesData.categories || []);
     } catch (error) {
       console.error('Error loading data:', error);
     } finally {
@@ -27,121 +31,195 @@ const Home = () => {
     }
   };
 
+  const handleAddToCart = async (product) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // If not logged in, redirect to login or offer WhatsApp order
+      const proceed = confirm('Would you like to login to add to cart, or continue with WhatsApp order?');
+      if (proceed) {
+        navigate('/login');
+      } else {
+        // Add to local cart for WhatsApp order
+        let localCart = JSON.parse(localStorage.getItem('local_cart') || '[]');
+        localCart.push({ ...product, quantity: 1 });
+        localStorage.setItem('local_cart', JSON.stringify(localCart));
+        alert('Item added! Continue shopping or checkout via WhatsApp.');
+      }
+      return;
+    }
+
+    const result = await addToCart(product.id);
+    if (result.success) {
+      alert('✅ Added to cart!');
+    } else {
+      alert('❌ Failed to add to cart');
+    }
+  };
+
+  const filteredProducts = selectedCategory
+    ? products.filter(p => p.category === selectedCategory)
+    : products;
+
+  const featuredProducts = products.filter(p => p.is_manufactured).slice(0, 4);
+
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-green-600 text-white rounded-2xl p-8 mb-8">
-        <div className="text-center md:text-left md:flex md:items-center md:justify-between">
-          <div className="mb-6 md:mb-0">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Welcome to Rapid Stores
-            </h1>
-            <p className="text-lg text-green-100 mb-6">
-              Quality mattresses, groceries, and household essentials in Mansa, Zambia.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <Link to="/products" className="btn-secondary px-6 py-3">
-                Shop Now
-              </Link>
-              <a 
-                href="https://wa.me/260970000000" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                💬 WhatsApp Us
-              </a>
-            </div>
-          </div>
-          <div className="text-6xl md:text-8xl opacity-50">🏪</div>
-        </div>
-      </section>
-
-      {/* Categories */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Shop by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {categories.map(category => (
-            <Link
-              key={category}
-              to={`/products?category=${category}`}
-              className="card text-center py-6 hover:bg-green-50 transition-colors"
-            >
-              <div className="text-3xl mb-2">
-                {category === 'mattresses' && '🛏️'}
-                {category === 'groceries' && '🛒'}
-                {category === 'furniture' && '🪑'}
-                {category === 'foam_products' && '🧽'}
-                {category === 'electronics' && '📱'}
-              </div>
-              <div className="font-semibold capitalize">{category.replace('_', ' ')}</div>
+      <section className="bg-gradient-to-r from-primary to-green-600 text-white py-12 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Welcome to Rapid Stores 🇿🇲
+          </h1>
+          <p className="text-xl mb-6">
+            Quality Products, Manufacturing & Supply in Mansa, Zambia
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/products" className="btn-secondary px-6 py-3 rounded-lg font-medium">
+              Shop Now
             </Link>
-          ))}
+            <button
+              onClick={async () => {
+                const localCart = JSON.parse(localStorage.getItem('local_cart') || '[]');
+                if (localCart.length === 0 && products.length > 0) {
+                  // Create sample order from first product
+                  const sampleItems = products.slice(0, 2).map(p => ({
+                    name: p.name,
+                    price: p.price,
+                    quantity: 1
+                  }));
+                  const result = await createWhatsAppOrder({
+                    items: sampleItems,
+                    customer_name: 'Customer',
+                    phone: '+260...',
+                    delivery_address: 'Mansa'
+                  });
+                  window.open(result.whatsapp_url, '_blank');
+                } else {
+                  const items = localCart.map(item => ({
+                    name: item.name,
+                    price: item.price,
+                    quantity: item.quantity || 1
+                  }));
+                  const result = await createWhatsAppOrder({
+                    items,
+                    customer_name: 'Customer',
+                    phone: '+260...',
+                    delivery_address: 'Mansa'
+                  });
+                  window.open(result.whatsapp_url, '_blank');
+                }
+              }}
+              className="bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition"
+            >
+              📱 Order via WhatsApp
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold">Featured Products</h2>
-          <Link to="/products" className="text-primary hover:underline">
-            View All →
-          </Link>
-        </div>
-        
-        {loading ? (
-          <div className="text-center py-12">Loading...</div>
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {featuredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+      {/* Categories Quick Links */}
+      <section className="py-8 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4">Shop by Category</h2>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => setSelectedCategory('')}
+              className={`px-4 py-2 rounded-full font-medium transition ${
+                !selectedCategory
+                  ? 'bg-primary text-white'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              All
+            </button>
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-4 py-2 rounded-full font-medium transition ${
+                  selectedCategory === cat
+                    ? 'bg-primary text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                {cat}
+              </button>
             ))}
           </div>
-        )}
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="bg-white rounded-xl p-8 mb-8 shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Why Choose Rapid Stores?</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          <div className="text-center">
-            <div className="text-4xl mb-3">🏭</div>
-            <h3 className="font-semibold mb-2">Local Manufacturing</h3>
-            <p className="text-sm text-gray-600">Quality mattresses made in Zambia</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">💰</div>
-            <h3 className="font-semibold mb-2">Best Prices</h3>
-            <p className="text-sm text-gray-600">Affordable prices for everyone</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">📱</div>
-            <h3 className="font-semibold mb-2">Easy Ordering</h3>
-            <p className="text-sm text-gray-600">Order online or via WhatsApp</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl mb-3">🚚</div>
-            <h3 className="font-semibold mb-2">Fast Pickup</h3>
-            <p className="text-sm text-gray-600">Ready for pickup in Mansa</p>
-          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-secondary text-white rounded-xl p-8 text-center">
-        <h2 className="text-2xl font-bold mb-4">Need Bulk Supplies?</h2>
-        <p className="mb-6">We offer special prices for bulk orders. Contact us today!</p>
-        <a 
-          href="https://wa.me/260970000000?text=Hello,%20I'm%20interested%20in%20bulk%20orders"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white text-secondary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block"
-        >
-          💬 Chat on WhatsApp
-        </a>
+      {/* Featured Manufacturing Products */}
+      {featuredProducts.length > 0 && (
+        <section className="py-8 px-4 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4">🏭 Made by Rapid Stores</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {featuredProducts.map(product => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* All Products */}
+      <section className="py-8 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-bold mb-4">
+            {selectedCategory || 'All'} Products
+          </h2>
+
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto"></div>
+              <p className="mt-4 text-gray-600">Loading products...</p>
+            </div>
+          ) : filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {filteredProducts.map(product => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No products found in this category.</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-8">Why Choose Rapid Stores?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center p-6">
+              <span className="text-5xl mb-4 block">🚚</span>
+              <h3 className="font-bold text-lg mb-2">Fast Delivery</h3>
+              <p className="text-gray-600">Quick delivery within Mansa and surrounding areas</p>
+            </div>
+            <div className="text-center p-6">
+              <span className="text-5xl mb-4 block">💰</span>
+              <h3 className="font-bold text-lg mb-2">Best Prices</h3>
+              <p className="text-gray-600">Competitive prices on all products</p>
+            </div>
+            <div className="text-center p-6">
+              <span className="text-5xl mb-4 block">📱</span>
+              <h3 className="font-bold text-lg mb-2">Easy Ordering</h3>
+              <p className="text-gray-600">Order online or via WhatsApp - your choice!</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
-};
-
-export default Home;
+}
