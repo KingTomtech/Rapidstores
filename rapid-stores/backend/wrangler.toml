@@ -1,0 +1,32 @@
+name = "rapid-stores-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Supabase Configuration (Database Host)
+# You must set these secrets using: wrangler secret put SUPABASE_URL
+# and: wrangler secret put SUPABASE_KEY
+# [vars]
+# SUPABASE_URL = "https://your-project.supabase.co"
+# SUPABASE_KEY = "your-anon-or-service-role-key"
+
+# Workers AI for AI Features
+[ai]
+binding = "AI"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+WHATSAPP_NUMBER = "260970000000"
+CURRENCY = "ZMW"
+
+# D1 Database (Optional - if you want edge caching, but Supabase is primary)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "rapid-db"
+# database_id = "your-d1-id"
+
+# R2 Bucket for Images (Optional - can also use Supabase Storage)
+# [[r2_buckets]]
+# bucket_name = "rapid-images"
+# binding = "IMAGES"
