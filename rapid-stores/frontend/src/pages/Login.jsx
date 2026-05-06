@@ -1,138 +1,131 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { authAPI } from '../utils/api';
 
-const Login = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
-  const [isRegister, setIsRegister] = useState(false);
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [formData, setFormData] = useState({
-    phone: '',
-    password: '',
-    name: '',
-    email: ''
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
+    setLoading(true);
 
-    try {
-      if (isRegister) {
-        const res = await authAPI.register(formData);
-        login(res.data.user, res.data.token);
-      } else {
-        const res = await authAPI.login(formData);
-        login(res.data.user, res.data.token);
-      }
-      navigate('/');
-    } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred');
-    } finally {
+    if (!email && !phone) {
+      setError('Please enter email or phone number');
       setLoading(false);
+      return;
     }
+
+    if (!password) {
+      setError('Please enter password');
+      setLoading(false);
+      return;
+    }
+
+    const result = await login(email, phone, password);
+    
+    if (result.success) {
+      navigate('/');
+    } else {
+      setError(result.error || 'Login failed');
+    }
+    
+    setLoading(false);
   };
 
   return (
-    <div className="max-w-md mx-auto">
-      <div className="card">
-        <h1 className="text-2xl font-bold mb-6 text-center">
-          {isRegister ? 'Create Account' : 'Login'}
-        </h1>
-
-        {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {isRegister && (
-            <>
-              <div>
-                <label className="block text-sm font-medium mb-1">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required={isRegister}
-                  className="input"
-                  placeholder="John Doe"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Email (Optional)</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="input"
-                  placeholder="john@example.com"
-                />
-              </div>
-            </>
-          )}
-
-          <div>
-            <label className="block text-sm font-medium mb-1">Phone Number</label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              className="input"
-              placeholder="+26097XXXXXXX"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="input"
-              placeholder="••••••••"
-            />
-          </div>
-
-          <button type="submit" disabled={loading} className="btn-primary w-full">
-            {loading ? 'Please wait...' : isRegister ? 'Create Account' : 'Login'}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center">
-          <button
-            onClick={() => { setIsRegister(!isRegister); setError(''); }}
-            className="text-primary hover:underline"
-          >
-            {isRegister ? 'Already have an account? Login' : "Don't have an account? Register"}
-          </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="max-w-md w-full">
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <span className="text-6xl">🏪</span>
+          <h1 className="text-3xl font-bold text-primary mt-2">Rapid Stores</h1>
+          <p className="text-gray-600">Welcome back!</p>
         </div>
 
-        <div className="mt-6 pt-6 border-t">
-          <p className="text-sm text-gray-600 text-center mb-4">Demo Admin Credentials:</p>
-          <div className="bg-gray-100 p-3 rounded-lg text-sm">
-            <div>Phone: <code className="bg-white px-2 py-1 rounded">+260970000000</code></div>
-            <div>Password: <code className="bg-white px-2 py-1 rounded">admin123</code></div>
+        {/* Login Form */}
+        <div className="card">
+          <h2 className="text-2xl font-bold mb-6">Sign In</h2>
+          
+          {error && (
+            <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            {/* Email or Phone */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">
+                Email or Phone Number
+              </label>
+              <input
+                type="text"
+                value={email || phone}
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val.includes('@')) {
+                    setEmail(val);
+                    setPhone('');
+                  } else {
+                    setPhone(val);
+                    setEmail('');
+                  }
+                }}
+                className="input"
+                placeholder="+260... or email@example.com"
+                required
+              />
+            </div>
+
+            {/* Password */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full btn-primary py-3 disabled:opacity-50"
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+
+          {/* Register Link */}
+          <p className="mt-6 text-center text-sm text-gray-600">
+            Don't have an account?{' '}
+            <a href="/register" className="text-primary font-medium hover:underline">
+              Sign up
+            </a>
+          </p>
+
+          {/* WhatsApp Login Hint */}
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <p className="text-xs text-gray-500 text-center">
+              💡 Tip: You can also order via WhatsApp without logging in
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default Login;
+}
