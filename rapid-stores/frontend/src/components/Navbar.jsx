@@ -5,7 +5,13 @@ import { useCart } from '../context/CartContext';
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { cart } = useCart();
-  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const user = (() => {
+    try {
+      return JSON.parse(localStorage.getItem('user') || 'null');
+    } catch {
+      return null;
+    }
+  })();
 
   const handleLogout = () => {
     localStorage.removeItem('token');

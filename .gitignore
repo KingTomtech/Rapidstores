@@ -1,4 +1,3 @@
-```
 # Dependencies
 node_modules/
 
@@ -6,11 +5,19 @@ node_modules/
 .env
 .env.local
 *.env.*
+!.env.example
 
 # Build outputs
 dist/
 build/
 target/
+
+# SQLite / Database
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+data/
 
 # Python cache
 __pycache__/

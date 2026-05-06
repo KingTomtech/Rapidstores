@@ -12,6 +12,13 @@ import aiRoutes from './routes/ai.routes.js';
 // Load environment variables
 dotenv.config();
 
+// Validate required environment variables
+if (!process.env.JWT_SECRET) {
+  console.error('❌ JWT_SECRET environment variable is required');
+  console.error('   Create a .env file or set JWT_SECRET in your environment');
+  process.exit(1);
+}
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 

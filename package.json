@@ -1,0 +1,20 @@
+{
+  "name": "rapid-stores",
+  "version": "1.0.0",
+  "description": "Rapid Stores and General Dealers Ltd - Digital Platform",
+  "scripts": {
+    "install:all": "npm install && cd rapid-stores/backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd rapid-stores/backend && npm run dev",
+    "dev:frontend": "cd rapid-stores/frontend && npm run dev",
+    "start": "cd rapid-stores/backend && npm start",
+    "build": "cd rapid-stores/frontend && npm run build",
+    "seed": "cd rapid-stores/backend && npm run seed"
+  },
+  "keywords": ["ecommerce", "zambia", "retail"],
+  "author": "Rapid Stores",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

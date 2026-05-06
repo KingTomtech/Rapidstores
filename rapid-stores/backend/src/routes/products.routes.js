@@ -56,6 +56,22 @@ router.get('/:id', (req, res) => {
   }
 });
 
+// Get low stock products (admin only)
+router.get('/admin/low-stock', authMiddleware, (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+
+    const threshold = parseInt(req.query.threshold) || 10;
+    const products = getLowStockProducts(threshold);
+    res.json(products);
+  } catch (error) {
+    console.error('Get low stock error:', error);
+    res.status(500).json({ error: 'Failed to get low stock products' });
+  }
+});
+
 // Create product (admin only)
 router.post('/', authMiddleware, (req, res) => {
   try {
@@ -126,22 +142,6 @@ router.delete('/:id', authMiddleware, (req, res) => {
   } catch (error) {
     console.error('Delete product error:', error);
     res.status(500).json({ error: 'Failed to delete product' });
-  }
-});
-
-// Get low stock products (admin only)
-router.get('/admin/low-stock', authMiddleware, (req, res) => {
-  try {
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ error: 'Admin access required' });
-    }
-
-    const threshold = parseInt(req.query.threshold) || 10;
-    const products = getLowStockProducts(threshold);
-    res.json(products);
-  } catch (error) {
-    console.error('Get low stock error:', error);
-    res.status(500).json({ error: 'Failed to get low stock products' });
   }
 });
 

@@ -100,71 +100,6 @@ router.get('/', authMiddleware, (req, res) => {
   }
 });
 
-// Get single order (protected)
-router.get('/:id', authMiddleware, (req, res) => {
-  try {
-    const order = getOrderById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ error: 'Order not found' });
-    }
-
-    // Check if user owns this order or is admin
-    if (order.user_id !== req.user.id && req.user.role !== 'admin') {
-      return res.status(403).json({ error: 'Access denied' });
-    }
-
-    const orderItems = getOrderItems(order.id);
-    res.json({ ...order, items: orderItems });
-  } catch (error) {
-    console.error('Get order error:', error);
-    res.status(500).json({ error: 'Failed to get order' });
-  }
-});
-
-// Update order status (admin only)
-router.put('/:id/status', authMiddleware, (req, res) => {
-  try {
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ error: 'Admin access required' });
-    }
-
-    const { status } = req.body;
-    const validStatuses = ['pending', 'paid', 'processing', 'ready', 'delivered'];
-    
-    if (!status || !validStatuses.includes(status)) {
-      return res.status(400).json({ error: 'Invalid status' });
-    }
-
-    const order = updateOrderStatus(req.params.id, status);
-    res.json(order);
-  } catch (error) {
-    console.error('Update order status error:', error);
-    res.status(500).json({ error: 'Failed to update order status' });
-  }
-});
-
-// Update payment status (admin only or webhook)
-router.put('/:id/payment', authMiddleware, (req, res) => {
-  try {
-    if (req.user.role !== 'admin') {
-      return res.status(403).json({ error: 'Admin access required' });
-    }
-
-    const { payment_status } = req.body;
-    const validStatuses = ['pending', 'completed', 'failed'];
-    
-    if (!payment_status || !validStatuses.includes(payment_status)) {
-      return res.status(400).json({ error: 'Invalid payment status' });
-    }
-
-    const order = updatePaymentStatus(req.params.id, payment_status);
-    res.json(order);
-  } catch (error) {
-    console.error('Update payment status error:', error);
-    res.status(500).json({ error: 'Failed to update payment status' });
-  }
-});
-
 // Admin: Get all orders
 router.get('/admin/all', authMiddleware, (req, res) => {
   try {
@@ -258,6 +193,71 @@ router.post('/validate-voucher', authMiddleware, (req, res) => {
   } catch (error) {
     console.error('Validate voucher error:', error);
     res.status(500).json({ error: 'Failed to validate voucher' });
+  }
+});
+
+// Get single order (protected)
+router.get('/:id', authMiddleware, (req, res) => {
+  try {
+    const order = getOrderById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    // Check if user owns this order or is admin
+    if (order.user_id !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const orderItems = getOrderItems(order.id);
+    res.json({ ...order, items: orderItems });
+  } catch (error) {
+    console.error('Get order error:', error);
+    res.status(500).json({ error: 'Failed to get order' });
+  }
+});
+
+// Update order status (admin only)
+router.put('/:id/status', authMiddleware, (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+
+    const { status } = req.body;
+    const validStatuses = ['pending', 'paid', 'processing', 'ready', 'delivered'];
+    
+    if (!status || !validStatuses.includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' });
+    }
+
+    const order = updateOrderStatus(req.params.id, status);
+    res.json(order);
+  } catch (error) {
+    console.error('Update order status error:', error);
+    res.status(500).json({ error: 'Failed to update order status' });
+  }
+});
+
+// Update payment status (admin only or webhook)
+router.put('/:id/payment', authMiddleware, (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+
+    const { payment_status } = req.body;
+    const validStatuses = ['pending', 'completed', 'failed'];
+    
+    if (!payment_status || !validStatuses.includes(payment_status)) {
+      return res.status(400).json({ error: 'Invalid payment status' });
+    }
+
+    const order = updatePaymentStatus(req.params.id, payment_status);
+    res.json(order);
+  } catch (error) {
+    console.error('Update payment status error:', error);
+    res.status(500).json({ error: 'Failed to update payment status' });
   }
 });
 
